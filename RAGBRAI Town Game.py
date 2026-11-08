@@ -2,6 +2,7 @@ import streamlit as st
 import random
 import folium
 from streamlit_folium import st_folium
+from folium.features import DivIcon
 
 st.set_page_config(layout="wide", page_title="RAGBRAI Strategy Board Game")
 
@@ -161,6 +162,8 @@ RAGBRAI_MAP = {
     "Coralville": {"Davenport": 60, "Dyersville": 77, "Muscatine": 44, "Monticello": 52}
 }
 
+ALL_NON_START_TOWNS = [t for t in TOWN_COORDS.keys() if t not in START_TOWNS]
+
 POWER_CARDS = [
     {"name": "Porkchop Power", "reason": "Fueled up by legendary festival food!", "effect_text": "Expand 10 miles to the mileage range in both directions."},
     {"name": "Headwind", "reason": "Fighting a fierce crosswind across open plains!", "effect_text": "Subtract 10 miles to the mileage range in both directions."},
@@ -173,21 +176,33 @@ POWER_CARDS = [
 ]
 
 ABILITY_DESCRIPTIONS = {
-    "Beekman's Energy Boost": "Add 20 miles to the top and bottom ranges on this turn.",
-    "Thunderstorm": "Multiplayer only: Make an opponent go back one town.",
-    "Slip & Slide Boost": "No limits to your mileage on this turn (all routes become available)."
+    "Beekman's Energy Boost": "Add 20 miles to top & bottom ranges (-5 pts score penalty).",
+    "Thunderstorm": "Multiplayer only: Push opponent back 1 town (-5 pts penalty).",
+    "Slip & Slide Boost": "Remove all mileage limits for this turn (-10 pts score penalty)."
 }
 
 def roll_2d6():
     return random.randint(1, 6) + random.randint(1, 6)
 
+def calculate_player_mileage(history):
+    total = 0
+    for i in range(len(history) - 1):
+        from_t, to_t = history[i], history[i+1]
+        total += RAGBRAI_MAP.get(from_t, {}).get(to_t, 0)
+    return total
+
 # --- INITIALIZE SESSION STATE ---
+if "completed_towns_log" not in st.session_state:
+    st.session_state.completed_towns_log = set()
+
 if "phase" not in st.session_state:
     st.session_state.phase = "setup"
+    st.session_state.previous_phase = "playing"
     st.session_state.players = []
     st.session_state.current_idx = 0
     st.session_state.dice_mode = "Virtual Dice"
-    st.session_state.turn_state = "roll" # roll, card, move, road_closure, reset_notice
+    st.session_state.challenge_mode = False
+    st.session_state.turn_state = "roll" # roll, card, move, road_closure
     st.session_state.r1 = 0
     st.session_state.r2 = 0
     st.session_state.current_card = None
@@ -196,10 +211,46 @@ if "phase" not in st.session_state:
     st.session_state.mod_low = 0
     st.session_state.mod_high = 0
     st.session_state.road_result_msg = None
-    st.session_state.reset_reason = None
     st.session_state.winner = None
 
-# --- MAP GENERATOR ---
+# --- SIDEBAR NAVIGATION & LOG BOOK CONTROLS ---
+with st.sidebar:
+    st.header("⚙️ Game Options")
+    
+    if st.session_state.phase != "view_full_map":
+        if st.button("🗺️ View Full Town Map"):
+            st.session_state.previous_phase = st.session_state.phase
+            st.session_state.phase = "view_full_map"
+            st.rerun()
+
+    if st.session_state.phase in ["playing", "select_start_single"]:
+        if st.button("🔄 Restart Current Route"):
+            current_p = st.session_state.players[st.session_state.current_idx]
+            current_p['reset_reason'] = f"Player {current_p['name']} requested a route reset."
+            current_p['start_choice'] = START_TOWNS[0]
+            st.session_state.phase = "select_start_single"
+            st.rerun()
+            
+        if st.button("🏠 Quit to Home Menu"):
+            prev_log = st.session_state.completed_towns_log
+            st.session_state.clear()
+            st.session_state.completed_towns_log = prev_log
+            st.rerun()
+
+    st.markdown("---")
+    st.header("📖 Master Town Log Book")
+    completed_count = len(st.session_state.completed_towns_log)
+    st.write(f"**Session Coverage:** {completed_count} / 99 Towns")
+    
+    with st.expander("View 99 Towns Checklist", expanded=False):
+        all_sorted_towns = sorted(list(TOWN_COORDS.keys()))
+        for t in all_sorted_towns:
+            if t in st.session_state.completed_towns_log:
+                st.write(f"✅ **{t}**")
+            else:
+                st.write(f"⚪ {t}")
+
+# --- MAP GENERATORS ---
 def get_map(players):
     m = folium.Map(
         location=[42.0111, -93.2105], 
@@ -226,41 +277,90 @@ def get_map(players):
                 ).add_to(m)
     return m
 
+def get_all_towns_map():
+    m = folium.Map(
+        location=[42.0111, -93.2105], 
+        zoom_start=7, 
+        tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+        attr='Tiles &copy; Esri'
+    )
+    for town, coords in TOWN_COORDS.items():
+        if town in START_TOWNS:
+            icon_color, icon_name = "green", "play"
+            category = "Start Town"
+        elif town in FINISH_TOWNS:
+            icon_color, icon_name = "flag", "flag"
+            category = "Finish Town"
+        else:
+            icon_color, icon_name = "blue", "info-sign"
+            category = "Pass-Through Town"
+            
+        folium.Marker(
+            coords,
+            popup=f"<b>{town}</b><br>({category})",
+            tooltip=town,
+            icon=folium.Icon(color=icon_color, icon=icon_name)
+        ).add_to(m)
+
+        # Permanent tiny text label underneath each marker using folium.Marker directly
+        folium.Marker(
+            coords,
+            icon=DivIcon(
+                icon_size=(150, 36),
+                icon_anchor=(75, -12),
+                html=f'<div style="font-size: 8pt; font-weight: bold; color: #333333; text-shadow: 1px 1px 0px #ffffff, -1px -1px 0px #ffffff, 1px -1px 0px #ffffff, -1px 1px 0px #ffffff; text-align: center;">{town}</div>'
+            )
+        ).add_to(m)
+    return m
+
 # --- APP UI ---
 st.title("🚴 RAGBRAI: Strategy Board Game")
 
+# ================= FULL MAP VIEW =================
+if st.session_state.phase == "view_full_map":
+    st.subheader("🗺️ All 99 Iowa Game Towns Reference Map")
+    st.write("🟢 **Green Markers** = Start Towns | 🔴 **Red Flag Markers** = Finish Towns | 🔵 **Blue Markers** = Interior Towns")
+    
+    if st.button("🔙 Back to Game"):
+        st.session_state.phase = st.session_state.previous_phase
+        st.rerun()
+        
+    full_m = get_all_towns_map()
+    st_folium(full_m, width=900, height=600)
+
 # ================= SETUP PHASE =================
-if st.session_state.phase == "setup":
-    with st.expander("📖 **How to Play & Game Rules (Click to expand)**", expanded=True):
+elif st.session_state.phase == "setup":
+    with st.expander("📖 **How to Play & Game Features (Click to expand)**", expanded=True):
         st.markdown("""
-        ### 🚴 Welcome to RAGBRAI!
-        Navigate your bicycle across Iowa from a **Western Start Town** to a **Mississippi River Finish Town**.
+        ### 🚴 Welcome to my RAGBRAI game! 
+        My name is Shawn and I'd classify myself as a RAGBRAI superfan. I've completed 4 full years as of 2026 (as well as a handful of partial days growing up) and don't plan on stopping anytime soon. During my 3rd RAGBRAI, our group did daily BINGO cards and one of the items was to come up with an idea for a RAGBRAI card game. Since then, the idea of a RAGBRAI game has never really left my mind and you're looking at the result! This is purely for fun, not at all owned by RAGBRAI, and just a fun passion-project. I included 99 Iowa towns (couldn't quite get them all) and mileages are estimates. Please enjoy the game and let me know any feedback you have! Hope to see you out on the road next year for RAGBRAI 54. In the meantime, navigate your virtual bicycle across Iowa from the Missouri River all the way to the mighty Mississippi!
 
         ---
 
-        #### 🎯 Core Objective & Win Condition
+        #### 🎯 Core Objective & Game Rules
         * **7 Days of Riding:** Reach any Mississippi River finish town (*Dubuque, Davenport, Burlington, etc.*) on **Day 7** (8 total stops including your start).
-        * **Overshoot / Fail Penalty:** Reaching a finish town early or ending Day 7 in a non-finish town forces you to restart from Day 0!
+        * **Scoring System:** Starts at 114 points. Lose **2 points per turn taken** (allowing a perfect 100 for a 7-turn run). Using *Beekman's Energy Boost* or *Thunderstorm* deducts **5 points**, while *Slip & Slide Boost* deducts **10 points**.
+        * **Staying in Town:** If you have valid route options, you can voluntarily choose to stay in your current town to pass your turn. Your Day number won't advance, but it adds 1 turn to your total count (-2 points).
+        * **🗺️ Full Town Map:** You can click the **"View Full Town Map"** button in the sidebar at any time to inspect all 99 game towns simultaneously with permanent text labels. Use **"Back to Game"** to resume right where you left off!
+        * **📖 Master Town Log Book:** Accessible in the sidebar, this tracks your session coverage across all 99 Iowa towns, placing checkmarks next to any towns featured in a completed, winning route.
 
         ---
 
-        #### 🎲 Daily Dice Rolls & Riding Limits
-        * **Two-Dice Multipliers:** Each turn, two pairs of standard dice are rolled. The lowest and highest totals multiplied by 10 establish your **Base Mileage Range** for the day (e.g., rolling a 4 and a 7 gives 40–70 miles).
+        #### ⚡ Special Abilities & Multiplayer Counterplay
+        * Each player starts with 3 one-time-use abilities: *Beekman's Energy Boost*, *Slip & Slide Boost*, and *Thunderstorm* (multiplayer only).
+        * **Multiplayer Effect:** Whenever *any* player uses a special ability, all opponents receive a **+5 mile range bonus** on both ends of their mileage range on their next turn!
 
         ---
 
-        #### 🃏 Daily Power Cards
-        * Each day draws an unpredictable event modifying your range (*Headwinds, Porkchop Power, 100 Degree Days*) or triggering road construction detours.
-
-        ---
-
-        #### ⚡ Special Abilities (One-Time Use Each)
-        * Every player starts with powerful single-use abilities (*Beekman's Energy Boost, Slip & Slide Boost, Thunderstorm*). Use them wisely when stuck!
+        #### 🏆 Challenge Mode
+        * When enabled, each player is assigned a **Random Mandatory Town** (chosen from all 89 non-start towns) and a **Target Mileage** (350–550 miles). 
+        * To successfully win in Challenge Mode, you must land on a finish town on Day 7, pass through your assigned town, and finish within **±35 miles** of your mileage target.
         """)
 
     st.subheader("⚙️ Game Setup")
     num_players = st.number_input("Number of Players (1 for Solo)", min_value=1, max_value=6, value=1, step=1)
     st.session_state.dice_mode = st.selectbox("Select Dice Mode", ["Virtual Dice", "Real-Life Dice"])
+    st.session_state.challenge_mode = st.checkbox("🏆 Enable Challenge Mode (Random Target Mileage & Mandatory Town)", value=False)
     
     player_names = []
     for i in range(int(num_players)):
@@ -268,21 +368,32 @@ if st.session_state.phase == "setup":
         player_names.append(name)
 
     if st.button("Proceed to Start Town Selection"):
-        st.session_state.players = [{
-            "name": name,
-            "town": None,
-            "history": [],
-            "abilities": {"Beekman's Energy Boost": True, "Thunderstorm": True, "Slip & Slide Boost": True},
-            "total_turns_taken": 0,
-            "start_choice": START_TOWNS[0]
-        } for name in player_names]
+        st.session_state.players = []
+        for name in player_names:
+            p_data = {
+                "name": name,
+                "town": None,
+                "history": [],
+                "abilities": {"Beekman's Energy Boost": True, "Thunderstorm": True, "Slip & Slide Boost": True},
+                "total_turns_taken": 0,
+                "ability_penalty_pts": 0,
+                "bonus_range_next_turn": 0,
+                "start_choice": START_TOWNS[0],
+                "reset_reason": None,
+                "target_town": random.choice(ALL_NON_START_TOWNS) if st.session_state.challenge_mode else None,
+                "target_mileage": random.randint(350, 550) if st.session_state.challenge_mode else None
+            }
+            st.session_state.players.append(p_data)
         st.session_state.phase = "select_starts"
         st.rerun()
 
-# ================= START TOWN SELECTION =================
+# ================= START TOWN SELECTION (INITIAL) =================
 elif st.session_state.phase == "select_starts":
     st.subheader("Select Starting Towns")
     for p in st.session_state.players:
+        st.markdown(f"#### 👤 {p['name']}")
+        if st.session_state.challenge_mode:
+            st.info(f"🎯 **Challenge Target:** Pass through **{p['target_town']}** and complete between **{p['target_mileage']-35}–{p['target_mileage']+35} miles**.")
         p['start_choice'] = st.selectbox(f"Select Western Start Town for {p['name']}:", START_TOWNS, key=f"start_{p['name']}")
 
     if st.button("Start Game!"):
@@ -293,11 +404,36 @@ elif st.session_state.phase == "select_starts":
         st.session_state.turn_state = "roll"
         st.rerun()
 
+# ================= INDIVIDUAL PLAYER START RE-SELECTION =================
+elif st.session_state.phase == "select_start_single":
+    current_p = st.session_state.players[st.session_state.current_idx]
+    st.subheader(f"🔄 Restart Route: {current_p['name']}")
+    if current_p['reset_reason']:
+        st.warning(current_p['reset_reason'])
+    
+    if st.session_state.challenge_mode:
+        st.info(f"🎯 **Challenge Target:** Pass through **{current_p['target_town']}** and complete between **{current_p['target_mileage']-35}–{current_p['target_mileage']+35} miles**.")
+
+    new_start = st.selectbox(f"Select New Western Start Town for {current_p['name']}:", START_TOWNS, key=f"single_start_{current_p['name']}")
+    
+    if st.button("Confirm New Start & End Turn"):
+        current_p['start_choice'] = new_start
+        current_p['town'] = new_start
+        current_p['history'] = [current_p['town']]
+        current_p['reset_reason'] = None
+        
+        st.session_state.phase = "playing"
+        st.session_state.turn_state = "roll"
+        st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
+        st.rerun()
+
 # ================= PLAYING PHASE =================
 elif st.session_state.phase == "playing":
     current_p = st.session_state.players[st.session_state.current_idx]
     current_day = len(current_p['history'])
     is_solo = len(st.session_state.players) == 1
+
+    temp_bonus = current_p['bonus_range_next_turn']
 
     col_control, col_map = st.columns([1, 1])
 
@@ -305,8 +441,14 @@ elif st.session_state.phase == "playing":
         st.markdown(f"### 👉 {current_p['name']}'s Turn (Day {current_day})")
         st.info(f"📍 **Current Location:** {current_p['town']}")
 
+        if st.session_state.challenge_mode:
+            st.warning(f"🎯 **Challenge Goal:** Must visit **{current_p['target_town']}** | Target: **{current_p['target_mileage']-35}–{current_p['target_mileage']+35} mi**")
+
         # --- SUBSTATE 1: ROLL DICE ---
         if st.session_state.turn_state == "roll":
+            if temp_bonus > 0:
+                st.success(f"⚡ Opponent Ability Bonus Active! Range expanded by +{temp_bonus} miles in both directions.")
+
             if st.session_state.dice_mode.startswith("Virtual"):
                 if st.button("🎲 Roll Daily Dice"):
                     r1 = roll_2d6()
@@ -348,7 +490,6 @@ elif st.session_state.phase == "playing":
                 card = random.choice(POWER_CARDS)
                 st.session_state.current_card = card
                 
-                # Modifiers from base range
                 ml, mh = st.session_state.base_low, st.session_state.base_high
                 if card['name'] == "Porkchop Power":
                     ml = max(0, st.session_state.base_low - 10)
@@ -367,6 +508,11 @@ elif st.session_state.phase == "playing":
                 elif card['name'] == "Fire Station Fundraiser":
                     ml = max(0, st.session_state.base_low - 15)
 
+                if temp_bonus > 0:
+                    ml = max(0, ml - temp_bonus)
+                    mh += temp_bonus
+                    current_p['bonus_range_next_turn'] = 0
+
                 st.session_state.mod_low = ml
                 st.session_state.mod_high = mh
                 current_p['total_turns_taken'] += 1
@@ -381,8 +527,6 @@ elif st.session_state.phase == "playing":
         elif st.session_state.turn_state == "road_closure":
             card = st.session_state.current_card
             st.write(f"🎲 Dice Rolls: **{st.session_state.r1}** and **{st.session_state.r2}**")
-            st.success(f"📊 **Base Daily Range:** {st.session_state.base_low} to {st.session_state.base_high} miles")
-            
             st.warning(f"🃏 Power Card: {card['name']} — {card['reason']} (*{card['effect_text']}*)")
 
             if st.session_state.road_result_msg:
@@ -418,28 +562,16 @@ elif st.session_state.phase == "playing":
                         st.session_state.road_result_msg = msg
                         st.rerun()
 
-        # --- SUBSTATE 2.8: RESET NOTICE SCREEN ---
-        elif st.session_state.turn_state == "reset_notice":
-            st.error(st.session_state.reset_reason)
-            if st.button("Continue to Start Town"):
-                st.session_state.reset_reason = None
-                st.session_state.turn_state = "roll"
-                st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
-                st.rerun()
-
         # --- SUBSTATE 3: MOVE / CHOOSE ROUTE ---
         elif st.session_state.turn_state == "move":
             card = st.session_state.current_card
             st.write(f"🎲 Dice Rolls: **{st.session_state.r1}** and **{st.session_state.r2}**")
             st.success(f"📊 **Base Daily Range:** {st.session_state.base_low} to {st.session_state.base_high} miles")
-            
             st.info(f"🃏 Power Card: {card['name']} — {card['reason']} (*{card['effect_text']}*)")
             st.write(f"⚡ **Effective Range:** {st.session_state.mod_low} to {st.session_state.mod_high} miles")
 
-            # Abilities Expander with Hover Tooltips & Descriptions
             with st.expander("⚡ Use Special Abilities (One-Time Use)"):
                 for ab_name, available in current_p['abilities'].items():
-                    # Hide Thunderstorm in Solo Mode
                     if is_solo and ab_name == "Thunderstorm":
                         continue
 
@@ -448,14 +580,25 @@ elif st.session_state.phase == "playing":
                         st.caption(f"**{ab_name}**: {desc}")
                         if st.button(f"Activate {ab_name}", help=f"Effect: {desc}", key=f"ab_btn_{ab_name}"):
                             current_p['abilities'][ab_name] = False
+                            
+                            if ab_name == "Slip & Slide Boost":
+                                current_p['ability_penalty_pts'] += 10
+                            else:
+                                current_p['ability_penalty_pts'] += 5
+                            
+                            if not is_solo:
+                                for op in st.session_state.players:
+                                    if op['name'] != current_p['name']:
+                                        op['bonus_range_next_turn'] = 5
+
                             if ab_name == "Beekman's Energy Boost":
                                 st.session_state.mod_low = max(0, st.session_state.mod_low - 20)
                                 st.session_state.mod_high += 20
-                                st.success("Energy Boost applied!")
+                                st.success("Energy Boost applied! (-5 pts score penalty)")
                             elif ab_name == "Slip & Slide Boost":
                                 st.session_state.mod_low = 0
                                 st.session_state.mod_high = 9999
-                                st.success("All mileage limits removed!")
+                                st.success("All mileage limits removed! (-10 pts score penalty)")
                             elif ab_name == "Thunderstorm":
                                 opponents = [op for op in st.session_state.players if op['name'] != current_p['name']]
                                 if opponents:
@@ -479,24 +622,36 @@ elif st.session_state.phase == "playing":
                     if st.button(f"Ride to {t_name} ({t_dist} mi)", key=f"route_{t_name}"):
                         current_p['history'].append(t_name)
                         current_p['town'] = t_name
-                        
                         days_ridden = len(current_p['history']) - 1
+                        total_miles = calculate_player_mileage(current_p['history'])
                         
-                        # Check Win or Fail Conditions
                         if t_name in FINISH_TOWNS and days_ridden < 7:
-                            st.session_state.reset_reason = f"🚨 **Overshot!** You reached the finish town of **{t_name}** on Day {days_ridden} (before Day 7). You must restart from your starting town!"
-                            current_p['town'] = current_p['start_choice']
-                            current_p['history'] = [current_p['town']]
-                            st.session_state.turn_state = "reset_notice"
+                            current_p['reset_reason'] = f"🚨 **Overshot!** Reached finish town {t_name} on Day {days_ridden} (before Day 7). Select a new starting town to restart!"
+                            st.session_state.phase = "select_start_single"
                         elif days_ridden == 7:
                             if t_name in FINISH_TOWNS:
-                                st.session_state.winner = current_p
-                                st.session_state.phase = "game_over"
+                                challenge_failed = False
+                                fail_msg = ""
+                                if st.session_state.challenge_mode:
+                                    visited_town = current_p['target_town'] in current_p['history']
+                                    mileage_diff = abs(total_miles - current_p['target_mileage'])
+                                    if not visited_town:
+                                        challenge_failed = True
+                                        fail_msg += f" Did not visit required town **{current_p['target_town']}**."
+                                    if mileage_diff > 35:
+                                        challenge_failed = True
+                                        fail_msg += f" Final mileage ({total_miles} mi) was not within 35 miles of target ({current_p['target_mileage']} mi)."
+
+                                if challenge_failed:
+                                    current_p['reset_reason'] = f"🚨 **Challenge Mode Failed!** {fail_msg} Select a new starting town to restart!"
+                                    st.session_state.phase = "select_start_single"
+                                else:
+                                    st.session_state.winner = current_p
+                                    st.session_state.completed_towns_log.update(current_p['history'])
+                                    st.session_state.phase = "game_over"
                             else:
-                                st.session_state.reset_reason = f"🚨 **Out of Time!** You finished Day 7 in **{t_name}** instead of a Mississippi River finish town. You must restart from your starting town!"
-                                current_p['town'] = current_p['start_choice']
-                                current_p['history'] = [current_p['town']]
-                                st.session_state.turn_state = "reset_notice"
+                                current_p['reset_reason'] = f"🚨 **Out of Time!** Day 7 ended in {t_name} instead of a finish town. Select a new starting town to restart!"
+                                st.session_state.phase = "select_start_single"
                         else:
                             st.session_state.turn_state = "roll"
                             st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
@@ -505,20 +660,38 @@ elif st.session_state.phase == "playing":
                 else:
                     st.text(f"{t_name} — {t_dist} mi [Out of Range]")
 
-            if not any_valid:
-                st.warning("No routes are currently within your range!")
-                if st.button("Step Back / Accept Being Stuck"):
-                    if len(current_p['history']) > 1:
-                        current_p['history'].pop()
-                        current_p['town'] = current_p['history'][-1]
+            if any_valid:
+                st.markdown("---")
+                if st.button(f"🏨 Stay in {current_p['town']} (Pass Turn)", help="Pass your turn without moving. Keeps same day, but adds 1 turn (+2 score penalty)."):
                     st.session_state.turn_state = "roll"
                     st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
+                    st.rerun()
+            else:
+                st.warning("No routes are currently within your range!")
+                if st.button("Step Back / Accept Being Stuck"):
+                    if len(current_p['history']) <= 2:
+                        current_p['reset_reason'] = f"🚨 **Stuck Early!** You had no valid moves on your first/second town. Select a new starting town to restart!"
+                        st.session_state.phase = "select_start_single"
+                    else:
+                        if len(current_p['history']) > 1:
+                            current_p['history'].pop()
+                            current_p['town'] = current_p['history'][-1]
+                        st.session_state.turn_state = "roll"
+                        st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
                     st.rerun()
 
     with col_map:
         st.subheader("🗺️ Live Iowa Map")
+        
+        st.markdown("#### 🚴 Total Route Mileage Tracker")
+        cols = st.columns(len(st.session_state.players))
+        for idx, p in enumerate(st.session_state.players):
+            p_miles = calculate_player_mileage(p['history'])
+            with cols[idx]:
+                st.metric(label=f"{p['name']}'s Mileage", value=f"{p_miles} mi", delta=f"Day {len(p['history'])-1}")
+
         m = get_map(st.session_state.players)
-        st_folium(m, width=650, height=500)
+        st_folium(m, width=650, height=480)
 
 # ================= GAME OVER PHASE =================
 elif st.session_state.phase == "game_over":
@@ -526,12 +699,16 @@ elif st.session_state.phase == "game_over":
     st.balloons()
     st.header(f"🎉 CHAMPION: {winner['name']} wins the game! 🎉")
     
-    score = max(0, 107 - winner['total_turns_taken'])
+    turns_penalty = winner['total_turns_taken'] * 2
+    raw_score = 114 - turns_penalty - winner['ability_penalty_pts']
+    final_score = max(0, raw_score)
+    total_winning_miles = calculate_player_mileage(winner['history'])
     
     col_stats, col_map = st.columns([1, 1])
     
     with col_stats:
-        st.metric("Final Score", f"{score} / 100", f"Based on {winner['total_turns_taken']} total turns")
+        st.metric("Final Score", f"{final_score} / 100", f"114 base - {turns_penalty} turn pts - {winner['ability_penalty_pts']} ability pts")
+        st.metric("Total Route Distance", f"{total_winning_miles} miles")
 
         st.subheader("📜 Winning Route Recap (8 Days Total):")
         for idx, t in enumerate(winner['history']):
@@ -539,10 +716,10 @@ elif st.session_state.phase == "game_over":
             st.write(f"- {prefix} **{t}**")
 
         if st.button("Play Again"):
-            st.session_state.clear()
+            st.session_state.phase = "setup"
             st.rerun()
             
     with col_map:
         st.subheader("🗺️ Winning Route Map")
         m = get_map([winner])
-        st_folium(m, width=650, height=500)
+        st_folium(m, width=650, height=480)
