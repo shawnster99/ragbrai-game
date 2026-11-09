@@ -779,7 +779,7 @@ elif st.session_state.phase == "game_over":
     col_stats, col_map = st.columns([1, 1])
     
     with col_stats:
-        st.metric("Final Score", f"{final_score} / 100", f"100 base - ({winner['total_turns_taken'] - 7} extra turns × {pts_per_turn} pts) - {winner['ability_penalty_pts']} ability pts")
+        st.metric("Final Score", f"{final_score} / 100", f"100 base - ({winner['total_turns_taken'] - 7} extra turns × {pts_per_turn} pts each) - {winner['ability_penalty_pts']} ability pts")
         st.metric("Total Route Distance", f"{total_winning_miles} miles")
 
         st.subheader("📜 Winning Route Recap (8 Days Total):")
