@@ -27,7 +27,7 @@ TOWN_COORDS = {
     "Red Oak": (41.0117, -95.2289), "Shenandoah": (40.7631, -95.3644),
     "Harlan": (41.6517, -95.3275), "Greenfield": (41.3097, -94.4611),
     "Sheldon": (43.1847, -95.8525), "Denison": (42.0211, -95.3533),
-    "Lake View": (42.3086, -95.5447), "Carroll": (42.0678, -94.8647),
+    "Lake View": (42.3047, -95.0411), "Carroll": (42.0678, -94.8647),
     "Atlantic": (41.4039, -95.0069), "Clarinda": (40.7439, -95.0397),
     "Milford": (43.3161, -95.1528), "Primghar": (43.0858, -95.6358),
     "Ida Grove": (42.3486, -95.4719), "Fort Dodge": (42.5042, -94.1717),
@@ -728,7 +728,7 @@ elif st.session_state.phase == "playing":
                 st.warning("No routes are currently within your range!")
                 if st.button("Step Back / Accept Being Stuck"):
                     if len(current_p['history']) <= 2:
-                        current_p['reset_reason'] = f"🚨 **Stuck Early!** You had no valid moves on your first/second town. Select a new starting town to restart!"
+                        current_p['reset_reason'] = f"🚨 **Stuck Early!** You had no valid moves. Select a town to restart!"
                         st.session_state.phase = "select_start_single"
                     else:
                         if len(current_p['history']) > 1:
