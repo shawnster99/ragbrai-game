@@ -17,6 +17,59 @@ FINISH_TOWNS = [
     "Bellevue", "Guttenberg", "Dubuque", "Lansing", "Davenport"
 ]
 
+TOWN_HISTORY_DATA = {
+    "Sioux City": {"count": 8, "last": "2023"}, "Council Bluffs": {"count": 7, "last": "2019"},
+    "Hawarden": {"count": 3, "last": "1998"}, "Onawa": {"count": 7, "last": "2026"},
+    "Glenwood": {"count": 8, "last": "2024"}, "Missouri Valley": {"count": 4, "last": "2008"},
+    "Sioux Center": {"count": 4, "last": "2012"}, "Le Mars": {"count": 2, "last": "2021"},
+    "Orange City": {"count": 2, "last": "2025"}, "Sidney": {"count": 1, "last": "1976"},
+    "Storm Lake": {"count": 7, "last": "2023"}, "Cherokee": {"count": 5, "last": "2012"},
+    "Red Oak": {"count": 5, "last": "2024"}, "Shenandoah": {"count": 4, "last": "2016"},
+    "Harlan": {"count": 7, "last": "2026"}, "Greenfield": {"count": 3, "last": "2009"},
+    "Sheldon": {"count": 2, "last": "2005"}, "Denison": {"count": 3, "last": "2018"},
+    "Lake View": {"count": 4, "last": "2012"}, "Carroll": {"count": 5, "last": "2023"},
+    "Atlantic": {"count": 8, "last": "2024"}, "Clarinda": {"count": 1, "last": "1989"},
+    "Milford": {"count": 1, "last": "2025"}, "Primghar": {"count": 0, "last": "N/A"},
+    "Ida Grove": {"count": 4, "last": "2022"}, "Fort Dodge": {"count": 6, "last": "2021"},
+    "Algona": {"count": 6, "last": "2017"}, "Estherville": {"count": 4, "last": "2025"},
+    "Emmetsburg": {"count": 5, "last": "2022"}, "Creston": {"count": 3, "last": "2016"},
+    "Winterset": {"count": 3, "last": "2024"}, "Bedford": {"count": 2, "last": "2003"},
+    "Guthrie Center": {"count": 2, "last": "2026"}, "Indianola": {"count": 2, "last": "2019"},
+    "Ankeny": {"count": 1, "last": "2000"}, "Osceola": {"count": 2, "last": "2003"},
+    "Spencer": {"count": 5, "last": "2017"}, "Boone": {"count": 5, "last": "2026"},
+    "Webster City": {"count": 2, "last": "2012"}, "Ames": {"count": 5, "last": "2023"},
+    "Perry": {"count": 5, "last": "2013"}, "Mt Ayr": {"count": 0, "last": "N/A"},
+    "Forest City": {"count": 5, "last": "2025"}, "Iowa Falls": {"count": 5, "last": "2025"},
+    "Clear Lake": {"count": 4, "last": "2017"}, "Humboldt": {"count": 3, "last": "2007"},
+    "Des Moines": {"count": 6, "last": "2023"}, "Leon": {"count": 2, "last": "2016"},
+    "Knoxville": {"count": 4, "last": "2024"}, "Oskaloosa": {"count": 4, "last": "2013"},
+    "Pella": {"count": 1, "last": "1984"}, "Ottumwa": {"count": 5, "last": "2024"},
+    "Grinnell": {"count": 4, "last": "2011"}, "Marshalltown": {"count": 5, "last": "2026"},
+    "Newton": {"count": 3, "last": "2018"}, "Chariton": {"count": 2, "last": "2009"},
+    "Mason City": {"count": 3, "last": "2022"}, "Charles City": {"count": 6, "last": "2022"},
+    "Osage": {"count": 2, "last": "1993"}, "Cedar Falls": {"count": 5, "last": "2025"},
+    "Waterloo": {"count": 4, "last": "2021"}, "Tama": {"count": 4, "last": "2023"},
+    "Waverly": {"count": 3, "last": "2014"}, "Hampton": {"count": 2, "last": "2007"},
+    "Centerville": {"count": 3, "last": "2019"}, "Albia": {"count": 0, "last": "N/A"},
+    "Fairfield": {"count": 5, "last": "2019"}, "Bloomfield": {"count": 2, "last": "2003"},
+    "Mt Pleasant": {"count": 6, "last": "2024"}, "Sigourney": {"count": 3, "last": "2018"},
+    "Washington": {"count": 4, "last": "2016"}, "Iowa City": {"count": 2, "last": "2018"},
+    "Cedar Rapids": {"count": 2, "last": "2012"}, "Independence": {"count": 4, "last": "2026"},
+    "New Hampton": {"count": 1, "last": "1977"}, "Oelwein": {"count": 3, "last": "2025"},
+    "Cresco": {"count": 3, "last": "2017"}, "Decorah": {"count": 3, "last": "1999"},
+    "Manchester": {"count": 4, "last": "2010"}, "Monticello": {"count": 3, "last": "1998"},
+    "Marengo": {"count": 1, "last": "2006"}, "Dyersville": {"count": 3, "last": "2026"},
+    "West Union": {"count": 3, "last": "2022"}, "Parkersburg": {"count": 0, "last": "N/A"},
+    "Keosauqua": {"count": 1, "last": "1981"}, "Anamosa": {"count": 4, "last": "2021"},
+    "Maquoketa": {"count": 3, "last": "2004"}, "Elkader": {"count": 1, "last": "1980"},
+    "Coralville": {"count": 6, "last": "2023"}, "Fort Madison": {"count": 5, "last": "2013"},
+    "Burlington": {"count": 7, "last": "2024"}, "Keokuk": {"count": 3, "last": "2019"},
+    "Muscatine": {"count": 6, "last": "2016"}, "Clinton": {"count": 6, "last": "2021"},
+    "Bellevue": {"count": 5, "last": "2007"}, "Guttenberg": {"count": 6, "last": "2025"},
+    "Dubuque": {"count": 5, "last": "2026"}, "Lansing": {"count": 3, "last": "2022"},
+    "Davenport": {"count": 6, "last": "2023"}
+}
+
 TOWN_COORDS = {
     "Sioux City": (42.5006, -96.4003), "Council Bluffs": (41.2619, -95.8608),
     "Hawarden": (43.0033, -96.4864), "Onawa": (42.0294, -96.0958),
@@ -236,7 +289,7 @@ with st.sidebar:
             st.rerun()
 
     st.markdown("---")
-    st.header("📖 Master Town Log Book")
+    st.header("📖 Town Log Book")
     completed_count = len(st.session_state.completed_towns_log)
     st.write(f"**Session Coverage:** {completed_count} / 99 Towns")
     
@@ -315,7 +368,7 @@ st.title("RAGBRAI: The Game")
 
 # ================= FULL MAP VIEW =================
 if st.session_state.phase == "view_full_map":
-    st.subheader("🗺️ All 99 Iowa Game Towns Reference Map")
+    st.subheader("🗺️ Towns Reference Map")
     st.write("🟢 **Green Markers** = Start Towns | 🔴 **Red Flag Markers** = Finish Towns | 🔵 **Blue Markers** = Interior Towns")
     
     if st.button("🔙 Back to Game"):
@@ -472,7 +525,11 @@ elif st.session_state.phase == "playing":
 
     with col_control:
         st.markdown(f"### 👉 {current_p['name']}'s Turn (Day {current_day})")
-        st.info(f"📍 **Current Location:** {current_p['town']}")
+        
+        # Display Current Location with Stats in Blue Box
+        curr_town = current_p['town']
+        town_stat = TOWN_HISTORY_DATA.get(curr_town, {"count": 0, "last": "N/A"})
+        st.info(f"📍 **Current Location:** {curr_town} (Hosted {town_stat['count']} times, last in {town_stat['last']})")
 
         challenge_goals_list = []
         if st.session_state.challenge_town_mode:
