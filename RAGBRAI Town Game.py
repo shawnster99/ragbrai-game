@@ -4,7 +4,7 @@ import folium
 from streamlit_folium import st_folium
 from folium.features import DivIcon
 
-st.set_page_config(layout="wide", page_title="RAGBRAI Strategy Board Game")
+st.set_page_config(layout="wide", page_title="RAGBRAI: The Game")
 
 # --- CONSTANTS & DATA ---
 START_TOWNS = [
@@ -64,7 +64,7 @@ TOWN_COORDS = {
     "Maquoketa": (42.0758, -90.6669), "Elkader": (42.8572, -91.3961),
     "Coralville": (41.6772, -91.5878), "Fort Madison": (40.6278, -91.3133),
     "Burlington": (40.8083, -91.1128), "Keokuk": (40.3986, -91.3831),
-    "Muscatine": (41.4259, -90.5478), "Clinton": (41.8464, -90.1911),
+    "Muscatine": (41.4257, -91.0477), "Clinton": (41.8464, -90.1911),
     "Bellevue": (42.2625, -90.4319), "Guttenberg": (42.7872, -91.1017),
     "Dubuque": (42.5006, -90.6646), "Lansing": (43.3642, -91.2178),
     "Davenport": (41.5236, -90.5776)
@@ -311,7 +311,7 @@ def get_all_towns_map():
     return m
 
 # --- APP UI ---
-st.title("🚴 RAGBRAI: Strategy Board Game")
+st.title("RAGBRAI: The Game")
 
 # ================= FULL MAP VIEW =================
 if st.session_state.phase == "view_full_map":
@@ -330,7 +330,7 @@ elif st.session_state.phase == "setup":
     with st.expander("📖 **Game Instructions (Click to expand)**", expanded=True):
         st.markdown("""
         ### 🚴 Introduction
-        Welcome to my RAGBRAI game! My name is Shawn and I think RAGBRAI is pretty awesome. I've completed 4 full years as of 2026 (as well as a handful of partial days growing up) and don't plan on stopping anytime soon. During my 3rd RAGBRAI, our group did daily BINGO cards and one of the items was to come up with an idea for a RAGBRAI card game. Since then, the idea of a RAGBRAI game has never really left my mind and you're looking at the result! This is purely for fun, not at all owned by RAGBRAI, and just a fun passion-project. I included 99 Iowa towns (couldn't quite get them all) and mileages are estimates. Please enjoy the game and let me know any feedback you have! Hope to see you out on the road next year for RAGBRAI 54. In the meantime, navigate your virtual bicycle across Iowa from the Missouri River all the way to the mighty Mississippi!
+        Welcome to my RAGBRAI game! I've completed 4 full RAGBRAIs with my dad as of 2026 (as well as a handful of partial days growing up). During my 3rd RAGBRAI, our group did daily BINGO cards and one of the items was to come up with an idea for a RAGBRAI card game. Since then, the idea of a RAGBRAI game has never really left my mind and you're looking at the result. This is purely for fun, not at all owned by RAGBRAI, and just a little passion-project. I included 99 Iowa towns (for now) and a few popular vendors and keep in mind that mileages are estimates. Please enjoy the game and let me know any feedback you have! Hope to see you out on the road next year for RAGBRAI 54 but in the meantime, navigate your virtual bicycle across Iowa from the Missouri River all the way to the mighty Mississippi! It's RAGBRAI: The Game.
 
         ---
 
@@ -758,7 +758,7 @@ elif st.session_state.phase == "playing":
 elif st.session_state.phase == "game_over":
     winner = st.session_state.winner
     st.balloons()
-    st.header(f"🎉 CHAMPION: {winner['name']} wins the game! 🎉")
+    st.header(f"🎉 CHAMPION: {winner['name']} wins RAGBRAI: The Game! 🎉")
     
     active_challenges_count = (1 if st.session_state.challenge_town_mode else 0) + (1 if st.session_state.challenge_mileage_mode else 0)
     if active_challenges_count == 2:
