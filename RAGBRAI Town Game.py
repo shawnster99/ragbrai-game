@@ -469,7 +469,7 @@ elif st.session_state.phase == "setup":
     day_of_year = today_dt.timetuple().tm_yday
     
     st.markdown("### 🗓️ Daily Challenge Mode")
-    if st.button(f"🚲 Play RAGBRAILE (Today's Puzzle: Day {day_of_year})", type="primary"):
+    if st.button(f"Play RAGBRAILE (Today's Puzzle: Day {day_of_year})", type="primary"):
         st.session_state.is_ragbraile = True
         st.session_state.ragbraile_pair = RAGBRAILE_PAIRS[day_of_year - 1]
         st.session_state.players = [{
