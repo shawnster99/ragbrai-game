@@ -491,7 +491,7 @@ elif st.session_state.phase == "setup":
         st.rerun()
 
     st.markdown("---")
-    st.subheader("⚙️ Game Setup")
+    st.subheader("⚙️ Custom Game")
     num_players = st.number_input("Number of Players (1 for Solo)", min_value=1, max_value=6, value=1, step=1)
     st.session_state.dice_mode = st.selectbox("Select Dice Mode", ["Virtual Dice", "Real-Life Dice"])
     
