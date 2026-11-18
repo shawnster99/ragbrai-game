@@ -564,7 +564,7 @@ elif st.session_state.phase == "select_start_single":
     
     if st.session_state.is_ragbraile:
         t1, t2 = st.session_state.ragbraile_pair
-        st.info(f"🗓️ **Ragbraile Daily Challenge:** **{t1}** & **{t2}**")
+        st.info(f"🗓️ **RAGBRAILE Daily Challenge:** **{t1}** & **{t2}**")
     else:
         challenges_txt = []
         if st.session_state.challenge_town_mode:
@@ -610,7 +610,7 @@ elif st.session_state.phase == "playing":
             t1, t2 = st.session_state.ragbraile_pair
             v1 = "✅" if t1 in current_p['history'] else "❌"
             v2 = "✅" if t2 in current_p['history'] else "❌"
-            st.warning(f"🗓️ **Ragbraile Mandatory Towns:** {v1} {t1} | {v2} {t2}")
+            st.warning(f"🗓️ **RAGBRAILE Mandatory Towns:** {v1} {t1} | {v2} {t2}")
         else:
             challenge_goals_list = []
             if st.session_state.challenge_town_mode:
@@ -905,7 +905,7 @@ elif st.session_state.phase == "game_over":
     
     if st.session_state.is_ragbraile:
         t1, t2 = st.session_state.ragbraile_pair
-        st.header(f"🎉 SUCCESS! You completed today's Ragbraile visiting {t1} & {t2}! 🎉")
+        st.header(f"🎉 SUCCESS! You completed today's RAGBRAILE visiting {t1} & {t2}! 🎉")
     else:
         st.header(f"🎉 CHAMPION: {winner['name']} wins RAGBRAI: The Game! 🎉")
     
