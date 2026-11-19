@@ -1,11 +1,62 @@
 import streamlit as st
 import random
 import folium
-from datetime import datetime
+import json
+import os
+import re
+from datetime import datetime, timedelta
 from streamlit_folium import st_folium
 from folium.features import DivIcon
+from collections import Counter
 
 st.set_page_config(layout="wide", page_title="RAGBRAI: The Game")
+
+PROFILES_DIR = "profiles"
+os.makedirs(PROFILES_DIR, exist_ok=True)
+
+def get_profile_path(username):
+    safe_name = re.sub(r'[^a-zA-Z0-9_-]', '_', username.strip().lower())
+    return os.path.join(PROFILES_DIR, f"{safe_name}.json")
+
+def default_profile(display_name):
+    return {
+        "display_name": display_name,
+        "completed_towns": [],
+        "games_finished": 0,
+        "standard_wins": 0,
+        "ragbraile_days_solved": [],
+        "best_score": 0,
+        "total_score_sum": 0,
+        "total_miles_ridden": 0,
+        "current_streak": 0,
+        "last_solved_date": None,
+        "recent_routes": []
+    }
+
+def load_user_profile(username):
+    path = get_profile_path(username)
+    if os.path.exists(path):
+        try:
+            with open(path, "r") as f:
+                data = json.load(f)
+                base = default_profile(username)
+                base.update(data)
+                return base, True
+        except Exception:
+            pass
+    new_prof = default_profile(username)
+    save_user_profile(username, new_prof)
+    return new_prof, False
+
+def save_user_profile(username, profile):
+    if not username:
+        return
+    path = get_profile_path(username)
+    try:
+        with open(path, "w") as f:
+            json.dump(profile, f, indent=4)
+    except Exception:
+        pass
 
 # --- CONSTANTS & DATA ---
 START_TOWNS = [
@@ -113,7 +164,7 @@ TOWN_COORDS = {
     "Cresco": (43.3703, -92.1103), "Decorah": (43.3033, -91.7856),
     "Manchester": (42.4864, -91.4608), "Monticello": (42.2425, -91.1917),
     "Marengo": (41.8028, -92.0747), "Dyersville": (42.4839, -91.1239),
-    "West Union": (42.9619, -91.8078), "Parkersburg": (42.5739, -92.7933),
+    "West Union": {"count": 3, "last": "2022"}, "Parkersburg": (42.5739, -92.7933),
     "Keosauqua": (40.7328, -91.9619), "Anamosa": (42.1114, -91.2783),
     "Maquoketa": (42.0758, -90.6669), "Elkader": (42.8572, -91.3961),
     "Coralville": (41.6772, -91.5878), "Fort Madison": (40.6278, -91.3133),
@@ -123,6 +174,8 @@ TOWN_COORDS = {
     "Dubuque": (42.5006, -90.6646), "Lansing": (43.3642, -91.2178),
     "Davenport": (41.5236, -90.5776)
 }
+# Note: Keeping West Union exact coordinates from original file
+TOWN_COORDS["West Union"] = (42.9619, -91.8078)
 
 RAGBRAI_MAP = {
     "Sioux City": {"Storm Lake": 70, "Cherokee": 55, "Orange City": 42, "Le Mars": 26},
@@ -279,12 +332,15 @@ def calculate_player_mileage(player):
     return player['base_mileage_tally']
 
 # --- INITIALIZE SESSION STATE ---
-if "completed_towns_log" not in st.session_state:
-    st.session_state.completed_towns_log = set()
+if "current_username" not in st.session_state:
+    st.session_state.current_username = ""
+
+if "user_profile" not in st.session_state:
+    st.session_state.user_profile = {}
 
 if "phase" not in st.session_state:
-    st.session_state.phase = "setup"
-    st.session_state.previous_phase = "playing"
+    st.session_state.phase = "login"
+    st.session_state.previous_phase = "setup"
     st.session_state.players = []
     st.session_state.current_idx = 0
     st.session_state.dice_mode = "Virtual Dice"
@@ -292,7 +348,7 @@ if "phase" not in st.session_state:
     st.session_state.challenge_mileage_mode = False
     st.session_state.is_ragbraile = False
     st.session_state.ragbraile_pair = ()
-    st.session_state.turn_state = "roll" # roll, card, move, road_closure
+    st.session_state.turn_state = "roll"
     st.session_state.r1 = 0
     st.session_state.r2 = 0
     st.session_state.current_card = None
@@ -303,42 +359,100 @@ if "phase" not in st.session_state:
     st.session_state.road_result_msg = None
     st.session_state.winner = None
 
+def get_profile_path(username):
+    safe_name = re.sub(r'[^a-zA-Z0-9_-]', '_', username.strip().lower())
+    return os.path.join(PROFILES_DIR, f"{safe_name}.json")
+
+def default_profile(display_name):
+    return {
+        "display_name": display_name,
+        "completed_towns": [],
+        "games_finished": 0,
+        "standard_wins": 0,
+        "ragbraile_days_solved": [],
+        "best_score": 0,
+        "total_score_sum": 0,
+        "total_miles_ridden": 0,
+        "current_streak": 0,
+        "last_solved_date": None,
+        "recent_routes": []
+    }
+
+def load_user_profile(username):
+    path = get_profile_path(username)
+    if os.path.exists(path):
+        try:
+            with open(path, "r") as f:
+                data = json.load(f)
+                base = default_profile(username)
+                base.update(data)
+                return base, True
+        except Exception:
+            pass
+    new_prof = default_profile(username)
+    save_user_profile(username, new_prof)
+    return new_prof, False
+
+def save_user_profile(username, profile):
+    if not username:
+        return
+    path = get_profile_path(username)
+    try:
+        with open(path, "w") as f:
+            json.dump(profile, f, indent=4)
+    except Exception:
+        pass
+
 # --- SIDEBAR NAVIGATION & LOG BOOK CONTROLS ---
 with st.sidebar:
-    st.header("⚙️ Custom Game")
+    st.header("⚙️ Game Menu")
     
-    if st.session_state.phase != "view_full_map":
-        if st.button("🗺️ View Full Town Map"):
-            st.session_state.previous_phase = st.session_state.phase
-            st.session_state.phase = "view_full_map"
+    if st.session_state.phase != "login":
+        st.write(f"👤 **Player:** `{st.session_state.current_username}`")
+        
+        if st.session_state.phase != "view_stats":
+            if st.button("📊 View My Stats"):
+                st.session_state.previous_phase = st.session_state.phase
+                st.session_state.phase = "view_stats"
+                st.rerun()
+
+        if st.session_state.phase != "view_full_map":
+            if st.button("🗺️ View Full Town Map"):
+                st.session_state.previous_phase = st.session_state.phase
+                st.session_state.phase = "view_full_map"
+                st.rerun()
+
+        if st.session_state.phase in ["playing", "select_start_single"]:
+            if st.button("🔄 Restart Current Route"):
+                current_p = st.session_state.players[st.session_state.current_idx]
+                current_p['reset_reason'] = f"Player {current_p['name']} requested a route reset."
+                current_p['start_choice'] = START_TOWNS[0]
+                st.session_state.phase = "select_start_single"
+                st.rerun()
+                
+            if st.button("🏠 Quit to Home Menu"):
+                st.session_state.phase = "setup"
+                st.rerun()
+
+        if st.button("🚪 Switch User / Logout"):
+            st.session_state.current_username = ""
+            st.session_state.user_profile = {}
+            st.session_state.phase = "login"
             st.rerun()
 
-    if st.session_state.phase in ["playing", "select_start_single"]:
-        if st.button("🔄 Restart Current Route"):
-            current_p = st.session_state.players[st.session_state.current_idx]
-            current_p['reset_reason'] = f"Player {current_p['name']} requested a route reset."
-            current_p['start_choice'] = START_TOWNS[0]
-            st.session_state.phase = "select_start_single"
-            st.rerun()
-            
-        if st.button("🏠 Quit to Home Menu"):
-            prev_log = st.session_state.completed_towns_log
-            st.session_state.clear()
-            st.session_state.completed_towns_log = prev_log
-            st.rerun()
-
-    st.markdown("---")
-    st.header("📖 Town Log Book")
-    completed_count = len(st.session_state.completed_towns_log)
-    st.write(f"**Session Coverage:** {completed_count} / 99 Towns")
-    
-    with st.expander("View 99 Towns Checklist", expanded=False):
-        all_sorted_towns = sorted(list(TOWN_COORDS.keys()))
-        for t in all_sorted_towns:
-            if t in st.session_state.completed_towns_log:
-                st.write(f"✅ **{t}**")
-            else:
-                st.write(f"⚪ {t}")
+        st.markdown("---")
+        st.header("📖 Town Log Book")
+        user_towns_log = set(st.session_state.user_profile.get("completed_towns", []))
+        completed_count = len(user_towns_log)
+        st.write(f"**Lifetime Coverage:** {completed_count} / 99 Towns")
+        
+        with st.expander("View 99 Towns Checklist", expanded=False):
+            all_sorted_towns = sorted(list(TOWN_COORDS.keys()))
+            for t in all_sorted_towns:
+                if t in user_towns_log:
+                    st.write(f"✅ **{t}**")
+                else:
+                    st.write(f"⚪ {t}")
 
 # --- MAP GENERATORS ---
 def get_map(players):
@@ -346,7 +460,7 @@ def get_map(players):
         location=[42.0111, -93.2105], 
         zoom_start=7, 
         tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
-        attr='Tiles &copy; Esri'
+        attr='Tiles © Esri'
     )
     palette = ["blue", "green", "purple", "orange", "darkred", "cadetblue"]
     for i, p in enumerate(players):
@@ -372,7 +486,7 @@ def get_all_towns_map():
         location=[42.0111, -93.2105], 
         zoom_start=7, 
         tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
-        attr='Tiles &copy; Esri'
+        attr='Tiles © Esri'
     )
     for town, coords in TOWN_COORDS.items():
         if town in START_TOWNS:
@@ -405,12 +519,139 @@ def get_all_towns_map():
 # --- APP UI ---
 st.title("RAGBRAI: The Game")
 
+# ================= LOGIN PHASE =================
+if st.session_state.phase == "login":
+    st.subheader("👤 Player Sign-In")
+    st.write("Enter your unique username below. If your username exists, your lifetime stats and Town Log Book will load automatically; otherwise, a brand-new profile will be created for you.")
+    
+    with st.form("login_form"):
+        typed_user = st.text_input("Enter Username", placeholder="e.g., biker26")
+        submitted = st.form_submit_button("Start / Load Profile", type="primary")
+        
+        if submitted:
+            cleaned = typed_user.strip()
+            if cleaned:
+                prof, existed = load_user_profile(cleaned)
+                st.session_state.current_username = cleaned
+                st.session_state.user_profile = prof
+                st.session_state.login_notice = (
+                    f"Welcome back, **{cleaned}**! Your saved profile has been loaded."
+                    if existed else
+                    f"Created a brand-new profile for **{cleaned}**!"
+                )
+                st.session_state.phase = "setup"
+                st.rerun()
+            else:
+                st.warning("Please enter a valid username to continue.")
+
+# ================= STATS VIEW =================
+elif st.session_state.phase == "view_stats":
+    st.subheader(f"📊 Career Statistics: {st.session_state.current_username}")
+    
+    if st.button("🔙 Back"):
+        st.session_state.phase = st.session_state.previous_phase
+        st.rerun()
+
+    prof = st.session_state.user_profile
+    
+    # Extract all recorded standard scores from recent_routes to ensure accurate averaging
+    std_scores = [
+        int(re.search(r'Score:\s*(\d+)', r.get('extra', '')).group(1))
+        for r in prof.get("recent_routes", [])
+        if "Score:" in r.get('extra', '')
+    ]
+    
+    if std_scores:
+        total_score_sum = sum(std_scores)
+        std_wins = len(std_scores)
+        avg_score = round(total_score_sum / std_wins, 1)
+    else:
+        total_score_sum = prof.get("total_score_sum", 0)
+        std_wins = prof.get("standard_wins", 0)
+        avg_score = round(total_score_sum / std_wins, 1) if std_wins > 0 else 0
+
+    # Fallback streak fix if RAGBRAILE was completed today but streak was 0
+    current_streak = prof.get("current_streak", 0)
+    solved_days = prof.get("ragbraile_days_solved", [])
+    today_day_num = datetime.now().timetuple().tm_yday
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    
+    if today_day_num in solved_days and current_streak == 0:
+        current_streak = 1
+        prof["current_streak"] = 1
+        prof["last_solved_date"] = today_str
+        save_user_profile(st.session_state.current_username, prof)
+
+    # Route mileage stats calculations
+    route_miles_list = [r.get('miles', 0) for r in prof.get("recent_routes", []) if 'miles' in r]
+    games_finished_count = prof.get("games_finished", 0)
+    total_miles_ridden = prof.get("total_miles_ridden", 0)
+    
+    avg_mileage = round(total_miles_ridden / games_finished_count, 1) if games_finished_count > 0 else 0
+    longest_route = max(route_miles_list) if route_miles_list else 0
+    shortest_route = min(route_miles_list) if route_miles_list else 0
+
+    # --- REORDERED METRICS LAYOUT ---
+    # Row 1: Total Games Finished, Towns Visited
+    c1, c2, c11, c12 = st.columns(4)
+    c1.metric("Total Games Finished", games_finished_count)
+    c2.metric("Towns Visited", f"{len(prof.get('completed_towns', []))} / 99")
+
+    # Row 2: Best Score, Average Score, Total RAGBRAILEs Completed, RAGBRAILE Daily Streak
+    c3, c4, c5, c6 = st.columns(4)
+    c3.metric("Best Standard Score", f"{prof.get('best_score', 0)} / 100")
+    c4.metric("Average Standard Score", f"{avg_score} / 100")
+    c5.metric("Total RAGBRAILEs Completed", len(solved_days))
+    c6.metric("RAGBRAILE Daily Streak", f"{current_streak} days")
+
+    # Row 3: Lifetime Miles Ridden, Average Mileage, Shortest Route, Longest Route
+    c7, c8, c9, c10 = st.columns(4)
+    c7.metric("Lifetime Miles Ridden", f"{total_miles_ridden:,} mi")
+    c8.metric("Average Mileage", f"{avg_mileage:,} mi")
+    c9.metric("Shortest Route", f"{shortest_route:,} mi")
+    c10.metric("Longest Route", f"{longest_route:,} mi")
+
+    # --- Top 5 Most Visited Towns Calculation (FIXED TO COUNT ALL ROUTE STOPS) ---
+    town_visit_counts = Counter()
+    for r in prof.get("recent_routes", []):
+        route_towns = r.get('history', [])
+        if route_towns:
+            for t in route_towns:
+                town_visit_counts[t] += 1
+        else:
+            # Fallback for older saved routes lacking explicit history list: also include start and end
+            start_t = r.get('start')
+            end_t = r.get('end')
+            if start_t:
+                town_visit_counts[start_t] += 1
+            if end_t:
+                town_visit_counts[end_t] += 1
+                
+    if not town_visit_counts and prof.get("completed_towns"):
+        for t in prof.get("completed_towns"):
+            town_visit_counts[t] += 1
+
+    top_5_towns = town_visit_counts.most_common(5)
+    
+    if top_5_towns:
+        st.markdown("#### 🌟 Top 5 Most Visited Towns")
+        top_5_str = ", ".join([f"{town} ({count})" for town, count in top_5_towns])
+        st.write(top_5_str)
+
+    recent = prof.get("recent_routes", [])
+    if recent:
+        st.markdown("#### 🚴 Recent Completed Routes")
+        for r in reversed(recent[-10:]):
+            st.markdown(f"- **{r['date']}** | *{r['mode']}* | **{r['start']} ➔ {r['end']}** ({r['miles']} mi){r.get('extra', '')}")
+    else:
+        st.info("No completed routes recorded yet. Finish a 7-day ride across Iowa to log your first entry!")
+
 # ================= FULL MAP VIEW =================
-if st.session_state.phase == "view_full_map":
+elif st.session_state.phase == "view_full_map":
     st.subheader("🗺️ Towns Reference Map")
     st.write("🟢 **Green Markers** = Start Towns | 🔴 **Red Flag Markers** = Finish Towns | 🔵 **Blue Markers** = Interior Towns")
     
-    if st.button("🔙 Back to Game"):
+    if st.button("🔙 Back"):
         st.session_state.phase = st.session_state.previous_phase
         st.rerun()
         
@@ -419,7 +660,11 @@ if st.session_state.phase == "view_full_map":
 
 # ================= SETUP PHASE =================
 elif st.session_state.phase == "setup":
-    with st.expander("📖 **Game Instructions (Click to expand)**", expanded=True):
+    if "login_notice" in st.session_state and st.session_state.login_notice:
+        st.success(st.session_state.login_notice)
+        st.session_state.login_notice = None
+
+    with st.expander("📖 **Game Instructions (Click to expand/collapse)**", expanded=False):
         st.markdown("""
         ### 🚴 Introduction
         Welcome to my RAGBRAI game! I've completed 4 full RAGBRAIs with my dad as of 2026 (as well as a handful of partial days growing up). During my 3rd RAGBRAI, our group did daily BINGO cards and one of the items was to come up with an idea for a RAGBRAI game. Since then, the concept of a RAGBRAI game has never really left my mind and you're looking at the result. This is purely for fun and not at all owned by RAGBRAI. I included 99 Iowa towns (for now) and a few popular vendors and keep in mind that mileages are estimates. Please enjoy the game and let me know any feedback you have! Hope to see you out on the road next year for RAGBRAI 54 but in the meantime, navigate your virtual bicycle across Iowa from the Missouri River all the way to the mighty Mississippi! It's RAGBRAI: The Game.
@@ -439,11 +684,11 @@ elif st.session_state.phase == "setup":
 
         ### 🏆 Ways to Play
         This game is designed to have many different game modes, all available to allow you to customize your RAGBRAI game experience. There's no right or wrong way to play – kind of like there's no right or wrong way to RAGBRAI.
-        * **RAGBRAILE:** Like Wordle, but make it RAGBRAI. Come back daily for a new challenge - everyone will receive the same 2 towns and your goal is to complete a full route while traversing through both. 
+        * **RAGBRAILE:** Like Wordle, but make it RAGBRAI. Come back daily for a new challenge - everyone will receive the same 2 towns and your goal is to complete a full route while traversing through both. This is a solo-only game mode.
         * **Race to the Finish:** While RAGBRAI may not be a race, multiplayer mode in this game rewards the victory to the player who can reach an end town (in exactly 7 days) first.
-        * **Perfect Score:** Finish your route in exactly 7 turns with no hiccups and not utilizing any special abilities (listed below) to score a perfect 100 points. Any extra turns required to get to the end town result in losing points. Selecting none (-3), one (-2), or both (-1) of the challenge mode options listed below dictate how many points you lose for each additional turn to reach the Mississippi. Additionally, using special abilities will decrease your score, as specified below.
-        * **Total Tourist:** Utilize your **Town Log Book** on the sidebar to track how many and which of the 99 total towns in the game that you've visited in your current session. Only the 8 towns that are involved in a complete game-winning route are added to your log book. Currently there's no way to save progress between sessions loading the game but see how many towns you can accumulate in one sitting.
-        * **Challenge Mode:** If the normal game isn't challenging enough, select one or both challenge mode options (available in both solo and multiplayer games):
+        * **Perfect Score:** Finish your route in exactly 7 turns with no hiccups and not utilizing any special abilities (listed below) to score a perfect 100 points. Any extra turns required to get to the end town result in losing points. Selecting none (-3), one (-2), or both (-1) of the challenge mode options listed below dictate how many points you lose for each additional turn to reach the Mississippi. Additionally, using special abilities will decrease your score, as specified below. This mode is best enjoyed solo but every non-RAGBRAILE game winning route will receive a score.
+        * **Total Tourist:** Utilize your **Town Log Book** on the sidebar to track how many and which of the 99 total towns in the game that you've visited across all your routes on your profile. Only the 8 towns that are involved in a complete game-winning route are added to your log book. 
+        * **Challenge Mode:** If the normal game isn't challenging enough, select one or both challenge mode options to add to your standard game (available in both solo and multiplayer games):
           * **Mandatory Town:** At the beginning of the game, each player receives a different randomly-assigned, non-starting town that they must pass through before reaching the Mississippi River to complete their route.
           * **Target Mileage:** At the beginning of the game, each player receives a different total week-long mileage (between 350–550 miles) that your final route must land within **35 miles** of. Your total weekly mileage consists of your daily totals + a random number between 5 & 10 each day to account for riding inefficiently through towns along the way.
 
@@ -458,22 +703,28 @@ elif st.session_state.phase == "setup":
 
         ---
 
-        ### ⚙️ In-Game Options
+        ### ⚙️ In-Game & Sidebar Options
+        * **View Stats:** Click the **View My Stats** button on the sidebar to view the lifetime statistics of the username that is signed into the current session.
         * **Full Town Map:** You can click the **View Full Town Map** button on the sidebar at any time to inspect all 99 game towns simultaneously. Use **Back to Game** to resume right where you left off!
-        * **Restart Route:** Select the **Restart Current Route** button on the sidebar during your turn to completely restart your route from the Missouri River at the same or new starting town. This doesn't impact the current game settings or any opponent's progress in the game that you're in the middle of.
-        * **Quit to Home:** Select **Quit to Home Menu** on the sidebar to quit your current game and bring you back to this home screen.
+        * **Restart Route:** Select the **Restart Current Route** button on the sidebar during your turn to completely restart your route from the Missouri River at the same or new starting town. This doesn't impact the current game settings or any opponent's progress in the game that you're in the middle of. It also remembers any special abilities you've used in that current game.
+        * **Quit to Home:** Select **Quit to Home Menu** on the sidebar to quit your current game and bring you back to this home screen. If you want to reset your special abilities for the game you're playing and start from scratch, use this button instead of Restart Route.
+        * **Switch User/Logout:** If you want to change the username that is currently logged in, click this button.
+        * **Town Log Book:** Utilize your **Town Log Book** on the sidebar to track how many and which of the 99 total towns in the game that you've visited across your persistent profile. Only the 8 towns that are involved in a complete game-winning route are added to your log book. 
         """)
 
-    # --- RAGBRAILE LAUNCH BUTTON ---
+    # --- RAGBRAILE LAUNCH SECTION (WITH DICE PROMPT) ---
     today_dt = datetime.now()
     day_of_year = today_dt.timetuple().tm_yday
     
     st.markdown("### 🗓️ Daily Challenge Mode")
+    ragbraile_dice_choice = st.selectbox("Select Dice Mode for RAGBRAILE", ["Virtual Dice", "Real-Life Dice"], key="ragbraile_dice_select")
+    
     if st.button(f"Play RAGBRAILE (Today's Puzzle: Day {day_of_year})", type="primary"):
+        st.session_state.dice_mode = ragbraile_dice_choice
         st.session_state.is_ragbraile = True
         st.session_state.ragbraile_pair = RAGBRAILE_PAIRS[day_of_year - 1]
         st.session_state.players = [{
-            "name": "Player 1",
+            "name": st.session_state.current_username,
             "town": None,
             "history": [],
             "abilities": {"Beekman's Energy Boost": True, "Thunderstorm": True, "Slip & Slide Boost": True},
@@ -493,14 +744,14 @@ elif st.session_state.phase == "setup":
     st.markdown("---")
     st.subheader("⚙️ Custom Game")
     num_players = st.number_input("Number of Players (1 for Solo)", min_value=1, max_value=6, value=1, step=1)
-    st.session_state.dice_mode = st.selectbox("Select Dice Mode", ["Virtual Dice", "Real-Life Dice"])
+    st.session_state.dice_mode = st.selectbox("Select Dice Mode", ["Virtual Dice", "Real-Life Dice"], key="custom_dice_select")
     
     st.markdown("#### 🏆 Challenge Mode Options (Select independently or combine)")
     st.session_state.challenge_town_mode = st.checkbox("📍 Mandatory Town", value=False)
     st.session_state.challenge_mileage_mode = st.checkbox("🎯 Required Mileage Range", value=False)
     
-    player_names = []
-    for i in range(int(num_players)):
+    player_names = [st.session_state.current_username]
+    for i in range(1, int(num_players)):
         name = st.text_input(f"Player {i+1} Name", value=f"Player {i+1}", key=f"p_name_{i}")
         player_names.append(name)
 
@@ -848,7 +1099,89 @@ elif st.session_state.phase == "playing":
                                     st.session_state.phase = "select_start_single"
                                 else:
                                     st.session_state.winner = current_p
-                                    st.session_state.completed_towns_log.update(current_p['history'])
+                                    
+                                    # Record stats if logged-in user completed the route
+                                    if current_p['name'] == st.session_state.current_username:
+                                        u_prof = st.session_state.user_profile
+                                        u_prof["games_finished"] = u_prof.get("games_finished", 0) + 1
+                                        u_prof["total_miles_ridden"] = u_prof.get("total_miles_ridden", 0) + total_miles
+                                        
+                                        existing_towns = set(u_prof.get("completed_towns", []))
+                                        existing_towns.update(current_p['history'])
+                                        u_prof["completed_towns"] = list(existing_towns)
+                                        
+                                        today_str = datetime.now().strftime("%Y-%m-%d")
+                                        day_num = datetime.now().timetuple().tm_yday
+                                        
+                                        if st.session_state.is_ragbraile:
+                                            solved_list = set(u_prof.get("ragbraile_days_solved", []))
+                                            if day_num not in solved_list:
+                                                solved_list.add(day_num)
+                                                u_prof["ragbraile_days_solved"] = list(solved_list)
+                                                
+                                                # Streak Logic
+                                                last_date_str = u_prof.get("last_solved_date")
+                                                today_date_obj = datetime.strptime(today_str, "%Y-%m-%d").date()
+                                                if not last_date_str:
+                                                    u_prof["current_streak"] = 1
+                                                else:
+                                                    last_date_obj = datetime.strptime(last_date_str, "%Y-%m-%d").date()
+                                                    if last_date_obj == today_date_obj - timedelta(days=1):
+                                                        u_prof["current_streak"] = u_prof.get("current_streak", 0) + 1
+                                                    elif last_date_obj < today_date_obj - timedelta(days=1):
+                                                        u_prof["current_streak"] = 1
+                                                u_prof["last_solved_date"] = today_str
+
+                                            t1, t2 = st.session_state.ragbraile_pair
+                                            u_prof.setdefault("recent_routes", []).append({
+                                                "date": today_str,
+                                                "mode": f"RAGBRAILE (Day {day_num})",
+                                                "start": current_p['history'][0],
+                                                "end": current_p['history'][-1],
+                                                "miles": total_miles,
+                                                "history": list(current_p['history']),
+                                                "extra": f" — Targets: {t1}, {t2}"
+                                            })
+                                        else:
+                                            u_prof["standard_wins"] = u_prof.get("standard_wins", 0) + 1
+                                            
+                                            # Challenge indicator details for recent games log
+                                            mode_label = "Standard Game"
+                                            challenge_descs = []
+                                            if st.session_state.challenge_town_mode:
+                                                challenge_descs.append(f"Mandatory Town: {current_p['target_town']}")
+                                            if st.session_state.challenge_mileage_mode:
+                                                challenge_descs.append(f"Target: {current_p['target_mileage']} miles")
+                                            if challenge_descs:
+                                                mode_label = f"Standard Game ({', '.join(challenge_descs)})"
+
+                                            active_challenges_count = (1 if st.session_state.challenge_town_mode else 0) + (1 if st.session_state.challenge_mileage_mode else 0)
+                                            if active_challenges_count == 2:
+                                                pts_per_turn, base_score = 1, 107
+                                            elif active_challenges_count == 1:
+                                                pts_per_turn, base_score = 2, 114
+                                            else:
+                                                pts_per_turn, base_score = 3, 121
+                                            turns_pen = current_p['total_turns_taken'] * pts_per_turn
+                                            scr = max(0, base_score - turns_pen - current_p['ability_penalty_pts'])
+                                            
+                                            u_prof["total_score_sum"] = u_prof.get("total_score_sum", 0) + scr
+                                            if scr > u_prof.get("best_score", 0):
+                                                u_prof["best_score"] = scr
+                                                
+                                            u_prof.setdefault("recent_routes", []).append({
+                                                "date": today_str,
+                                                "mode": mode_label,
+                                                "start": current_p['history'][0],
+                                                "end": current_p['history'][-1],
+                                                "miles": total_miles,
+                                                "history": list(current_p['history']),
+                                                "extra": f" — Score: {scr}/100"
+                                            })
+                                            
+                                        st.session_state.user_profile = u_prof
+                                        save_user_profile(st.session_state.current_username, u_prof)
+
                                     st.session_state.phase = "game_over"
                             else:
                                 current_p['reset_reason'] = f"🚨 **Out of Time!** Day 7 ended in {t_name} instead of a finish town. Select a new starting town to restart!"
@@ -937,7 +1270,7 @@ elif st.session_state.phase == "game_over":
             prefix = f"Day {idx} (Finish):" if idx == 7 else f"Day {idx}:"
             st.write(f"- {prefix} **{t}**")
 
-        if st.button("Play Again"):
+        if st.button("Back to Home"):
             st.session_state.phase = "setup"
             st.rerun()
             
