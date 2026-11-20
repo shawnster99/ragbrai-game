@@ -1668,6 +1668,41 @@ elif st.session_state.phase == "game_over":
             prefix = f"Day {idx} (Finish):" if idx == 7 else f"Day {idx}:"
             st.write(f"- {prefix} **{t}**")
 
+        # Shareable result text
+        route_text = " ➜ ".join(winner["history"])
+
+        if st.session_state.is_ragbraile:
+            share_text = (
+                f"🚴 RAGBRAILE Day {st.session_state.ragbraile_day_of_year}\n"
+                f"Score: {final_score}/100\n"
+                f"Route: {route_text}"
+            )
+        else:
+            share_text = (
+                f"🚴 RAGBRAI: The Game\n"
+                f"Score: {final_score}/100\n"
+                f"Route: {route_text}"
+            )
+
+        st.components.v1.html(
+            f"""
+            <button
+                onclick="navigator.clipboard.writeText(`{share_text}`)"
+                style="
+                    background:#ff4b4b;
+                    color:white;
+                    border:none;
+                    padding:10px 18px;
+                    border-radius:8px;
+                    font-weight:bold;
+                    cursor:pointer;"
+            >
+                📋 Copy Result
+            </button>
+            """,
+            height=50,
+        )
+
         if st.button("Back to Home"):
             st.session_state.is_ragbraile = False
             st.session_state.nav_stack = []
