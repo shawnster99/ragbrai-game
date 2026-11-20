@@ -378,6 +378,18 @@ ABILITY_DESCRIPTIONS = {
     "Slip & Slide Boost": "Remove all mileage limits for this turn (-10 pts score penalty)."
 }
 
+
+def get_town_connections(town_name):
+    """Return (feeds_in_list, feeds_out_list) for 1-stop direct RAGBRAI_MAP links."""
+    feeds_in = [
+        (src, destinations[town_name])
+        for src, destinations in RAGBRAI_MAP.items()
+        if town_name in destinations
+    ]
+    feeds_out = list(RAGBRAI_MAP.get(town_name, {}).items())
+    return feeds_in, feeds_out
+
+
 # --- BUILD 366 RAGBRAILE PAIRS CACHE VIA BFS (<= 7 HOPS) ---
 @st.cache_data
 def get_ragbraile_pairs():
@@ -543,10 +555,22 @@ def get_all_towns_map():
         else:
             icon_color, icon_name = "blue", "info-sign"
             category = "Pass-Through Town"
+
+        feeds_in, feeds_out = get_town_connections(town)
+        in_html = "<br>".join([f"• {src} ({mi} mi)" for src, mi in feeds_in]) if feeds_in else "• None"
+        out_html = "<br>".join([f"• {dst} ({mi} mi)" for dst, mi in feeds_out]) if feeds_out else "• None (Finish Town)"
+
+        popup_html = (
+            f"<div style='min-width: 190px;'>"
+            f"<b>{town}</b> ({category})<br><br>"
+            f"<b>⬅️ Feeds In (1 stop):</b><br>{in_html}<br><br>"
+            f"<b>➡️ Feeds Out (1 stop):</b><br>{out_html}"
+            f"</div>"
+        )
             
         folium.Marker(
             coords,
-            popup=f"<b>{town}</b><br>({category})",
+            popup=folium.Popup(popup_html, max_width=280),
             tooltip=town,
             icon=folium.Icon(color=icon_color, icon=icon_name)
         ).add_to(m)
@@ -694,13 +718,56 @@ elif st.session_state.phase == "view_stats":
 elif st.session_state.phase == "view_full_map":
     st.subheader("🗺️ Towns Reference Map")
     st.write("🟢 **Green Markers** = Start Towns | 🔴 **Red Flag Markers** = Finish Towns | 🔵 **Blue Markers** = Interior Towns")
+    st.caption("Click any town marker on the map to inspect which towns feed directly into it (1 stop away) and which route options feed directly out of it (1 stop away).")
     
     if st.button("🔙 Back"):
         st.session_state.phase = st.session_state.previous_phase
         st.rerun()
-        
-    full_m = get_all_towns_map()
-    st_folium(full_m, width=900, height=600)
+
+    col_map_full, col_town_info = st.columns([1.45, 1])
+
+    with col_map_full:
+        full_m = get_all_towns_map()
+        map_data = st_folium(full_m, width=850, height=600, returned_objects=["last_object_clicked_tooltip", "last_object_clicked"])
+
+    clicked_town = None
+    if map_data:
+        tooltip_val = map_data.get("last_object_clicked_tooltip")
+        if tooltip_val in TOWN_COORDS:
+            clicked_town = tooltip_val
+        elif map_data.get("last_object_clicked"):
+            c_lat = map_data["last_object_clicked"].get("lat")
+            c_lng = map_data["last_object_clicked"].get("lng")
+            if c_lat is not None and c_lng is not None:
+                best_t = min(
+                    TOWN_COORDS.keys(),
+                    key=lambda t: (TOWN_COORDS[t][0] - c_lat) ** 2 + (TOWN_COORDS[t][1] - c_lng) ** 2
+                )
+                if ((TOWN_COORDS[best_t][0] - c_lat) ** 2 + (TOWN_COORDS[best_t][1] - c_lng) ** 2) < 0.01:
+                    clicked_town = best_t
+
+    with col_town_info:
+        st.markdown("### 🏙️ Town Route Connections")
+        if clicked_town:
+            feeds_in, feeds_out = get_town_connections(clicked_town)
+            t_stat = TOWN_HISTORY_DATA.get(clicked_town, {"count": 0, "last": "N/A"})
+            st.success(f"**Selected Town:** {clicked_town} *(Hosted {t_stat['count']} times, last in {t_stat['last']})*")
+
+            st.markdown("#### ⬅️ Feeds Into This Town (1 Stop Away)")
+            if feeds_in:
+                for src, mi in feeds_in:
+                    st.markdown(f"- **{src}** ➔ {clicked_town} *({mi} mi)*")
+            else:
+                st.write("No towns feed directly into this town.")
+
+            st.markdown("#### ➡️ Feeds Out From This Town (1 Stop Away)")
+            if feeds_out:
+                for dst, mi in feeds_out:
+                    st.markdown(f"- {clicked_town} ➔ **{dst}** *({mi} mi)*")
+            else:
+                st.write("No outgoing route options from this town (Mississippi finish town).")
+        else:
+            st.info("Click any town marker on the map to see which towns feed into it and which towns it feeds out to.")
 
 # ================= SETUP PHASE =================
 elif st.session_state.phase == "setup":
