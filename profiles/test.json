@@ -24,6 +24,9 @@
     ],
     "best_score": 83,
     "total_score_sum": 83,
+    "best_ragbraile_score": 0,
+    "ragbraile_score_sum": 0,
+    "ragbraile_completions_count": 0,
     "total_miles_ridden": 933,
     "current_streak": 1,
     "last_solved_date": "2026-11-20",
@@ -64,5 +67,42 @@
             ],
             "extra": " \u2014 Targets: Ida Grove, Marengo"
         }
-    ]
+    ],
+    "active_ragbraile": {
+        "saved_at": "2026-11-20 20:58",
+        "day_of_year": 324,
+        "ragbraile_pair": [
+            "Ida Grove",
+            "Marengo"
+        ],
+        "dice_mode": "Virtual Dice",
+        "phase": "setup",
+        "turn_state": "roll",
+        "r1": 0,
+        "r2": 0,
+        "current_card": null,
+        "base_low": 0,
+        "base_high": 0,
+        "mod_low": 0,
+        "mod_high": 0,
+        "road_result_msg": null,
+        "map_penalty_pts": 0,
+        "player": {
+            "name": "test",
+            "town": null,
+            "history": [],
+            "abilities": {
+                "Beekman's Energy Boost": true,
+                "Thunderstorm": true,
+                "Slip & Slide Boost": true
+            },
+            "total_turns_taken": 0,
+            "ability_penalty_pts": 0,
+            "bonus_range_next_turn": 0,
+            "start_choice": "Sioux City",
+            "reset_reason": null,
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
+        }
+    }
 }
