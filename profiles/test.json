@@ -90,7 +90,7 @@
         "mod_low": 80,
         "mod_high": 95,
         "road_result_msg": null,
-        "map_penalty_pts": 0,
+        "map_penalty_pts": 15,
         "player": {
             "name": "test",
             "town": "Carroll",
