@@ -411,9 +411,10 @@ def _time_until_next_ragbraile(now_dt=None):
     next_midnight = (now_dt + timedelta(days=1)).replace(
         hour=0, minute=0, second=0, microsecond=0
     )
-    remaining_secs = int((next_midnight - now_dt).total_seconds() + 30)
-    hours = remaining_secs // 3600
-    minutes = (remaining_secs % 3600) // 60
+    remaining_secs = round((next_midnight - now_dt).total_seconds())
+    total_minutes = round(remaining_secs / 60)
+    hours = total_minutes // 60
+    minutes = total_minutes % 60
     return f"{hours}:{minutes:02d}"
 
 
