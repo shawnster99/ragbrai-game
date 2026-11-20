@@ -77,18 +77,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 8,
         "r2": 7,
         "current_card": {
-            "name": "Casey's Pizza Power",
-            "reason": "Starting the day off right.",
-            "effect_text": "Expand 5 miles to the mileage range in both directions."
+            "name": "Pie Power",
+            "reason": "Sugar rush from homemade church pie!",
+            "effect_text": "Add 15 miles to the mileage top range."
         },
         "base_low": 70,
         "base_high": 80,
-        "mod_low": 35,
-        "mod_high": 65,
+        "mod_low": 70,
+        "mod_high": 95,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -104,7 +104,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 4,
+            "total_turns_taken": 5,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Le Mars",
