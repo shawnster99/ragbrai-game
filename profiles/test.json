@@ -69,15 +69,15 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-20 20:58",
+        "saved_at": "2026-11-20 20:59",
         "day_of_year": 324,
         "ragbraile_pair": [
             "Ida Grove",
             "Marengo"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 8,
         "current_card": {
@@ -93,10 +93,9 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Ida Grove",
+            "town": "Le Mars",
             "history": [
-                "Le Mars",
-                "Ida Grove"
+                "Le Mars"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -107,11 +106,9 @@
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Le Mars",
-            "reset_reason": "\ud83d\udea8 **Stuck Early!** You had no valid moves. Select a town to restart!",
-            "base_mileage_tally": 72,
-            "day_mileage_history": [
-                72
-            ]
+            "reset_reason": null,
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
         }
     }
 }
