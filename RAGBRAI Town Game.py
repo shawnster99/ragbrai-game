@@ -8,9 +8,12 @@ import base64
 import urllib.request
 import urllib.error
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from streamlit_folium import st_folium
 from folium.features import DivIcon
 from collections import Counter
+
+CENTRAL_TZ = ZoneInfo("America/Chicago")
 
 st.set_page_config(layout="wide", page_title="RAGBRAI: The Game")
 
@@ -392,11 +395,22 @@ def get_town_connections(town_name):
     return feeds_in, feeds_out
 
 
+def _now_central():
+    return datetime.now(CENTRAL_TZ)
+
+
 def _time_until_next_ragbraile(now_dt=None):
-    """Return formatted 'H:MM' remaining until next midnight when a new RAGBRAILE unlocks."""
+    """Return formatted 'H:MM' remaining until next midnight in Central Time."""
     if now_dt is None:
-        now_dt = datetime.now()
-    next_midnight = (now_dt + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+        now_dt = _now_central()
+    elif now_dt.tzinfo is None:
+        now_dt = now_dt.replace(tzinfo=CENTRAL_TZ)
+    else:
+        now_dt = now_dt.astimezone(CENTRAL_TZ)
+
+    next_midnight = (now_dt + timedelta(days=1)).replace(
+        hour=0, minute=0, second=0, microsecond=0
+    )
     remaining_secs = max(0, int((next_midnight - now_dt).total_seconds()))
     hours = remaining_secs // 3600
     minutes = (remaining_secs % 3600) // 60
