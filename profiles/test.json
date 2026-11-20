@@ -1,33 +1,38 @@
 {
     "display_name": "test",
     "completed_towns": [
-        "Keokuk",
+        "Manchester",
+        "Fairfield",
+        "Tama",
+        "Mt Pleasant",
+        "Algona",
+        "Fort Dodge",
+        "Guttenberg",
         "Storm Lake",
         "Sioux City",
-        "Pella",
+        "Cedar Falls",
         "Iowa Falls",
         "Marengo",
-        "Fort Dodge",
         "Carroll",
-        "Ames",
-        "Fairfield",
         "Ida Grove",
-        "Tama",
+        "Pella",
+        "Keokuk",
+        "Clear Lake",
+        "Ames",
         "Burlington",
-        "Mt Pleasant",
         "Le Mars"
     ],
-    "games_finished": 2,
-    "standard_wins": 1,
+    "games_finished": 3,
+    "standard_wins": 2,
     "ragbraile_days_solved": [
         324
     ],
-    "best_score": 83,
-    "total_score_sum": 83,
+    "best_score": 90,
+    "total_score_sum": 173,
     "best_ragbraile_score": 0,
     "ragbraile_score_sum": 0,
     "ragbraile_completions_count": 0,
-    "total_miles_ridden": 933,
+    "total_miles_ridden": 1370,
     "current_streak": 1,
     "last_solved_date": "2026-11-20",
     "recent_routes": [
@@ -66,6 +71,24 @@
                 "Keokuk"
             ],
             "extra": " \u2014 Targets: Ida Grove, Marengo"
+        },
+        {
+            "date": "2026-11-20",
+            "mode": "Standard Game",
+            "start": "Sioux City",
+            "end": "Guttenberg",
+            "miles": 437,
+            "history": [
+                "Sioux City",
+                "Storm Lake",
+                "Algona",
+                "Clear Lake",
+                "Iowa Falls",
+                "Cedar Falls",
+                "Manchester",
+                "Guttenberg"
+            ],
+            "extra": " \u2014 Score: 90/100"
         }
     ],
     "active_ragbraile": {
