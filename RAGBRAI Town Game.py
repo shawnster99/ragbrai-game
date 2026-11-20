@@ -32,10 +32,14 @@ def default_profile(display_name):
         "ragbraile_days_solved": [],
         "best_score": 0,
         "total_score_sum": 0,
+        "best_ragbraile_score": 0,
+        "ragbraile_score_sum": 0,
+        "ragbraile_completions_count": 0,
         "total_miles_ridden": 0,
         "current_streak": 0,
         "last_solved_date": None,
-        "recent_routes": []
+        "recent_routes": [],
+        "active_ragbraile": None
     }
 
 
@@ -86,7 +90,6 @@ def load_user_profile(username):
         save_user_profile(username, new_prof)
         return new_prof, False
 
-    # Local fallback when running without GitHub secrets
     path = get_profile_path(username)
     if os.path.exists(path):
         try:
@@ -140,7 +143,6 @@ def save_user_profile(username, profile):
         except Exception as e:
             st.error(f"Could not save profile to GitHub: {e}")
 
-    # Local fallback
     path = get_profile_path(username)
     try:
         with open(path, "w") as f:
@@ -390,8 +392,120 @@ def get_town_connections(town_name):
     return feeds_in, feeds_out
 
 
+def _is_ragbraile_session_active():
+    if st.session_state.get("is_ragbraile") and st.session_state.get("phase") in (
+        "playing", "select_starts", "select_start_single"
+    ):
+        return True
+    active_saved = st.session_state.get("user_profile", {}).get("active_ragbraile")
+    return bool(active_saved)
+
+
+def _snapshot_active_ragbraile():
+    """Persist current in-progress RAGBRAILE state to profile & session."""
+    if not st.session_state.get("is_ragbraile") or not st.session_state.get("players"):
+        return
+    p0 = st.session_state.players[0]
+    snapshot = {
+        "saved_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "day_of_year": st.session_state.get("ragbraile_day_of_year", datetime.now().timetuple().tm_yday),
+        "ragbraile_pair": list(st.session_state.get("ragbraile_pair", ())),
+        "dice_mode": st.session_state.get("dice_mode", "Virtual Dice"),
+        "phase": st.session_state.get("phase", "playing"),
+        "turn_state": st.session_state.get("turn_state", "roll"),
+        "r1": st.session_state.get("r1", 0),
+        "r2": st.session_state.get("r2", 0),
+        "current_card": st.session_state.get("current_card"),
+        "base_low": st.session_state.get("base_low", 0),
+        "base_high": st.session_state.get("base_high", 0),
+        "mod_low": st.session_state.get("mod_low", 0),
+        "mod_high": st.session_state.get("mod_high", 0),
+        "road_result_msg": st.session_state.get("road_result_msg"),
+        "map_penalty_pts": 15 if st.session_state.get("ragbraile_map_penalty_used") else 0,
+        "player": {
+            "name": p0.get("name", st.session_state.current_username),
+            "town": p0.get("town"),
+            "history": list(p0.get("history", [])),
+            "abilities": dict(p0.get("abilities", {})),
+            "total_turns_taken": p0.get("total_turns_taken", 0),
+            "ability_penalty_pts": p0.get("ability_penalty_pts", 0),
+            "bonus_range_next_turn": p0.get("bonus_range_next_turn", 0),
+            "start_choice": p0.get("start_choice", START_TOWNS[0]),
+            "reset_reason": p0.get("reset_reason"),
+            "base_mileage_tally": p0.get("base_mileage_tally", 0),
+            "day_mileage_history": list(p0.get("day_mileage_history", []))
+        }
+    }
+    st.session_state.user_profile["active_ragbraile"] = snapshot
+    save_user_profile(st.session_state.current_username, st.session_state.user_profile)
+
+
+def _resume_ragbraile_from_snapshot(snap):
+    p_snap = snap.get("player", {})
+    username = st.session_state.current_username
+    st.session_state.dice_mode = snap.get("dice_mode", "Virtual Dice")
+    st.session_state.challenge_town_mode = False
+    st.session_state.challenge_mileage_mode = False
+    st.session_state.is_ragbraile = True
+    st.session_state.ragbraile_day_of_year = snap.get("day_of_year", datetime.now().timetuple().tm_yday)
+    st.session_state.ragbraile_pair = tuple(snap.get("ragbraile_pair", ()))
+    st.session_state.ragbraile_map_penalty_used = bool(snap.get("map_penalty_pts", 0) >= 15)
+    st.session_state.current_idx = 0
+    st.session_state.players = [{
+        "name": p_snap.get("name", username),
+        "town": p_snap.get("town"),
+        "history": list(p_snap.get("history", [])),
+        "abilities": dict(p_snap.get("abilities", {"Beekman's Energy Boost": True, "Thunderstorm": True, "Slip & Slide Boost": True})),
+        "total_turns_taken": p_snap.get("total_turns_taken", 0),
+        "ability_penalty_pts": p_snap.get("ability_penalty_pts", 0),
+        "bonus_range_next_turn": p_snap.get("bonus_range_next_turn", 0),
+        "start_choice": p_snap.get("start_choice", START_TOWNS[0]),
+        "reset_reason": p_snap.get("reset_reason"),
+        "base_mileage_tally": p_snap.get("base_mileage_tally", 0),
+        "day_mileage_history": list(p_snap.get("day_mileage_history", [])),
+        "target_town": None,
+        "target_mileage": None
+    }]
+    st.session_state.turn_state = snap.get("turn_state", "roll")
+    st.session_state.r1 = snap.get("r1", 0)
+    st.session_state.r2 = snap.get("r2", 0)
+    st.session_state.current_card = snap.get("current_card")
+    st.session_state.base_low = snap.get("base_low", 0)
+    st.session_state.base_high = snap.get("base_high", 0)
+    st.session_state.mod_low = snap.get("mod_low", 0)
+    st.session_state.mod_high = snap.get("mod_high", 0)
+    st.session_state.road_result_msg = snap.get("road_result_msg")
+    st.session_state.phase = snap.get("phase", "playing")
+
+
+def _clear_active_ragbraile():
+    st.session_state.ragbraile_map_penalty_used = False
+    if st.session_state.get("user_profile") is not None:
+        st.session_state.user_profile["active_ragbraile"] = None
+        if st.session_state.get("current_username"):
+            save_user_profile(st.session_state.current_username, st.session_state.user_profile)
+
+
+def _apply_ragbraile_map_penalty_if_needed():
+    if _is_ragbraile_session_active():
+        st.session_state.ragbraile_map_penalty_used = True
+        if st.session_state.get("is_ragbraile") and st.session_state.get("players"):
+            _snapshot_active_ragbraile()
+        elif st.session_state.get("user_profile", {}).get("active_ragbraile"):
+            st.session_state.user_profile["active_ragbraile"]["map_penalty_pts"] = 15
+            save_user_profile(st.session_state.current_username, st.session_state.user_profile)
+
+
+def compute_ragbraile_score(player, map_penalty_used):
+    map_pen = 15 if map_penalty_used else 0
+    raw = 107 - player.get("total_turns_taken", 0) - player.get("ability_penalty_pts", 0) - map_pen
+    return max(0, min(100, raw))
+
+
 def push_phase(target_phase):
     current = st.session_state.get("phase")
+    if target_phase == "view_full_map":
+        _apply_ragbraile_map_penalty_if_needed()
     if current and current not in ("view_stats", "view_full_map"):
         st.session_state.nav_stack.append(current)
     elif current and current != target_phase:
@@ -461,6 +575,12 @@ if "user_profile" not in st.session_state:
 if "nav_stack" not in st.session_state:
     st.session_state.nav_stack = []
 
+if "ragbraile_map_penalty_used" not in st.session_state:
+    st.session_state.ragbraile_map_penalty_used = False
+
+if "ragbraile_day_of_year" not in st.session_state:
+    st.session_state.ragbraile_day_of_year = datetime.now().timetuple().tm_yday
+
 if "phase" not in st.session_state:
     st.session_state.phase = "login"
     st.session_state.players = []
@@ -507,13 +627,19 @@ with st.sidebar:
                 st.rerun()
                 
             if st.button("🏠 Quit to Home Menu"):
+                if st.session_state.get("is_ragbraile"):
+                    _snapshot_active_ragbraile()
                 st.session_state.nav_stack = []
                 st.session_state.phase = "setup"
                 st.rerun()
 
         if st.button("🚪 Switch User / Logout"):
+            if st.session_state.get("is_ragbraile"):
+                _snapshot_active_ragbraile()
             st.session_state.current_username = ""
             st.session_state.user_profile = {}
+            st.session_state.is_ragbraile = False
+            st.session_state.ragbraile_map_penalty_used = False
             st.session_state.nav_stack = []
             st.session_state.phase = "login"
             st.rerun()
@@ -624,6 +750,8 @@ if st.session_state.phase == "login":
                 prof, existed = load_user_profile(cleaned)
                 st.session_state.current_username = cleaned
                 st.session_state.user_profile = prof
+                saved_rb = prof.get("active_ragbraile")
+                st.session_state.ragbraile_map_penalty_used = bool(saved_rb and saved_rb.get("map_penalty_pts", 0) >= 15)
                 st.session_state.login_notice = (
                     f"Welcome back, **{cleaned}**! Your saved profile has been loaded."
                     if existed else
@@ -645,11 +773,11 @@ elif st.session_state.phase == "view_stats":
 
     prof = st.session_state.user_profile
     
-    # Extract all recorded standard scores from recent_routes to ensure accurate averaging
+    # Standard score calculations
     std_scores = [
         int(re.search(r'Score:\s*(\d+)', r.get('extra', '')).group(1))
         for r in prof.get("recent_routes", [])
-        if "Score:" in r.get('extra', '')
+        if "RAGBRAILE" not in r.get("mode", "") and "Score:" in r.get('extra', '')
     ]
     
     if std_scores:
@@ -660,6 +788,23 @@ elif st.session_state.phase == "view_stats":
         total_score_sum = prof.get("total_score_sum", 0)
         std_wins = prof.get("standard_wins", 0)
         avg_score = round(total_score_sum / std_wins, 1) if std_wins > 0 else 0
+
+    # RAGBRAILE score calculations
+    rb_scores = [
+        int(re.search(r'Score:\s*(\d+)', r.get('extra', '')).group(1))
+        for r in prof.get("recent_routes", [])
+        if "RAGBRAILE" in r.get("mode", "") and "Score:" in r.get('extra', '')
+    ]
+    if rb_scores:
+        rb_count = len(rb_scores)
+        rb_score_sum = sum(rb_scores)
+        best_rb_score = max(prof.get("best_ragbraile_score", 0), max(rb_scores))
+        avg_rb_score = round(rb_score_sum / rb_count, 1)
+    else:
+        rb_count = prof.get("ragbraile_completions_count", 0)
+        rb_score_sum = prof.get("ragbraile_score_sum", 0)
+        best_rb_score = prof.get("best_ragbraile_score", 0)
+        avg_rb_score = round(rb_score_sum / rb_count, 1) if rb_count > 0 else 0
 
     # Fallback streak fix if RAGBRAILE was completed today but streak was 0
     current_streak = prof.get("current_streak", 0)
@@ -682,27 +827,28 @@ elif st.session_state.phase == "view_stats":
     longest_route = max(route_miles_list) if route_miles_list else 0
     shortest_route = min(route_miles_list) if route_miles_list else 0
 
-    # --- REORDERED METRICS LAYOUT ---
-    # Row 1: Total Games Finished, Towns Visited
-    c1, c2, c11, c12 = st.columns(4)
-    c1.metric("Total Games Finished", games_finished_count)
-    c2.metric("Towns Visited", f"{len(prof.get('completed_towns', []))} / 99")
+    # Row 1: Total Games Finished, Towns Visited, Best Standard Score, Average Standard Score
+    r1_c1, r1_c2, r1_c3, r1_c4 = st.columns(4)
+    r1_c1.metric("Total Games Finished", games_finished_count)
+    r1_c2.metric("Towns Visited", f"{len(prof.get('completed_towns', []))} / 99")
+    r1_c3.metric("Best Standard Score", f"{prof.get('best_score', 0)} / 100")
+    r1_c4.metric("Average Standard Score", f"{avg_score} / 100")
 
-    # Row 2: Best Score, Average Score, Total RAGBRAILEs Completed, RAGBRAILE Daily Streak
-    c3, c4, c5, c6 = st.columns(4)
-    c3.metric("Best Standard Score", f"{prof.get('best_score', 0)} / 100")
-    c4.metric("Average Standard Score", f"{avg_score} / 100")
-    c5.metric("Total RAGBRAILEs Completed", len(solved_days))
-    c6.metric("RAGBRAILE Daily Streak", f"{current_streak} days")
+    # Row 2: Total RAGBRAILEs Completed, RAGBRAILE Daily Streak, Best RAGBRAILE Score, Average RAGBRAILE Score
+    r2_c1, r2_c2, r2_c3, r2_c4 = st.columns(4)
+    r2_c1.metric("Total RAGBRAILEs Completed", len(solved_days))
+    r2_c2.metric("RAGBRAILE Daily Streak", f"{current_streak} days")
+    r2_c3.metric("Best RAGBRAILE Score", f"{best_rb_score} / 100")
+    r2_c4.metric("Average RAGBRAILE Score", f"{avg_rb_score} / 100")
 
     # Row 3: Lifetime Miles Ridden, Average Mileage, Shortest Route, Longest Route
-    c7, c8, c9, c10 = st.columns(4)
-    c7.metric("Lifetime Miles Ridden", f"{total_miles_ridden:,} mi")
-    c8.metric("Average Mileage", f"{avg_mileage:,} mi")
-    c9.metric("Shortest Route", f"{shortest_route:,} mi")
-    c10.metric("Longest Route", f"{longest_route:,} mi")
+    r3_c1, r3_c2, r3_c3, r3_c4 = st.columns(4)
+    r3_c1.metric("Lifetime Miles Ridden", f"{total_miles_ridden:,} mi")
+    r3_c2.metric("Average Mileage", f"{avg_mileage:,} mi")
+    r3_c3.metric("Shortest Route", f"{shortest_route:,} mi")
+    r3_c4.metric("Longest Route", f"{longest_route:,} mi")
 
-    # --- Top 5 Most Visited Towns Calculation (FIXED TO COUNT ALL ROUTE STOPS) ---
+    # Top 5 Most Visited Towns Calculation
     town_visit_counts = Counter()
     for r in prof.get("recent_routes", []):
         route_towns = r.get('history', [])
@@ -817,12 +963,12 @@ elif st.session_state.phase == "setup":
 
         ### 🏆 Ways to Play
         This game is designed to have many different game modes, all available to allow you to customize your RAGBRAI game experience. There's no right or wrong way to play – kind of like there's no right or wrong way to RAGBRAI.
-        * **RAGBRAILE:** Like Wordle, but make it RAGBRAI. Come back daily for a new challenge - everyone will receive the same 2 towns and your goal is to complete a full route while traversing through both. This is a solo-only game mode. Tip: Use the **Full Town Map** on the sidebar to figure out your path into a given town (clicking on a town in the Full Town Map page tells you which ones feed in and out of it).
+        * **RAGBRAILE:** Like Wordle, but make it RAGBRAI. Come back daily for a new challenge - everyone will receive the same 2 towns and your goal is to complete a full route while traversing through both. This is a solo-only game mode.
         * **Race to the Finish:** While RAGBRAI may not be a race, multiplayer mode in this game rewards the victory to the player who can reach an end town (in exactly 7 days) first.
         * **Perfect Score:** Finish your route in exactly 7 turns with no hiccups and not utilizing any special abilities (listed below) to score a perfect 100 points. Any extra turns required to get to the end town result in losing points. Selecting none (-3), one (-2), or both (-1) of the challenge mode options listed below dictate how many points you lose for each additional turn to reach the Mississippi. Additionally, using special abilities will decrease your score, as specified below. This mode is best enjoyed solo but every non-RAGBRAILE game winning route will receive a score.
         * **Total Tourist:** Utilize your **Town Log Book** on the sidebar to track how many and which of the 99 total towns in the game that you've visited across all your routes on your profile. Only the 8 towns that are involved in a complete game-winning route are added to your log book. 
         * **Challenge Mode:** If the normal game isn't challenging enough, select one or both challenge mode options to add to your standard game (available in both solo and multiplayer games):
-          * **Mandatory Town:** At the beginning of the game, each player receives a different randomly-assigned, non-starting town that they must pass through before reaching the Mississippi River to complete their route. Tip: Use the **Full Town Map** on the sidebar to figure out your path into a given town (clicking on a town in the Full Town Map page tells you which ones feed in and out of it).
+          * **Mandatory Town:** At the beginning of the game, each player receives a different randomly-assigned, non-starting town that they must pass through before reaching the Mississippi River to complete their route.
           * **Target Mileage:** At the beginning of the game, each player receives a different total week-long mileage (between 350–550 miles) that your final route must land within **35 miles** of. Your total weekly mileage consists of your daily totals + a random number between 5 & 10 each day to account for riding inefficiently through towns along the way.
 
         ---
@@ -838,41 +984,86 @@ elif st.session_state.phase == "setup":
 
         ### ⚙️ In-Game & Sidebar Options
         * **View Stats:** Click the **View My Stats** button on the sidebar to view the lifetime statistics of the username that is signed into the current session.
-        * **Full Town Map:** You can click the **View Full Town Map** button on the sidebar at any time to inspect all 99 game towns simultaneously. In addition, click on any town to view the towns that feed directly in and out of the one you picked. Use **Back to Game** to resume right where you left off!
+        * **Full Town Map:** You can click the **View Full Town Map** button on the sidebar at any time to inspect all 99 game towns simultaneously. Use **Back to Game** to resume right where you left off!
         * **Restart Route:** Select the **Restart Current Route** button on the sidebar during your turn to completely restart your route from the Missouri River at the same or new starting town. This doesn't impact the current game settings or any opponent's progress in the game that you're in the middle of. It also remembers any special abilities you've used in that current game.
         * **Quit to Home:** Select **Quit to Home Menu** on the sidebar to quit your current game and bring you back to this home screen. If you want to reset your special abilities for the game you're playing and start from scratch, use this button instead of Restart Route.
         * **Switch User/Logout:** If you want to change the username that is currently logged in, click this button.
         * **Town Log Book:** Utilize your **Town Log Book** on the sidebar to track how many and which of the 99 total towns in the game that you've visited across your persistent profile. Only the 8 towns that are involved in a complete game-winning route are added to your log book. 
         """)
 
-    # --- RAGBRAILE LAUNCH SECTION (WITH DICE PROMPT) ---
+    # --- RAGBRAILE LAUNCH / RESUME SECTION ---
     today_dt = datetime.now()
     day_of_year = today_dt.timetuple().tm_yday
+    saved_rb = st.session_state.user_profile.get("active_ragbraile")
     
     st.markdown("### 🗓️ Daily Challenge Mode")
+    if saved_rb:
+        s_pair = saved_rb.get("ragbraile_pair", RAGBRAILE_PAIRS[day_of_year - 1])
+        s_day = saved_rb.get("day_of_year", day_of_year)
+        s_hist = saved_rb.get("player", {}).get("history", [])
+        s_curr = saved_rb.get("player", {}).get("town") or saved_rb.get("player", {}).get("start_choice", START_TOWNS[0])
+        st.info(
+            f"💾 **Saved RAGBRAILE In Progress** (Puzzle Day {s_day} • Targets: **{s_pair[0]} & {s_pair[1]}** • "
+            f"Current Stop: **{s_curr}**, Day {max(0, len(s_hist) - 1)} • Saved {saved_rb.get('saved_at', 'earlier')})"
+        )
+        col_res, col_new = st.columns([1.4, 1])
+        with col_res:
+            if st.button("▶️ Resume Saved RAGBRAILE", type="primary"):
+                _resume_ragbraile_from_snapshot(saved_rb)
+                st.rerun()
+        with col_new:
+            if st.button("🆕 Start Fresh Today's RAGBRAILE"):
+                _clear_active_ragbraile()
+                ragbraile_dice_choice = st.session_state.get("ragbraile_dice_select", "Virtual Dice")
+                st.session_state.dice_mode = ragbraile_dice_choice
+                st.session_state.is_ragbraile = True
+                st.session_state.ragbraile_day_of_year = day_of_year
+                st.session_state.ragbraile_pair = RAGBRAILE_PAIRS[day_of_year - 1]
+                st.session_state.players = [{
+                    "name": st.session_state.current_username,
+                    "town": None,
+                    "history": [],
+                    "abilities": {"Beekman's Energy Boost": True, "Thunderstorm": True, "Slip & Slide Boost": True},
+                    "total_turns_taken": 0,
+                    "ability_penalty_pts": 0,
+                    "bonus_range_next_turn": 0,
+                    "start_choice": START_TOWNS[0],
+                    "reset_reason": None,
+                    "base_mileage_tally": 0,
+                    "day_mileage_history": [],
+                    "target_town": None,
+                    "target_mileage": None
+                }]
+                st.session_state.phase = "select_starts"
+                st.rerun()
+
     ragbraile_dice_choice = st.selectbox("Select Dice Mode for RAGBRAILE", ["Virtual Dice", "Real-Life Dice"], key="ragbraile_dice_select")
     
-    if st.button(f"Play RAGBRAILE (Today's Puzzle: Day {day_of_year})", type="primary"):
-        st.session_state.dice_mode = ragbraile_dice_choice
-        st.session_state.is_ragbraile = True
-        st.session_state.ragbraile_pair = RAGBRAILE_PAIRS[day_of_year - 1]
-        st.session_state.players = [{
-            "name": st.session_state.current_username,
-            "town": None,
-            "history": [],
-            "abilities": {"Beekman's Energy Boost": True, "Thunderstorm": True, "Slip & Slide Boost": True},
-            "total_turns_taken": 0,
-            "ability_penalty_pts": 0,
-            "bonus_range_next_turn": 0,
-            "start_choice": START_TOWNS[0],
-            "reset_reason": None,
-            "base_mileage_tally": 0,
-            "day_mileage_history": [],
-            "target_town": None,
-            "target_mileage": None
-        }]
-        st.session_state.phase = "select_starts"
-        st.rerun()
+    if not saved_rb:
+        if st.button(f"Play RAGBRAILE (Today's Puzzle: Day {day_of_year})", type="primary"):
+            st.session_state.ragbraile_map_penalty_used = False
+            st.session_state.dice_mode = ragbraile_dice_choice
+            st.session_state.is_ragbraile = True
+            st.session_state.ragbraile_day_of_year = day_of_year
+            st.session_state.ragbraile_pair = RAGBRAILE_PAIRS[day_of_year - 1]
+            st.session_state.players = [{
+                "name": st.session_state.current_username,
+                "town": None,
+                "history": [],
+                "abilities": {"Beekman's Energy Boost": True, "Thunderstorm": True, "Slip & Slide Boost": True},
+                "total_turns_taken": 0,
+                "ability_penalty_pts": 0,
+                "bonus_range_next_turn": 0,
+                "start_choice": START_TOWNS[0],
+                "reset_reason": None,
+                "base_mileage_tally": 0,
+                "day_mileage_history": [],
+                "target_town": None,
+                "target_mileage": None
+            }]
+            _snapshot_active_ragbraile()
+            st.session_state.phase = "select_starts"
+            st.rerun()
 
     st.markdown("---")
     st.subheader("⚙️ Custom Game")
@@ -937,6 +1128,8 @@ elif st.session_state.phase == "select_starts":
             p['day_mileage_history'] = []
         st.session_state.phase = "playing"
         st.session_state.turn_state = "roll"
+        if st.session_state.is_ragbraile:
+            _snapshot_active_ragbraile()
         st.rerun()
 
 # ================= INDIVIDUAL PLAYER START RE-SELECTION =================
@@ -971,6 +1164,8 @@ elif st.session_state.phase == "select_start_single":
         st.session_state.phase = "playing"
         st.session_state.turn_state = "roll"
         st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
+        if st.session_state.is_ragbraile:
+            _snapshot_active_ragbraile()
         st.rerun()
 
 # ================= PLAYING PHASE =================
@@ -995,6 +1190,8 @@ elif st.session_state.phase == "playing":
             v1 = "✅" if t1 in current_p['history'] else "❌"
             v2 = "✅" if t2 in current_p['history'] else "❌"
             st.warning(f"🗓️ **RAGBRAILE Mandatory Towns:** {v1} {t1} | {v2} {t2}")
+            if st.session_state.ragbraile_map_penalty_used:
+                st.caption("⚠️ Full Town Map penalty active (-15 pts max) for this RAGBRAILE run.")
         else:
             challenge_goals_list = []
             if st.session_state.challenge_town_mode:
@@ -1023,6 +1220,8 @@ elif st.session_state.phase == "playing":
                     st.session_state.road_result_msg = None
                     
                     st.session_state.turn_state = "card"
+                    if st.session_state.is_ragbraile:
+                        _snapshot_active_ragbraile()
                     st.rerun()
             else:
                 st.write("Enter your physical dice roll sums (2-12):")
@@ -1039,6 +1238,8 @@ elif st.session_state.phase == "playing":
                     st.session_state.road_result_msg = None
                     
                     st.session_state.turn_state = "card"
+                    if st.session_state.is_ragbraile:
+                        _snapshot_active_ragbraile()
                     st.rerun()
 
         # --- SUBSTATE 2: DRAW CARD ---
@@ -1084,6 +1285,8 @@ elif st.session_state.phase == "playing":
                     st.session_state.turn_state = "road_closure"
                 else:
                     st.session_state.turn_state = "move"
+                if st.session_state.is_ragbraile:
+                    _snapshot_active_ragbraile()
                 st.rerun()
 
         # --- SUBSTATE 2.5: ROAD CLOSURE ROLL ---
@@ -1098,6 +1301,8 @@ elif st.session_state.phase == "playing":
                     st.session_state.road_result_msg = None
                     st.session_state.turn_state = "roll"
                     st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
+                    if st.session_state.is_ragbraile:
+                        _snapshot_active_ragbraile()
                     st.rerun()
             else:
                 if st.session_state.dice_mode.startswith("Virtual"):
@@ -1114,6 +1319,8 @@ elif st.session_state.phase == "playing":
                                     sub_miles = current_p['day_mileage_history'].pop()
                                     current_p['base_mileage_tally'] = max(0, current_p['base_mileage_tally'] - sub_miles)
                         st.session_state.road_result_msg = msg
+                        if st.session_state.is_ragbraile:
+                            _snapshot_active_ragbraile()
                         st.rerun()
                 else:
                     rc_input = st.number_input("Enter single die roll (1-6):", 1, 6, 1)
@@ -1129,6 +1336,8 @@ elif st.session_state.phase == "playing":
                                     sub_miles = current_p['day_mileage_history'].pop()
                                     current_p['base_mileage_tally'] = max(0, current_p['base_mileage_tally'] - sub_miles)
                         st.session_state.road_result_msg = msg
+                        if st.session_state.is_ragbraile:
+                            _snapshot_active_ragbraile()
                         st.rerun()
 
         # --- SUBSTATE 3: MOVE / CHOOSE ROUTE ---
@@ -1179,6 +1388,8 @@ elif st.session_state.phase == "playing":
                                             sub_miles = target['day_mileage_history'].pop()
                                             target['base_mileage_tally'] = max(0, target['base_mileage_tally'] - sub_miles)
                                         st.warning(f"⚡ {target['name']} got struck by a Thunderstorm and moved back to {target['town']}!")
+                            if st.session_state.is_ragbraile:
+                                _snapshot_active_ragbraile()
                             st.rerun()
                     else:
                         st.caption(f"~~{ab_name}: Used~~")
@@ -1205,6 +1416,8 @@ elif st.session_state.phase == "playing":
                         if t_name in FINISH_TOWNS and days_ridden < 7:
                             current_p['reset_reason'] = f"🚨 **Overshot!** Reached finish town {t_name} on Day {days_ridden} (before Day 7). Select a new starting town to restart!"
                             st.session_state.phase = "select_start_single"
+                            if st.session_state.is_ragbraile:
+                                _snapshot_active_ragbraile()
                         elif days_ridden == 7:
                             if t_name in FINISH_TOWNS:
                                 challenge_failed = False
@@ -1230,6 +1443,8 @@ elif st.session_state.phase == "playing":
                                 if challenge_failed:
                                     current_p['reset_reason'] = f"🚨 **Challenge Mode Failed!**{fail_msg} Select a new starting town to restart!"
                                     st.session_state.phase = "select_start_single"
+                                    if st.session_state.is_ragbraile:
+                                        _snapshot_active_ragbraile()
                                 else:
                                     st.session_state.winner = current_p
                                     
@@ -1247,6 +1462,15 @@ elif st.session_state.phase == "playing":
                                         day_num = datetime.now().timetuple().tm_yday
                                         
                                         if st.session_state.is_ragbraile:
+                                            rb_scr = compute_ragbraile_score(
+                                                current_p,
+                                                st.session_state.ragbraile_map_penalty_used
+                                            )
+                                            u_prof["ragbraile_completions_count"] = u_prof.get("ragbraile_completions_count", 0) + 1
+                                            u_prof["ragbraile_score_sum"] = u_prof.get("ragbraile_score_sum", 0) + rb_scr
+                                            if rb_scr > u_prof.get("best_ragbraile_score", 0):
+                                                u_prof["best_ragbraile_score"] = rb_scr
+
                                             solved_list = set(u_prof.get("ragbraile_days_solved", []))
                                             if day_num not in solved_list:
                                                 solved_list.add(day_num)
@@ -1273,12 +1497,13 @@ elif st.session_state.phase == "playing":
                                                 "end": current_p['history'][-1],
                                                 "miles": total_miles,
                                                 "history": list(current_p['history']),
-                                                "extra": f" — Targets: {t1}, {t2}"
+                                                "extra": f" — Targets: {t1}, {t2} | Score: {rb_scr}/100"
                                             })
+                                            u_prof["active_ragbraile"] = None
+                                            st.session_state.ragbraile_map_penalty_used = False
                                         else:
                                             u_prof["standard_wins"] = u_prof.get("standard_wins", 0) + 1
                                             
-                                            # Challenge indicator details for recent games log
                                             mode_label = "Standard Game"
                                             challenge_descs = []
                                             if st.session_state.challenge_town_mode:
@@ -1319,9 +1544,13 @@ elif st.session_state.phase == "playing":
                             else:
                                 current_p['reset_reason'] = f"🚨 **Out of Time!** Day 7 ended in {t_name} instead of a finish town. Select a new starting town to restart!"
                                 st.session_state.phase = "select_start_single"
+                                if st.session_state.is_ragbraile:
+                                    _snapshot_active_ragbraile()
                         else:
                             st.session_state.turn_state = "roll"
                             st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
+                            if st.session_state.is_ragbraile:
+                                _snapshot_active_ragbraile()
                         
                         st.rerun()
                 else:
@@ -1333,6 +1562,8 @@ elif st.session_state.phase == "playing":
                     current_p['total_turns_taken'] += 1
                     st.session_state.turn_state = "roll"
                     st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
+                    if st.session_state.is_ragbraile:
+                        _snapshot_active_ragbraile()
                     st.rerun()
             else:
                 st.warning("No routes are currently within your range!")
@@ -1349,6 +1580,8 @@ elif st.session_state.phase == "playing":
                                 current_p['base_mileage_tally'] = max(0, current_p['base_mileage_tally'] - sub_miles)
                         st.session_state.turn_state = "roll"
                         st.session_state.current_idx = (st.session_state.current_idx + 1) % len(st.session_state.players)
+                    if st.session_state.is_ragbraile:
+                        _snapshot_active_ragbraile()
                     st.rerun()
 
     with col_map:
@@ -1372,30 +1605,44 @@ elif st.session_state.phase == "game_over":
     if st.session_state.is_ragbraile:
         t1, t2 = st.session_state.ragbraile_pair
         st.header(f"🎉 SUCCESS! You completed today's RAGBRAILE visiting {t1} & {t2}! 🎉")
+        map_pen_pts = 15 if st.session_state.ragbraile_map_penalty_used else 0
+        final_score = compute_ragbraile_score(winner, st.session_state.ragbraile_map_penalty_used)
+        pts_per_turn = 1
     else:
         st.header(f"🎉 CHAMPION: {winner['name']} wins RAGBRAI: The Game! 🎉")
-    
-    active_challenges_count = (1 if st.session_state.challenge_town_mode else 0) + (1 if st.session_state.challenge_mileage_mode else 0)
-    if active_challenges_count == 2:
-        pts_per_turn = 1
-        base_score = 107
-    elif active_challenges_count == 1:
-        pts_per_turn = 2
-        base_score = 114
-    else:
-        pts_per_turn = 3
-        base_score = 121
+        active_challenges_count = (1 if st.session_state.challenge_town_mode else 0) + (1 if st.session_state.challenge_mileage_mode else 0)
+        if active_challenges_count == 2:
+            pts_per_turn = 1
+            base_score = 107
+        elif active_challenges_count == 1:
+            pts_per_turn = 2
+            base_score = 114
+        else:
+            pts_per_turn = 3
+            base_score = 121
 
-    turns_penalty = winner['total_turns_taken'] * pts_per_turn
-    raw_score = base_score - turns_penalty - winner['ability_penalty_pts']
-    final_score = max(0, raw_score)
+        turns_penalty = winner['total_turns_taken'] * pts_per_turn
+        raw_score = base_score - turns_penalty - winner['ability_penalty_pts']
+        final_score = max(0, raw_score)
+        map_pen_pts = 0
+
     total_winning_miles = calculate_player_mileage(winner)
     
     col_stats, col_map = st.columns([1, 1])
     
     with col_stats:
-        if not st.session_state.is_ragbraile:
-            st.metric("Final Score", f"{final_score} / 100", f"100 base - ({winner['total_turns_taken'] - 7} extra turns × {pts_per_turn} pts each) - {winner['ability_penalty_pts']} ability pts")
+        if st.session_state.is_ragbraile:
+            st.metric(
+                "Final RAGBRAILE Score",
+                f"{final_score} / 100",
+                f"100 base - ({winner['total_turns_taken'] - 7} extra turns × 1 pt each) - {winner['ability_penalty_pts']} ability pts - {map_pen_pts} map pts"
+            )
+        else:
+            st.metric(
+                "Final Score",
+                f"{final_score} / 100",
+                f"100 base - ({winner['total_turns_taken'] - 7} extra turns × {pts_per_turn} pts each) - {winner['ability_penalty_pts']} ability pts"
+            )
         st.metric("Total Route Distance", f"{total_winning_miles} miles")
 
         st.subheader("📜 Winning Route Recap (8 Days Total):")
@@ -1404,6 +1651,7 @@ elif st.session_state.phase == "game_over":
             st.write(f"- {prefix} **{t}**")
 
         if st.button("Back to Home"):
+            st.session_state.is_ragbraile = False
             st.session_state.nav_stack = []
             st.session_state.phase = "setup"
             st.rerun()
