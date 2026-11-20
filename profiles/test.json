@@ -77,7 +77,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 7,
         "current_card": {
@@ -93,11 +93,12 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Carroll",
+            "town": "Ankeny",
             "history": [
                 "Le Mars",
                 "Ida Grove",
-                "Carroll"
+                "Carroll",
+                "Ankeny"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -109,10 +110,11 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Le Mars",
             "reset_reason": null,
-            "base_mileage_tally": 131,
+            "base_mileage_tally": 222,
             "day_mileage_history": [
                 73,
-                58
+                58,
+                91
             ]
         }
     }
