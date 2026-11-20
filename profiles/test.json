@@ -1,13 +1,41 @@
 {
     "display_name": "test",
-    "completed_towns": [],
-    "games_finished": 0,
-    "standard_wins": 0,
+    "completed_towns": [
+        "Mt Pleasant",
+        "Storm Lake",
+        "Sioux City",
+        "Carroll",
+        "Ames",
+        "Fairfield",
+        "Burlington",
+        "Pella"
+    ],
+    "games_finished": 1,
+    "standard_wins": 1,
     "ragbraile_days_solved": [],
-    "best_score": 0,
-    "total_score_sum": 0,
-    "total_miles_ridden": 0,
+    "best_score": 83,
+    "total_score_sum": 83,
+    "total_miles_ridden": 443,
     "current_streak": 0,
     "last_solved_date": null,
-    "recent_routes": []
+    "recent_routes": [
+        {
+            "date": "2026-11-20",
+            "mode": "Standard Game",
+            "start": "Sioux City",
+            "end": "Burlington",
+            "miles": 443,
+            "history": [
+                "Sioux City",
+                "Storm Lake",
+                "Carroll",
+                "Ames",
+                "Pella",
+                "Fairfield",
+                "Mt Pleasant",
+                "Burlington"
+            ],
+            "extra": " \u2014 Score: 83/100"
+        }
+    ]
 }
