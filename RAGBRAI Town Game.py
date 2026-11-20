@@ -392,6 +392,17 @@ def get_town_connections(town_name):
     return feeds_in, feeds_out
 
 
+def _time_until_next_ragbraile(now_dt=None):
+    """Return formatted 'H:MM' remaining until next midnight when a new RAGBRAILE unlocks."""
+    if now_dt is None:
+        now_dt = datetime.now()
+    next_midnight = (now_dt + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+    remaining_secs = max(0, int((next_midnight - now_dt).total_seconds()))
+    hours = remaining_secs // 3600
+    minutes = (remaining_secs % 3600) // 60
+    return f"{hours}:{minutes:02d}"
+
+
 def _get_valid_saved_ragbraile(profile, today_day_num):
     """Return saved RAGBRAILE only if it belongs to today's puzzle day; otherwise clear stale one."""
     if not profile:
@@ -1009,15 +1020,17 @@ elif st.session_state.phase == "setup":
         * **Town Log Book:** Utilize your **Town Log Book** on the sidebar to track how many and which of the 99 total towns in the game that you've visited across your persistent profile. Only the 8 towns that are involved in a complete game-winning route are added to your log book. 
         """)
 
-    # --- RAGBRAILE LAUNCH / RESUME SECTION ---
+    # --- RAGBRAILE LAUNCH / RESUME / COMPLETED SECTION ---
     today_dt = datetime.now()
     day_of_year = today_dt.timetuple().tm_yday
+    solved_days = set(st.session_state.user_profile.get("ragbraile_days_solved", []))
     saved_rb = _get_valid_saved_ragbraile(st.session_state.user_profile, day_of_year)
     
     st.markdown("### 🗓️ Daily Challenge Mode")
-    ragbraile_dice_choice = st.selectbox("Select Dice Mode for RAGBRAILE", ["Virtual Dice", "Real-Life Dice"], key="ragbraile_dice_select")
-
-    if saved_rb:
+    if day_of_year in solved_days:
+        countdown_str = _time_until_next_ragbraile(today_dt)
+        st.success(f"✅ You've completed today's RAGBRAILE! Next RAGBRAILE in **{countdown_str}**")
+    elif saved_rb:
         s_pair = saved_rb.get("ragbraile_pair", RAGBRAILE_PAIRS[day_of_year - 1])
         s_day = saved_rb.get("day_of_year", day_of_year)
         s_hist = saved_rb.get("player", {}).get("history", [])
@@ -1030,6 +1043,7 @@ elif st.session_state.phase == "setup":
             _resume_ragbraile_from_snapshot(saved_rb)
             st.rerun()
     else:
+        ragbraile_dice_choice = st.selectbox("Select Dice Mode for RAGBRAILE", ["Virtual Dice", "Real-Life Dice"], key="ragbraile_dice_select")
         if st.button(f"Play RAGBRAILE (Today's Puzzle: Day {day_of_year})", type="primary"):
             st.session_state.ragbraile_map_penalty_used = False
             st.session_state.dice_mode = ragbraile_dice_choice
