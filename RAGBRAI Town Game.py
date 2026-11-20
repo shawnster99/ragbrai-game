@@ -392,17 +392,33 @@ def get_town_connections(town_name):
     return feeds_in, feeds_out
 
 
+def _get_valid_saved_ragbraile(profile, today_day_num):
+    """Return saved RAGBRAILE only if it belongs to today's puzzle day; otherwise clear stale one."""
+    if not profile:
+        return None
+    saved = profile.get("active_ragbraile")
+    if not saved:
+        return None
+    if saved.get("day_of_year") != today_day_num:
+        profile["active_ragbraile"] = None
+        if st.session_state.get("current_username"):
+            save_user_profile(st.session_state.current_username, profile)
+        return None
+    return saved
+
+
 def _is_ragbraile_session_active():
+    today_day_num = datetime.now().timetuple().tm_yday
     if st.session_state.get("is_ragbraile") and st.session_state.get("phase") in (
         "playing", "select_starts", "select_start_single"
     ):
         return True
-    active_saved = st.session_state.get("user_profile", {}).get("active_ragbraile")
+    active_saved = _get_valid_saved_ragbraile(st.session_state.get("user_profile"), today_day_num)
     return bool(active_saved)
 
 
 def _snapshot_active_ragbraile():
-    """Persist current in-progress RAGBRAILE state to profile & session."""
+    """Persist current in-progress RAGBRAILE state to profile & session without altering lifetime stats."""
     if not st.session_state.get("is_ragbraile") or not st.session_state.get("players"):
         return
     p0 = st.session_state.players[0]
@@ -476,14 +492,6 @@ def _resume_ragbraile_from_snapshot(snap):
     st.session_state.mod_high = snap.get("mod_high", 0)
     st.session_state.road_result_msg = snap.get("road_result_msg")
     st.session_state.phase = snap.get("phase", "playing")
-
-
-def _clear_active_ragbraile():
-    st.session_state.ragbraile_map_penalty_used = False
-    if st.session_state.get("user_profile") is not None:
-        st.session_state.user_profile["active_ragbraile"] = None
-        if st.session_state.get("current_username"):
-            save_user_profile(st.session_state.current_username, st.session_state.user_profile)
 
 
 def _apply_ragbraile_map_penalty_if_needed():
@@ -624,6 +632,8 @@ with st.sidebar:
                 current_p['reset_reason'] = f"Player {current_p['name']} requested a route reset."
                 current_p['start_choice'] = START_TOWNS[0]
                 st.session_state.phase = "select_start_single"
+                if st.session_state.get("is_ragbraile"):
+                    _snapshot_active_ragbraile()
                 st.rerun()
                 
             if st.button("🏠 Quit to Home Menu"):
@@ -750,7 +760,8 @@ if st.session_state.phase == "login":
                 prof, existed = load_user_profile(cleaned)
                 st.session_state.current_username = cleaned
                 st.session_state.user_profile = prof
-                saved_rb = prof.get("active_ragbraile")
+                today_num = datetime.now().timetuple().tm_yday
+                saved_rb = _get_valid_saved_ragbraile(prof, today_num)
                 st.session_state.ragbraile_map_penalty_used = bool(saved_rb and saved_rb.get("map_penalty_pts", 0) >= 15)
                 st.session_state.login_notice = (
                     f"Welcome back, **{cleaned}**! Your saved profile has been loaded."
@@ -772,39 +783,47 @@ elif st.session_state.phase == "view_stats":
         st.rerun()
 
     prof = st.session_state.user_profile
+    recent_routes = prof.get("recent_routes", [])
     
-    # Standard score calculations
-    std_scores = [
+    # Historic & recorded Standard score calculations from profile + completed routes
+    route_std_scores = [
         int(re.search(r'Score:\s*(\d+)', r.get('extra', '')).group(1))
-        for r in prof.get("recent_routes", [])
+        for r in recent_routes
         if "RAGBRAILE" not in r.get("mode", "") and "Score:" in r.get('extra', '')
     ]
-    
-    if std_scores:
-        total_score_sum = sum(std_scores)
-        std_wins = len(std_scores)
-        avg_score = round(total_score_sum / std_wins, 1)
-    else:
-        total_score_sum = prof.get("total_score_sum", 0)
-        std_wins = prof.get("standard_wins", 0)
-        avg_score = round(total_score_sum / std_wins, 1) if std_wins > 0 else 0
+    prof_best_std = prof.get("best_score", 0)
+    prof_sum_std = prof.get("total_score_sum", 0)
+    prof_wins_std = prof.get("standard_wins", 0)
 
-    # RAGBRAILE score calculations
-    rb_scores = [
+    best_std_score = max([prof_best_std] + route_std_scores) if (prof_best_std or route_std_scores) else 0
+    if route_std_scores and len(route_std_scores) >= prof_wins_std:
+        avg_std_score = round(sum(route_std_scores) / len(route_std_scores), 1)
+    elif prof_wins_std > 0 and prof_sum_std > 0:
+        avg_std_score = round(prof_sum_std / prof_wins_std, 1)
+    elif route_std_scores:
+        avg_std_score = round(sum(route_std_scores) / len(route_std_scores), 1)
+    else:
+        avg_std_score = 0
+
+    # Historic & recorded RAGBRAILE score calculations from profile + completed routes
+    route_rb_scores = [
         int(re.search(r'Score:\s*(\d+)', r.get('extra', '')).group(1))
-        for r in prof.get("recent_routes", [])
+        for r in recent_routes
         if "RAGBRAILE" in r.get("mode", "") and "Score:" in r.get('extra', '')
     ]
-    if rb_scores:
-        rb_count = len(rb_scores)
-        rb_score_sum = sum(rb_scores)
-        best_rb_score = max(prof.get("best_ragbraile_score", 0), max(rb_scores))
-        avg_rb_score = round(rb_score_sum / rb_count, 1)
+    prof_best_rb = prof.get("best_ragbraile_score", 0)
+    prof_sum_rb = prof.get("ragbraile_score_sum", 0)
+    prof_count_rb = prof.get("ragbraile_completions_count", 0)
+
+    best_rb_score = max([prof_best_rb] + route_rb_scores) if (prof_best_rb or route_rb_scores) else 0
+    if route_rb_scores and len(route_rb_scores) >= prof_count_rb:
+        avg_rb_score = round(sum(route_rb_scores) / len(route_rb_scores), 1)
+    elif prof_count_rb > 0 and prof_sum_rb > 0:
+        avg_rb_score = round(prof_sum_rb / prof_count_rb, 1)
+    elif route_rb_scores:
+        avg_rb_score = round(sum(route_rb_scores) / len(route_rb_scores), 1)
     else:
-        rb_count = prof.get("ragbraile_completions_count", 0)
-        rb_score_sum = prof.get("ragbraile_score_sum", 0)
-        best_rb_score = prof.get("best_ragbraile_score", 0)
-        avg_rb_score = round(rb_score_sum / rb_count, 1) if rb_count > 0 else 0
+        avg_rb_score = 0
 
     # Fallback streak fix if RAGBRAILE was completed today but streak was 0
     current_streak = prof.get("current_streak", 0)
@@ -819,7 +838,7 @@ elif st.session_state.phase == "view_stats":
         save_user_profile(st.session_state.current_username, prof)
 
     # Route mileage stats calculations
-    route_miles_list = [r.get('miles', 0) for r in prof.get("recent_routes", []) if 'miles' in r]
+    route_miles_list = [r.get('miles', 0) for r in recent_routes if 'miles' in r]
     games_finished_count = prof.get("games_finished", 0)
     total_miles_ridden = prof.get("total_miles_ridden", 0)
     
@@ -831,8 +850,8 @@ elif st.session_state.phase == "view_stats":
     r1_c1, r1_c2, r1_c3, r1_c4 = st.columns(4)
     r1_c1.metric("Total Games Finished", games_finished_count)
     r1_c2.metric("Towns Visited", f"{len(prof.get('completed_towns', []))} / 99")
-    r1_c3.metric("Best Standard Score", f"{prof.get('best_score', 0)} / 100")
-    r1_c4.metric("Average Standard Score", f"{avg_score} / 100")
+    r1_c3.metric("Best Standard Score", f"{best_std_score} / 100")
+    r1_c4.metric("Average Standard Score", f"{avg_std_score} / 100")
 
     # Row 2: Total RAGBRAILEs Completed, RAGBRAILE Daily Streak, Best RAGBRAILE Score, Average RAGBRAILE Score
     r2_c1, r2_c2, r2_c3, r2_c4 = st.columns(4)
@@ -850,7 +869,7 @@ elif st.session_state.phase == "view_stats":
 
     # Top 5 Most Visited Towns Calculation
     town_visit_counts = Counter()
-    for r in prof.get("recent_routes", []):
+    for r in recent_routes:
         route_towns = r.get('history', [])
         if route_towns:
             for t in route_towns:
@@ -874,10 +893,9 @@ elif st.session_state.phase == "view_stats":
         top_5_str = ", ".join([f"{town} ({count})" for town, count in top_5_towns])
         st.write(top_5_str)
 
-    recent = prof.get("recent_routes", [])
-    if recent:
+    if recent_routes:
         st.markdown("#### 🚴 Recent Completed Routes")
-        for r in reversed(recent[-10:]):
+        for r in reversed(recent_routes[-10:]):
             st.markdown(f"- **{r['date']}** | *{r['mode']}* | **{r['start']} ➔ {r['end']}** ({r['miles']} mi){r.get('extra', '')}")
     else:
         st.info("No completed routes recorded yet. Finish a 7-day ride across Iowa to log your first entry!")
@@ -994,9 +1012,11 @@ elif st.session_state.phase == "setup":
     # --- RAGBRAILE LAUNCH / RESUME SECTION ---
     today_dt = datetime.now()
     day_of_year = today_dt.timetuple().tm_yday
-    saved_rb = st.session_state.user_profile.get("active_ragbraile")
+    saved_rb = _get_valid_saved_ragbraile(st.session_state.user_profile, day_of_year)
     
     st.markdown("### 🗓️ Daily Challenge Mode")
+    ragbraile_dice_choice = st.selectbox("Select Dice Mode for RAGBRAILE", ["Virtual Dice", "Real-Life Dice"], key="ragbraile_dice_select")
+
     if saved_rb:
         s_pair = saved_rb.get("ragbraile_pair", RAGBRAILE_PAIRS[day_of_year - 1])
         s_day = saved_rb.get("day_of_year", day_of_year)
@@ -1006,40 +1026,10 @@ elif st.session_state.phase == "setup":
             f"💾 **Saved RAGBRAILE In Progress** (Puzzle Day {s_day} • Targets: **{s_pair[0]} & {s_pair[1]}** • "
             f"Current Stop: **{s_curr}**, Day {max(0, len(s_hist) - 1)} • Saved {saved_rb.get('saved_at', 'earlier')})"
         )
-        col_res, col_new = st.columns([1.4, 1])
-        with col_res:
-            if st.button("▶️ Resume Saved RAGBRAILE", type="primary"):
-                _resume_ragbraile_from_snapshot(saved_rb)
-                st.rerun()
-        with col_new:
-            if st.button("🆕 Start Fresh Today's RAGBRAILE"):
-                _clear_active_ragbraile()
-                ragbraile_dice_choice = st.session_state.get("ragbraile_dice_select", "Virtual Dice")
-                st.session_state.dice_mode = ragbraile_dice_choice
-                st.session_state.is_ragbraile = True
-                st.session_state.ragbraile_day_of_year = day_of_year
-                st.session_state.ragbraile_pair = RAGBRAILE_PAIRS[day_of_year - 1]
-                st.session_state.players = [{
-                    "name": st.session_state.current_username,
-                    "town": None,
-                    "history": [],
-                    "abilities": {"Beekman's Energy Boost": True, "Thunderstorm": True, "Slip & Slide Boost": True},
-                    "total_turns_taken": 0,
-                    "ability_penalty_pts": 0,
-                    "bonus_range_next_turn": 0,
-                    "start_choice": START_TOWNS[0],
-                    "reset_reason": None,
-                    "base_mileage_tally": 0,
-                    "day_mileage_history": [],
-                    "target_town": None,
-                    "target_mileage": None
-                }]
-                st.session_state.phase = "select_starts"
-                st.rerun()
-
-    ragbraile_dice_choice = st.selectbox("Select Dice Mode for RAGBRAILE", ["Virtual Dice", "Real-Life Dice"], key="ragbraile_dice_select")
-    
-    if not saved_rb:
+        if st.button("▶️ Resume Saved RAGBRAILE", type="primary"):
+            _resume_ragbraile_from_snapshot(saved_rb)
+            st.rerun()
+    else:
         if st.button(f"Play RAGBRAILE (Today's Puzzle: Day {day_of_year})", type="primary"):
             st.session_state.ragbraile_map_penalty_used = False
             st.session_state.dice_mode = ragbraile_dice_choice
@@ -1448,7 +1438,7 @@ elif st.session_state.phase == "playing":
                                 else:
                                     st.session_state.winner = current_p
                                     
-                                    # Record stats if logged-in user completed the route
+                                    # Record stats ONLY upon valid completion
                                     if current_p['name'] == st.session_state.current_username:
                                         u_prof = st.session_state.user_profile
                                         u_prof["games_finished"] = u_prof.get("games_finished", 0) + 1
@@ -1476,7 +1466,6 @@ elif st.session_state.phase == "playing":
                                                 solved_list.add(day_num)
                                                 u_prof["ragbraile_days_solved"] = list(solved_list)
                                                 
-                                                # Streak Logic
                                                 last_date_str = u_prof.get("last_solved_date")
                                                 today_date_obj = datetime.strptime(today_str, "%Y-%m-%d").date()
                                                 if not last_date_str:
