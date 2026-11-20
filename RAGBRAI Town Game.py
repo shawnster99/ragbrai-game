@@ -390,6 +390,25 @@ def get_town_connections(town_name):
     return feeds_in, feeds_out
 
 
+def push_phase(target_phase):
+    current = st.session_state.get("phase")
+    if current and current not in ("view_stats", "view_full_map"):
+        st.session_state.nav_stack.append(current)
+    elif current and current != target_phase:
+        if not st.session_state.nav_stack or st.session_state.nav_stack[-1] != current:
+            st.session_state.nav_stack.append(current)
+    st.session_state.phase = target_phase
+
+
+def pop_phase(fallback="setup"):
+    while st.session_state.nav_stack and st.session_state.nav_stack[-1] == st.session_state.phase:
+        st.session_state.nav_stack.pop()
+    if st.session_state.nav_stack:
+        st.session_state.phase = st.session_state.nav_stack.pop()
+    else:
+        st.session_state.phase = fallback
+
+
 # --- BUILD 366 RAGBRAILE PAIRS CACHE VIA BFS (<= 7 HOPS) ---
 @st.cache_data
 def get_ragbraile_pairs():
@@ -439,9 +458,11 @@ if "current_username" not in st.session_state:
 if "user_profile" not in st.session_state:
     st.session_state.user_profile = {}
 
+if "nav_stack" not in st.session_state:
+    st.session_state.nav_stack = []
+
 if "phase" not in st.session_state:
     st.session_state.phase = "login"
-    st.session_state.previous_phase = "setup"
     st.session_state.players = []
     st.session_state.current_idx = 0
     st.session_state.dice_mode = "Virtual Dice"
@@ -469,14 +490,12 @@ with st.sidebar:
         
         if st.session_state.phase != "view_stats":
             if st.button("📊 View My Stats"):
-                st.session_state.previous_phase = st.session_state.phase
-                st.session_state.phase = "view_stats"
+                push_phase("view_stats")
                 st.rerun()
 
         if st.session_state.phase != "view_full_map":
             if st.button("🗺️ View Full Town Map"):
-                st.session_state.previous_phase = st.session_state.phase
-                st.session_state.phase = "view_full_map"
+                push_phase("view_full_map")
                 st.rerun()
 
         if st.session_state.phase in ["playing", "select_start_single"]:
@@ -488,12 +507,14 @@ with st.sidebar:
                 st.rerun()
                 
             if st.button("🏠 Quit to Home Menu"):
+                st.session_state.nav_stack = []
                 st.session_state.phase = "setup"
                 st.rerun()
 
         if st.button("🚪 Switch User / Logout"):
             st.session_state.current_username = ""
             st.session_state.user_profile = {}
+            st.session_state.nav_stack = []
             st.session_state.phase = "login"
             st.rerun()
 
@@ -608,6 +629,7 @@ if st.session_state.phase == "login":
                     if existed else
                     f"Created a brand-new profile for **{cleaned}**!"
                 )
+                st.session_state.nav_stack = []
                 st.session_state.phase = "setup"
                 st.rerun()
             else:
@@ -618,7 +640,7 @@ elif st.session_state.phase == "view_stats":
     st.subheader(f"📊 Career Statistics: {st.session_state.current_username}")
     
     if st.button("🔙 Back"):
-        st.session_state.phase = st.session_state.previous_phase
+        pop_phase("setup")
         st.rerun()
 
     prof = st.session_state.user_profile
@@ -721,7 +743,7 @@ elif st.session_state.phase == "view_full_map":
     st.caption("Click any town marker on the map to inspect which towns feed directly into it (1 stop away) and which route options feed directly out of it (1 stop away).")
     
     if st.button("🔙 Back"):
-        st.session_state.phase = st.session_state.previous_phase
+        pop_phase("setup")
         st.rerun()
 
     col_map_full, col_town_info = st.columns([1.45, 1])
@@ -1382,6 +1404,7 @@ elif st.session_state.phase == "game_over":
             st.write(f"- {prefix} **{t}**")
 
         if st.button("Back to Home"):
+            st.session_state.nav_stack = []
             st.session_state.phase = "setup"
             st.rerun()
             
