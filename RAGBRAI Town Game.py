@@ -4,6 +4,9 @@ import folium
 import json
 import os
 import re
+import base64
+import urllib.request
+import urllib.error
 from datetime import datetime, timedelta
 from streamlit_folium import st_folium
 from folium.features import DivIcon
@@ -14,9 +17,11 @@ st.set_page_config(layout="wide", page_title="RAGBRAI: The Game")
 PROFILES_DIR = "profiles"
 os.makedirs(PROFILES_DIR, exist_ok=True)
 
+
 def get_profile_path(username):
     safe_name = re.sub(r'[^a-zA-Z0-9_-]', '_', username.strip().lower())
     return os.path.join(PROFILES_DIR, f"{safe_name}.json")
+
 
 def default_profile(display_name):
     return {
@@ -33,7 +38,55 @@ def default_profile(display_name):
         "recent_routes": []
     }
 
+
+def _get_github_config():
+    try:
+        token = st.secrets.get("GITHUB_TOKEN", "").strip()
+        repo = st.secrets.get("GITHUB_REPO", "").strip()
+        branch = st.secrets.get("GITHUB_BRANCH", "main").strip()
+        return token, repo, branch
+    except Exception:
+        return "", "", "main"
+
+
+def _github_headers(token):
+    return {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json",
+        "User-Agent": "RAGBRAI-The-Game"
+    }
+
+
+def _github_contents_urls(username, repo, branch):
+    safe_name = re.sub(r'[^a-zA-Z0-9_-]', '_', username.strip().lower())
+    base_url = f"https://api.github.com/repos/{repo}/contents/profiles/{safe_name}.json"
+    return f"{base_url}?ref={branch}", base_url
+
+
 def load_user_profile(username):
+    token, repo, branch = _get_github_config()
+    if token and repo:
+        get_url, _ = _github_contents_urls(username, repo, branch)
+        req = urllib.request.Request(get_url, headers=_github_headers(token), method="GET")
+        try:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+                decoded = json.loads(base64.b64decode(payload["content"]).decode("utf-8"))
+                base = default_profile(username)
+                base.update(decoded)
+                return base, True
+        except urllib.error.HTTPError as e:
+            if e.code != 404:
+                st.warning(f"GitHub profile load warning ({e.code}); initializing profile.")
+        except Exception:
+            pass
+
+        new_prof = default_profile(username)
+        save_user_profile(username, new_prof)
+        return new_prof, False
+
+    # Local fallback when running without GitHub secrets
     path = get_profile_path(username)
     if os.path.exists(path):
         try:
@@ -48,15 +101,53 @@ def load_user_profile(username):
     save_user_profile(username, new_prof)
     return new_prof, False
 
+
 def save_user_profile(username, profile):
     if not username:
         return
+
+    token, repo, branch = _get_github_config()
+    if token and repo:
+        get_url, put_url = _github_contents_urls(username, repo, branch)
+        existing_sha = None
+        try:
+            get_req = urllib.request.Request(get_url, headers=_github_headers(token), method="GET")
+            with urllib.request.urlopen(get_req, timeout=10) as resp:
+                existing_sha = json.loads(resp.read().decode("utf-8")).get("sha")
+        except Exception:
+            pass
+
+        raw_bytes = json.dumps(profile, indent=4).encode("utf-8")
+        body = {
+            "message": f"Update profile for {username}",
+            "content": base64.b64encode(raw_bytes).decode("utf-8"),
+            "branch": branch
+        }
+        if existing_sha:
+            body["sha"] = existing_sha
+
+        put_req = urllib.request.Request(
+            put_url,
+            data=json.dumps(body).encode("utf-8"),
+            headers=_github_headers(token),
+            method="PUT"
+        )
+        try:
+            with urllib.request.urlopen(put_req, timeout=10):
+                return
+        except urllib.error.HTTPError as e:
+            st.error(f"Could not save profile to GitHub (HTTP {e.code}). Check token permissions.")
+        except Exception as e:
+            st.error(f"Could not save profile to GitHub: {e}")
+
+    # Local fallback
     path = get_profile_path(username)
     try:
         with open(path, "w") as f:
             json.dump(profile, f, indent=4)
     except Exception:
         pass
+
 
 # --- CONSTANTS & DATA ---
 START_TOWNS = [
@@ -164,7 +255,7 @@ TOWN_COORDS = {
     "Cresco": (43.3703, -92.1103), "Decorah": (43.3033, -91.7856),
     "Manchester": (42.4864, -91.4608), "Monticello": (42.2425, -91.1917),
     "Marengo": (41.8028, -92.0747), "Dyersville": (42.4839, -91.1239),
-    "West Union": {"count": 3, "last": "2022"}, "Parkersburg": (42.5739, -92.7933),
+    "West Union": (42.9619, -91.8078), "Parkersburg": (42.5739, -92.7933),
     "Keosauqua": (40.7328, -91.9619), "Anamosa": (42.1114, -91.2783),
     "Maquoketa": (42.0758, -90.6669), "Elkader": (42.8572, -91.3961),
     "Coralville": (41.6772, -91.5878), "Fort Madison": (40.6278, -91.3133),
@@ -174,8 +265,6 @@ TOWN_COORDS = {
     "Dubuque": (42.5006, -90.6646), "Lansing": (43.3642, -91.2178),
     "Davenport": (41.5236, -90.5776)
 }
-# Note: Keeping West Union exact coordinates from original file
-TOWN_COORDS["West Union"] = (42.9619, -91.8078)
 
 RAGBRAI_MAP = {
     "Sioux City": {"Storm Lake": 70, "Cherokee": 55, "Orange City": 42, "Le Mars": 26},
@@ -358,50 +447,6 @@ if "phase" not in st.session_state:
     st.session_state.mod_high = 0
     st.session_state.road_result_msg = None
     st.session_state.winner = None
-
-def get_profile_path(username):
-    safe_name = re.sub(r'[^a-zA-Z0-9_-]', '_', username.strip().lower())
-    return os.path.join(PROFILES_DIR, f"{safe_name}.json")
-
-def default_profile(display_name):
-    return {
-        "display_name": display_name,
-        "completed_towns": [],
-        "games_finished": 0,
-        "standard_wins": 0,
-        "ragbraile_days_solved": [],
-        "best_score": 0,
-        "total_score_sum": 0,
-        "total_miles_ridden": 0,
-        "current_streak": 0,
-        "last_solved_date": None,
-        "recent_routes": []
-    }
-
-def load_user_profile(username):
-    path = get_profile_path(username)
-    if os.path.exists(path):
-        try:
-            with open(path, "r") as f:
-                data = json.load(f)
-                base = default_profile(username)
-                base.update(data)
-                return base, True
-        except Exception:
-            pass
-    new_prof = default_profile(username)
-    save_user_profile(username, new_prof)
-    return new_prof, False
-
-def save_user_profile(username, profile):
-    if not username:
-        return
-    path = get_profile_path(username)
-    try:
-        with open(path, "w") as f:
-            json.dump(profile, f, indent=4)
-    except Exception:
-        pass
 
 # --- SIDEBAR NAVIGATION & LOG BOOK CONTROLS ---
 with st.sidebar:
@@ -619,7 +664,6 @@ elif st.session_state.phase == "view_stats":
             for t in route_towns:
                 town_visit_counts[t] += 1
         else:
-            # Fallback for older saved routes lacking explicit history list: also include start and end
             start_t = r.get('start')
             end_t = r.get('end')
             if start_t:
