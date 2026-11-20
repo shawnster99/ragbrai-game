@@ -1,23 +1,32 @@
 {
     "display_name": "test",
     "completed_towns": [
-        "Mt Pleasant",
+        "Keokuk",
         "Storm Lake",
         "Sioux City",
+        "Pella",
+        "Iowa Falls",
+        "Marengo",
+        "Fort Dodge",
         "Carroll",
         "Ames",
         "Fairfield",
+        "Ida Grove",
+        "Tama",
         "Burlington",
-        "Pella"
+        "Mt Pleasant",
+        "Le Mars"
     ],
-    "games_finished": 1,
+    "games_finished": 2,
     "standard_wins": 1,
-    "ragbraile_days_solved": [],
+    "ragbraile_days_solved": [
+        324
+    ],
     "best_score": 83,
     "total_score_sum": 83,
-    "total_miles_ridden": 443,
-    "current_streak": 0,
-    "last_solved_date": null,
+    "total_miles_ridden": 933,
+    "current_streak": 1,
+    "last_solved_date": "2026-11-20",
     "recent_routes": [
         {
             "date": "2026-11-20",
@@ -36,6 +45,24 @@
                 "Burlington"
             ],
             "extra": " \u2014 Score: 83/100"
+        },
+        {
+            "date": "2026-11-20",
+            "mode": "RAGBRAILE (Day 324)",
+            "start": "Le Mars",
+            "end": "Keokuk",
+            "miles": 490,
+            "history": [
+                "Le Mars",
+                "Ida Grove",
+                "Fort Dodge",
+                "Iowa Falls",
+                "Tama",
+                "Marengo",
+                "Mt Pleasant",
+                "Keokuk"
+            ],
+            "extra": " \u2014 Targets: Ida Grove, Marengo"
         }
     ]
 }
