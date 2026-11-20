@@ -77,17 +77,17 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 8,
         "r2": 11,
         "current_card": {
-            "name": "Pie Power",
-            "reason": "Sugar rush from homemade church pie!",
-            "effect_text": "Add 15 miles to the mileage top range."
+            "name": "100 Degree Day",
+            "reason": "Sweltering Iowa summer heat slows your pace!",
+            "effect_text": "Lower the top range number by 15 miles."
         },
         "base_low": 80,
         "base_high": 110,
-        "mod_low": 70,
+        "mod_low": 80,
         "mod_high": 95,
         "road_result_msg": null,
         "map_penalty_pts": 0,
@@ -105,7 +105,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 5,
+            "total_turns_taken": 6,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Le Mars",
