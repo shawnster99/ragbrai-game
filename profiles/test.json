@@ -4,35 +4,42 @@
         "Manchester",
         "Fairfield",
         "Tama",
+        "Shenandoah",
         "Mt Pleasant",
+        "Ottumwa",
         "Algona",
+        "Washington",
         "Fort Dodge",
         "Guttenberg",
         "Storm Lake",
         "Sioux City",
         "Cedar Falls",
+        "Indianola",
+        "Creston",
         "Iowa Falls",
         "Marengo",
+        "Fort Madison",
         "Carroll",
         "Ida Grove",
         "Pella",
         "Keokuk",
         "Clear Lake",
         "Ames",
+        "Glenwood",
         "Burlington",
         "Le Mars"
     ],
-    "games_finished": 3,
-    "standard_wins": 2,
+    "games_finished": 4,
+    "standard_wins": 3,
     "ragbraile_days_solved": [
         324
     ],
     "best_score": 90,
-    "total_score_sum": 173,
+    "total_score_sum": 254,
     "best_ragbraile_score": 0,
     "ragbraile_score_sum": 0,
     "ragbraile_completions_count": 0,
-    "total_miles_ridden": 1370,
+    "total_miles_ridden": 1783,
     "current_streak": 1,
     "last_solved_date": "2026-11-20",
     "recent_routes": [
@@ -89,6 +96,24 @@
                 "Guttenberg"
             ],
             "extra": " \u2014 Score: 90/100"
+        },
+        {
+            "date": "2026-11-20",
+            "mode": "Standard Game (Mandatory Town: Mt Pleasant)",
+            "start": "Glenwood",
+            "end": "Fort Madison",
+            "miles": 413,
+            "history": [
+                "Glenwood",
+                "Shenandoah",
+                "Creston",
+                "Indianola",
+                "Ottumwa",
+                "Washington",
+                "Mt Pleasant",
+                "Fort Madison"
+            ],
+            "extra": " \u2014 Score: 81/100"
         }
     ],
     "active_ragbraile": {
