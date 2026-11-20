@@ -1035,7 +1035,7 @@ elif st.session_state.phase == "setup":
         """)
 
     # --- RAGBRAILE LAUNCH / RESUME / COMPLETED SECTION ---
-    today_dt = datetime.now()
+    today_dt = datetime.now(CENTRAL_TZ)
     day_of_year = today_dt.timetuple().tm_yday
     solved_days = set(st.session_state.user_profile.get("ragbraile_days_solved", []))
     saved_rb = _get_valid_saved_ragbraile(st.session_state.user_profile, day_of_year)
