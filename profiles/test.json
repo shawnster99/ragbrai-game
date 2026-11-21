@@ -151,8 +151,8 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 7,
+        "turn_state": "card",
+        "r1": 6,
         "r2": 5,
         "current_card": {
             "name": "Fire Station Fundraiser",
@@ -160,7 +160,7 @@
             "effect_text": "Lower the bottom range number by 15 miles."
         },
         "base_low": 50,
-        "base_high": 70,
+        "base_high": 60,
         "mod_low": 35,
         "mod_high": 70,
         "road_result_msg": null,
