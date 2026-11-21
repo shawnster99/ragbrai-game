@@ -143,7 +143,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-21 08:58",
+        "saved_at": "2026-11-21 08:59",
         "day_of_year": 325,
         "ragbraile_pair": [
             "Carroll",
@@ -151,7 +151,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 5,
         "r2": 5,
         "current_card": {
@@ -161,8 +161,8 @@
         },
         "base_low": 50,
         "base_high": 50,
-        "mod_low": 60,
-        "mod_high": 60,
+        "mod_low": 50,
+        "mod_high": 50,
         "road_result_msg": null,
         "map_penalty_pts": 15,
         "player": {
@@ -180,7 +180,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": false
             },
-            "total_turns_taken": 32,
+            "total_turns_taken": 33,
             "ability_penalty_pts": 15,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
