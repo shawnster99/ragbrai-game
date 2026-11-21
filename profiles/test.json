@@ -143,7 +143,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-21 08:59",
+        "saved_at": "2026-11-21 09:00",
         "day_of_year": 325,
         "ragbraile_pair": [
             "Carroll",
@@ -151,7 +151,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 3,
         "current_card": {
@@ -167,14 +167,15 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Waverly",
+            "town": "New Hampton",
             "history": [
                 "Onawa",
                 "Carroll",
                 "Boone",
                 "Iowa Falls",
                 "Charles City",
-                "Waverly"
+                "Waverly",
+                "New Hampton"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -186,13 +187,14 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
             "reset_reason": null,
-            "base_mileage_tally": 326,
+            "base_mileage_tally": 367,
             "day_mileage_history": [
                 75,
                 62,
                 71,
                 78,
-                40
+                40,
+                41
             ]
         }
     }
