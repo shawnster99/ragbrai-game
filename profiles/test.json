@@ -164,7 +164,7 @@
         "mod_low": 60,
         "mod_high": 120,
         "road_result_msg": null,
-        "map_penalty_pts": 0,
+        "map_penalty_pts": 15,
         "player": {
             "name": "test",
             "town": "Charles City",
