@@ -151,7 +151,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 10,
         "r2": 5,
         "current_card": {
@@ -161,8 +161,8 @@
         },
         "base_low": 50,
         "base_high": 100,
-        "mod_low": 35,
-        "mod_high": 75,
+        "mod_low": 45,
+        "mod_high": 105,
         "road_result_msg": null,
         "map_penalty_pts": 15,
         "player": {
@@ -178,7 +178,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 28,
+            "total_turns_taken": 29,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
