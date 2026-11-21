@@ -150,8 +150,8 @@
             "New Hampton"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 7,
         "current_card": {
@@ -167,13 +167,9 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Boone",
+            "town": "Sioux City",
             "history": [
-                "Sioux City",
-                "Storm Lake",
-                "Carroll",
-                "Guthrie Center",
-                "Boone"
+                "Sioux City"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -184,14 +180,9 @@
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
-            "reset_reason": "Player test requested a route reset.",
-            "base_mileage_tally": 257,
-            "day_mileage_history": [
-                79,
-                63,
-                52,
-                63
-            ]
+            "reset_reason": null,
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
         }
     }
 }
