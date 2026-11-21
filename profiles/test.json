@@ -142,52 +142,5 @@
             "extra": " \u2014 Score: 26/100"
         }
     ],
-    "active_ragbraile": {
-        "saved_at": "2026-11-20 20:59",
-        "day_of_year": 324,
-        "ragbraile_pair": [
-            "Ida Grove",
-            "Marengo"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "roll",
-        "r1": 8,
-        "r2": 11,
-        "current_card": {
-            "name": "100 Degree Day",
-            "reason": "Sweltering Iowa summer heat slows your pace!",
-            "effect_text": "Lower the top range number by 15 miles."
-        },
-        "base_low": 80,
-        "base_high": 110,
-        "mod_low": 80,
-        "mod_high": 95,
-        "road_result_msg": null,
-        "map_penalty_pts": 15,
-        "player": {
-            "name": "test",
-            "town": "Carroll",
-            "history": [
-                "Le Mars",
-                "Ida Grove",
-                "Carroll"
-            ],
-            "abilities": {
-                "Beekman's Energy Boost": true,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": true
-            },
-            "total_turns_taken": 6,
-            "ability_penalty_pts": 0,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Le Mars",
-            "reset_reason": null,
-            "base_mileage_tally": 131,
-            "day_mileage_history": [
-                73,
-                58
-            ]
-        }
-    }
+    "active_ragbraile": null
 }
