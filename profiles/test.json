@@ -143,14 +143,14 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-21 08:54",
+        "saved_at": "2026-11-21 08:57",
         "day_of_year": 325,
         "ragbraile_pair": [
             "Carroll",
             "New Hampton"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "playing",
+        "phase": "select_start_single",
         "turn_state": "move",
         "r1": 11,
         "r2": 7,
@@ -185,7 +185,7 @@
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
-            "reset_reason": null,
+            "reset_reason": "Player test requested a route reset.",
             "base_mileage_tally": 348,
             "day_mileage_history": [
                 77,
