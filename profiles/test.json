@@ -151,7 +151,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "road_closure",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 3,
         "current_card": {
@@ -163,7 +163,7 @@
         "base_high": 50,
         "mod_low": 30,
         "mod_high": 50,
-        "road_result_msg": "\u2728 You rolled an **Even (2)**! You successfully bypass the road construction and stay in **Charles City**.",
+        "road_result_msg": null,
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
