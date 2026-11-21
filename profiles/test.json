@@ -161,8 +161,8 @@
         },
         "base_low": 50,
         "base_high": 70,
-        "mod_low": 50,
-        "mod_high": 55,
+        "mod_low": 0,
+        "mod_high": 9999,
         "road_result_msg": null,
         "map_penalty_pts": 15,
         "player": {
@@ -178,10 +178,10 @@
             "abilities": {
                 "Beekman's Energy Boost": false,
                 "Thunderstorm": true,
-                "Slip & Slide Boost": true
+                "Slip & Slide Boost": false
             },
             "total_turns_taken": 31,
-            "ability_penalty_pts": 5,
+            "ability_penalty_pts": 15,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
             "reset_reason": null,
