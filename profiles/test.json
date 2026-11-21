@@ -1,19 +1,25 @@
 {
     "display_name": "test",
     "completed_towns": [
+        "Osage",
         "Manchester",
         "Fairfield",
         "Tama",
         "Shenandoah",
-        "Mt Pleasant",
+        "Lansing",
         "Ottumwa",
+        "Mt Pleasant",
         "Algona",
+        "Forest City",
         "Washington",
+        "Cherokee",
         "Fort Dodge",
         "Guttenberg",
         "Storm Lake",
         "Sioux City",
+        "Hawarden",
         "Cedar Falls",
+        "Lake View",
         "Indianola",
         "Creston",
         "Iowa Falls",
@@ -24,22 +30,24 @@
         "Pella",
         "Keokuk",
         "Clear Lake",
+        "Decorah",
         "Ames",
         "Glenwood",
         "Burlington",
         "Le Mars"
     ],
-    "games_finished": 4,
-    "standard_wins": 3,
+    "games_finished": 5,
+    "standard_wins": 4,
     "ragbraile_days_solved": [
         324
     ],
+    "ragbraile_results": {},
     "best_score": 90,
-    "total_score_sum": 254,
+    "total_score_sum": 280,
     "best_ragbraile_score": 0,
     "ragbraile_score_sum": 0,
     "ragbraile_completions_count": 0,
-    "total_miles_ridden": 1783,
+    "total_miles_ridden": 2219,
     "current_streak": 1,
     "last_solved_date": "2026-11-20",
     "recent_routes": [
@@ -114,6 +122,24 @@
                 "Fort Madison"
             ],
             "extra": " \u2014 Score: 81/100"
+        },
+        {
+            "date": "2026-11-20",
+            "mode": "Standard Game (Mandatory Town: Forest City)",
+            "start": "Hawarden",
+            "end": "Lansing",
+            "miles": 436,
+            "history": [
+                "Hawarden",
+                "Cherokee",
+                "Lake View",
+                "Fort Dodge",
+                "Forest City",
+                "Osage",
+                "Decorah",
+                "Lansing"
+            ],
+            "extra": " \u2014 Score: 26/100"
         }
     ],
     "active_ragbraile": {
