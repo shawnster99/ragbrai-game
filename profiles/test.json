@@ -143,7 +143,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-21 08:51",
+        "saved_at": "2026-11-21 08:52",
         "day_of_year": 325,
         "ragbraile_pair": [
             "Carroll",
@@ -151,7 +151,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 7,
         "r2": 8,
         "current_card": {
@@ -177,7 +177,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 14,
+            "total_turns_taken": 15,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
