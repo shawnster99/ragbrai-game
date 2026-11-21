@@ -151,7 +151,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 8,
         "current_card": {
@@ -167,12 +167,13 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Boone",
+            "town": "Iowa Falls",
             "history": [
                 "Sioux City",
                 "Storm Lake",
                 "Carroll",
-                "Boone"
+                "Boone",
+                "Iowa Falls"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -184,11 +185,12 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 202,
+            "base_mileage_tally": 273,
             "day_mileage_history": [
                 77,
                 63,
-                62
+                62,
+                71
             ]
         }
     }
