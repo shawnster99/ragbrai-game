@@ -7,13 +7,14 @@
         "Tama",
         "Shenandoah",
         "Lansing",
-        "Ottumwa",
         "Mt Pleasant",
+        "Ottumwa",
         "Algona",
         "Forest City",
         "Washington",
         "Cherokee",
         "Fort Dodge",
+        "Onawa",
         "Guttenberg",
         "Storm Lake",
         "Sioux City",
@@ -21,6 +22,7 @@
         "Cedar Falls",
         "Lake View",
         "Indianola",
+        "Boone",
         "Creston",
         "Iowa Falls",
         "Marengo",
@@ -29,27 +31,55 @@
         "Ida Grove",
         "Pella",
         "Keokuk",
+        "New Hampton",
+        "Waverly",
         "Clear Lake",
+        "Charles City",
         "Decorah",
         "Ames",
         "Glenwood",
         "Burlington",
         "Le Mars"
     ],
-    "games_finished": 5,
+    "games_finished": 6,
     "standard_wins": 4,
     "ragbraile_days_solved": [
-        324
+        324,
+        325
     ],
-    "ragbraile_results": {},
+    "ragbraile_results": {
+        "325": {
+            "day_of_year": 325,
+            "ragbraile_pair": [
+                "Carroll",
+                "New Hampton"
+            ],
+            "player_name": "test",
+            "history": [
+                "Onawa",
+                "Carroll",
+                "Boone",
+                "Iowa Falls",
+                "Charles City",
+                "Waverly",
+                "New Hampton",
+                "Guttenberg"
+            ],
+            "miles": 452,
+            "score": 35,
+            "total_turns_taken": 42,
+            "ability_penalty_pts": 15,
+            "map_penalty_pts": 15
+        }
+    },
     "best_score": 90,
     "total_score_sum": 280,
-    "best_ragbraile_score": 0,
-    "ragbraile_score_sum": 0,
-    "ragbraile_completions_count": 0,
-    "total_miles_ridden": 2219,
-    "current_streak": 1,
-    "last_solved_date": "2026-11-20",
+    "best_ragbraile_score": 35,
+    "ragbraile_score_sum": 35,
+    "ragbraile_completions_count": 1,
+    "total_miles_ridden": 2671,
+    "current_streak": 2,
+    "last_solved_date": "2026-11-21",
     "recent_routes": [
         {
             "date": "2026-11-20",
@@ -140,34 +170,13 @@
                 "Lansing"
             ],
             "extra": " \u2014 Score: 26/100"
-        }
-    ],
-    "active_ragbraile": {
-        "saved_at": "2026-11-21 09:00",
-        "day_of_year": 325,
-        "ragbraile_pair": [
-            "Carroll",
-            "New Hampton"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 8,
-        "r2": 4,
-        "current_card": {
-            "name": "Casey's Pizza Power",
-            "reason": "Starting the day off right.",
-            "effect_text": "Expand 5 miles to the mileage range in both directions."
         },
-        "base_low": 40,
-        "base_high": 80,
-        "mod_low": 35,
-        "mod_high": 85,
-        "road_result_msg": null,
-        "map_penalty_pts": 15,
-        "player": {
-            "name": "test",
-            "town": "New Hampton",
+        {
+            "date": "2026-11-21",
+            "mode": "RAGBRAILE (Day 325)",
+            "start": "Onawa",
+            "end": "Guttenberg",
+            "miles": 452,
             "history": [
                 "Onawa",
                 "Carroll",
@@ -175,27 +184,11 @@
                 "Iowa Falls",
                 "Charles City",
                 "Waverly",
-                "New Hampton"
+                "New Hampton",
+                "Guttenberg"
             ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": false
-            },
-            "total_turns_taken": 42,
-            "ability_penalty_pts": 15,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Onawa",
-            "reset_reason": null,
-            "base_mileage_tally": 367,
-            "day_mileage_history": [
-                75,
-                62,
-                71,
-                78,
-                40,
-                41
-            ]
+            "extra": " \u2014 Targets: Carroll, New Hampton | Score: 35/100"
         }
-    }
+    ],
+    "active_ragbraile": null
 }
