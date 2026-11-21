@@ -1,14 +1,16 @@
 {
     "display_name": "test",
     "completed_towns": [
+        "Sigourney",
         "Osage",
         "Manchester",
+        "Atlantic",
         "Fairfield",
         "Tama",
         "Shenandoah",
         "Lansing",
-        "Mt Pleasant",
         "Ottumwa",
+        "Mt Pleasant",
         "Algona",
         "Forest City",
         "Washington",
@@ -41,8 +43,8 @@
         "Burlington",
         "Le Mars"
     ],
-    "games_finished": 6,
-    "standard_wins": 4,
+    "games_finished": 7,
+    "standard_wins": 5,
     "ragbraile_days_solved": [
         324,
         325
@@ -73,11 +75,11 @@
         }
     },
     "best_score": 90,
-    "total_score_sum": 280,
+    "total_score_sum": 347,
     "best_ragbraile_score": 35,
     "ragbraile_score_sum": 35,
     "ragbraile_completions_count": 1,
-    "total_miles_ridden": 2671,
+    "total_miles_ridden": 3099,
     "current_streak": 2,
     "last_solved_date": "2026-11-21",
     "recent_routes": [
@@ -188,6 +190,24 @@
                 "Guttenberg"
             ],
             "extra": " \u2014 Targets: Carroll, New Hampton | Score: 35/100"
+        },
+        {
+            "date": "2026-11-21",
+            "mode": "Standard Game (Mandatory Town: Creston)",
+            "start": "Glenwood",
+            "end": "Fort Madison",
+            "miles": 428,
+            "history": [
+                "Glenwood",
+                "Atlantic",
+                "Creston",
+                "Indianola",
+                "Ottumwa",
+                "Sigourney",
+                "Mt Pleasant",
+                "Fort Madison"
+            ],
+            "extra": " \u2014 Score: 67/100"
         }
     ],
     "active_ragbraile": null
