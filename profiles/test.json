@@ -151,18 +151,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "road_closure",
         "r1": 8,
         "r2": 9,
         "current_card": {
-            "name": "Pie Power",
-            "reason": "Sugar rush from homemade church pie!",
-            "effect_text": "Add 15 miles to the mileage top range."
+            "name": "Road Closure",
+            "reason": "Unexpected road construction blocks the highway!",
+            "effect_text": "Roll a die: Even = Stay | Odd = Go back one town."
         },
         "base_low": 80,
         "base_high": 90,
-        "mod_low": 40,
-        "mod_high": 95,
+        "mod_low": 80,
+        "mod_high": 90,
         "road_result_msg": null,
         "map_penalty_pts": 15,
         "player": {
@@ -177,7 +177,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 26,
+            "total_turns_taken": 27,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
