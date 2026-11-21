@@ -150,8 +150,8 @@
             "New Hampton"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 11,
         "r2": 7,
         "current_card": {
@@ -167,14 +167,9 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Charles City",
+            "town": "Onawa",
             "history": [
-                "Sioux City",
-                "Storm Lake",
-                "Carroll",
-                "Boone",
-                "Iowa Falls",
-                "Charles City"
+                "Onawa"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -184,16 +179,10 @@
             "total_turns_taken": 25,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
-            "start_choice": "Sioux City",
-            "reset_reason": "Player test requested a route reset.",
-            "base_mileage_tally": 348,
-            "day_mileage_history": [
-                77,
-                63,
-                62,
-                73,
-                73
-            ]
+            "start_choice": "Onawa",
+            "reset_reason": null,
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
         }
     }
 }
