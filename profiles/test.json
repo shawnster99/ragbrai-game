@@ -151,18 +151,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 4,
         "r2": 8,
         "current_card": {
-            "name": "Porkchop Power",
-            "reason": "Fueled up by legendary festival food!",
-            "effect_text": "Expand 10 miles to the mileage range in both directions."
+            "name": "Pie Power",
+            "reason": "Sugar rush from homemade church pie!",
+            "effect_text": "Add 15 miles to the mileage top range."
         },
         "base_low": 40,
         "base_high": 80,
-        "mod_low": 60,
-        "mod_high": 120,
+        "mod_low": 40,
+        "mod_high": 95,
         "road_result_msg": null,
         "map_penalty_pts": 15,
         "player": {
@@ -176,7 +176,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 25,
+            "total_turns_taken": 26,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
