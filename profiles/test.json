@@ -151,7 +151,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 5,
         "current_card": {
@@ -167,11 +167,12 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Boone",
+            "town": "Iowa Falls",
             "history": [
                 "Onawa",
                 "Carroll",
-                "Boone"
+                "Boone",
+                "Iowa Falls"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -183,10 +184,11 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
             "reset_reason": null,
-            "base_mileage_tally": 137,
+            "base_mileage_tally": 208,
             "day_mileage_history": [
                 75,
-                62
+                62,
+                71
             ]
         }
     }
