@@ -150,7 +150,7 @@
             "New Hampton"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "setup",
+        "phase": "playing",
         "turn_state": "roll",
         "r1": 0,
         "r2": 0,
@@ -163,8 +163,10 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": null,
-            "history": [],
+            "town": "Sioux City",
+            "history": [
+                "Sioux City"
+            ],
             "abilities": {
                 "Beekman's Energy Boost": true,
                 "Thunderstorm": true,
