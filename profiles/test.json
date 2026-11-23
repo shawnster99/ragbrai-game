@@ -211,7 +211,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-22 19:45",
+        "saved_at": "2026-11-22 19:46",
         "day_of_year": 326,
         "ragbraile_pair": [
             "Fort Dodge",
@@ -219,7 +219,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 12,
         "current_card": {
@@ -235,12 +235,11 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Iowa Falls",
+            "town": "Fort Dodge",
             "history": [
                 "Sioux City",
                 "Storm Lake",
-                "Fort Dodge",
-                "Iowa Falls"
+                "Fort Dodge"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -252,11 +251,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 204,
+            "base_mileage_tally": 146,
             "day_mileage_history": [
                 75,
-                71,
-                58
+                71
             ]
         }
     }
