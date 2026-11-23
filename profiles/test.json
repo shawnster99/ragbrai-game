@@ -219,18 +219,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 6,
         "r2": 8,
         "current_card": {
-            "name": "Hangover",
-            "reason": "Late night lingering at the beer tent!",
-            "effect_text": "Subtract 20 miles to the range on the high end."
+            "name": "Porkchop Power",
+            "reason": "Fueled up by legendary festival food!",
+            "effect_text": "Expand 10 miles to the mileage range in both directions."
         },
         "base_low": 60,
         "base_high": 80,
         "mod_low": 50,
-        "mod_high": 50,
+        "mod_high": 90,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -249,7 +249,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": false
             },
-            "total_turns_taken": 73,
+            "total_turns_taken": 74,
             "ability_penalty_pts": 15,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
