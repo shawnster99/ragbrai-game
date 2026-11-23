@@ -231,18 +231,17 @@
         "base_high": 100,
         "mod_low": 90,
         "mod_high": 100,
-        "road_result_msg": null,
+        "road_result_msg": "\ud83d\udea7 You rolled an **Odd (1)**! The road construction forces you back to your previous town.",
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Coralville",
+            "town": "Tama",
             "history": [
                 "Sioux City",
                 "Storm Lake",
                 "Fort Dodge",
                 "Iowa Falls",
-                "Tama",
-                "Coralville"
+                "Tama"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -254,13 +253,12 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 361,
+            "base_mileage_tally": 286,
             "day_mileage_history": [
                 75,
                 71,
                 57,
-                83,
-                75
+                83
             ]
         }
     }
