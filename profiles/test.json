@@ -219,18 +219,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 5,
         "r2": 6,
         "current_card": {
-            "name": "100 Degree Day",
-            "reason": "Sweltering Iowa summer heat slows your pace!",
-            "effect_text": "Lower the top range number by 15 miles."
+            "name": "Casey's Pizza Power",
+            "reason": "Starting the day off right.",
+            "effect_text": "Expand 5 miles to the mileage range in both directions."
         },
         "base_low": 50,
         "base_high": 60,
-        "mod_low": 30,
-        "mod_high": 35,
+        "mod_low": 45,
+        "mod_high": 65,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -248,7 +248,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": false
             },
-            "total_turns_taken": 60,
+            "total_turns_taken": 61,
             "ability_penalty_pts": 15,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
