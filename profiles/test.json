@@ -211,7 +211,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-22 19:47",
+        "saved_at": "2026-11-22 19:48",
         "day_of_year": 326,
         "ragbraile_pair": [
             "Fort Dodge",
@@ -219,7 +219,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 6,
         "current_card": {
@@ -235,13 +235,14 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Tama",
+            "town": "Coralville",
             "history": [
                 "Sioux City",
                 "Storm Lake",
                 "Fort Dodge",
                 "Iowa Falls",
-                "Tama"
+                "Tama",
+                "Coralville"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -253,12 +254,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 283,
+            "base_mileage_tally": 360,
             "day_mileage_history": [
                 75,
                 71,
                 56,
-                81
+                81,
+                77
             ]
         }
     }
