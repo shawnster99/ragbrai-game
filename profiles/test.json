@@ -219,7 +219,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 8,
         "current_card": {
@@ -235,12 +235,11 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Iowa Falls",
+            "town": "Fort Dodge",
             "history": [
                 "Sioux City",
                 "Storm Lake",
-                "Fort Dodge",
-                "Iowa Falls"
+                "Fort Dodge"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -252,11 +251,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 207,
+            "base_mileage_tally": 146,
             "day_mileage_history": [
                 75,
-                71,
-                61
+                71
             ]
         }
     }
