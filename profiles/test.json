@@ -211,7 +211,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-22 19:43",
+        "saved_at": "2026-11-22 19:44",
         "day_of_year": 326,
         "ragbraile_pair": [
             "Fort Dodge",
@@ -219,18 +219,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 10,
         "r2": 8,
         "current_card": {
-            "name": "Road Closure",
-            "reason": "Unexpected road construction blocks the highway!",
-            "effect_text": "Roll a die: Even = Stay | Odd = Go back one town."
+            "name": "Porkchop Power",
+            "reason": "Fueled up by legendary festival food!",
+            "effect_text": "Expand 10 miles to the mileage range in both directions."
         },
         "base_low": 80,
         "base_high": 100,
-        "mod_low": 60,
-        "mod_high": 90,
+        "mod_low": 70,
+        "mod_high": 110,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -245,7 +245,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 29,
+            "total_turns_taken": 30,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
