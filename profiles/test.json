@@ -1,53 +1,54 @@
 {
     "display_name": "test",
     "completed_towns": [
-        "Sigourney",
-        "Osage",
-        "Manchester",
-        "Atlantic",
-        "Fairfield",
-        "Tama",
-        "Shenandoah",
-        "Lansing",
-        "Ottumwa",
-        "Mt Pleasant",
-        "Algona",
-        "Forest City",
-        "Washington",
-        "Cherokee",
-        "Fort Dodge",
-        "Onawa",
-        "Guttenberg",
-        "Storm Lake",
-        "Sioux City",
-        "Hawarden",
-        "Cedar Falls",
-        "Lake View",
-        "Indianola",
-        "Boone",
-        "Creston",
-        "Iowa Falls",
-        "Marengo",
-        "Fort Madison",
-        "Carroll",
-        "Ida Grove",
-        "Pella",
         "Keokuk",
-        "New Hampton",
+        "Algona",
         "Waverly",
-        "Clear Lake",
+        "Boone",
         "Charles City",
-        "Decorah",
-        "Ames",
         "Glenwood",
+        "Atlantic",
+        "Sigourney",
+        "Indianola",
+        "Fort Dodge",
+        "Creston",
+        "Washington",
+        "Guttenberg",
+        "Forest City",
+        "Marengo",
+        "Cedar Falls",
+        "Shenandoah",
+        "Ottumwa",
+        "Decorah",
+        "Ida Grove",
+        "Iowa Falls",
+        "Carroll",
+        "Tama",
+        "Mt Pleasant",
+        "Lake View",
         "Burlington",
-        "Le Mars"
+        "Sioux City",
+        "Pella",
+        "Hawarden",
+        "Ames",
+        "Le Mars",
+        "Fort Madison",
+        "Storm Lake",
+        "Manchester",
+        "Clear Lake",
+        "Fairfield",
+        "New Hampton",
+        "Onawa",
+        "Lansing",
+        "Cherokee",
+        "Osage"
     ],
-    "games_finished": 7,
+    "games_finished": 8,
     "standard_wins": 5,
     "ragbraile_days_solved": [
         324,
-        325
+        325,
+        326
     ],
     "ragbraile_results": {
         "325": {
@@ -72,16 +73,39 @@
             "total_turns_taken": 42,
             "ability_penalty_pts": 15,
             "map_penalty_pts": 15
+        },
+        "326": {
+            "day_of_year": 326,
+            "ragbraile_pair": [
+                "Fort Dodge",
+                "Tama"
+            ],
+            "player_name": "test",
+            "history": [
+                "Sioux City",
+                "Storm Lake",
+                "Fort Dodge",
+                "Iowa Falls",
+                "Tama",
+                "Sigourney",
+                "Mt Pleasant",
+                "Fort Madison"
+            ],
+            "miles": 463,
+            "score": 13,
+            "total_turns_taken": 79,
+            "ability_penalty_pts": 15,
+            "map_penalty_pts": 0
         }
     },
     "best_score": 90,
     "total_score_sum": 347,
     "best_ragbraile_score": 35,
-    "ragbraile_score_sum": 35,
-    "ragbraile_completions_count": 1,
-    "total_miles_ridden": 3099,
-    "current_streak": 2,
-    "last_solved_date": "2026-11-21",
+    "ragbraile_score_sum": 48,
+    "ragbraile_completions_count": 2,
+    "total_miles_ridden": 3562,
+    "current_streak": 3,
+    "last_solved_date": "2026-11-22",
     "recent_routes": [
         {
             "date": "2026-11-20",
@@ -208,34 +232,13 @@
                 "Fort Madison"
             ],
             "extra": " \u2014 Score: 67/100"
-        }
-    ],
-    "active_ragbraile": {
-        "saved_at": "2026-11-22 19:51",
-        "day_of_year": 326,
-        "ragbraile_pair": [
-            "Fort Dodge",
-            "Tama"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 6,
-        "r2": 3,
-        "current_card": {
-            "name": "Hangover",
-            "reason": "Late night lingering at the beer tent!",
-            "effect_text": "Subtract 20 miles to the range on the high end."
         },
-        "base_low": 30,
-        "base_high": 60,
-        "mod_low": 30,
-        "mod_high": 40,
-        "road_result_msg": null,
-        "map_penalty_pts": 0,
-        "player": {
-            "name": "test",
-            "town": "Mt Pleasant",
+        {
+            "date": "2026-11-22",
+            "mode": "RAGBRAILE (Day 326)",
+            "start": "Sioux City",
+            "end": "Fort Madison",
+            "miles": 463,
             "history": [
                 "Sioux City",
                 "Storm Lake",
@@ -243,27 +246,11 @@
                 "Iowa Falls",
                 "Tama",
                 "Sigourney",
-                "Mt Pleasant"
+                "Mt Pleasant",
+                "Fort Madison"
             ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": false
-            },
-            "total_turns_taken": 79,
-            "ability_penalty_pts": 15,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Sioux City",
-            "reset_reason": null,
-            "base_mileage_tally": 423,
-            "day_mileage_history": [
-                75,
-                71,
-                56,
-                81,
-                73,
-                67
-            ]
+            "extra": " \u2014 Targets: Fort Dodge, Tama | Score: 13/100"
         }
-    }
+    ],
+    "active_ragbraile": null
 }
