@@ -211,7 +211,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-22 19:49",
+        "saved_at": "2026-11-22 19:50",
         "day_of_year": 326,
         "ragbraile_pair": [
             "Fort Dodge",
@@ -219,7 +219,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 11,
         "current_card": {
@@ -249,7 +249,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": false
             },
-            "total_turns_taken": 70,
+            "total_turns_taken": 71,
             "ability_penalty_pts": 15,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
