@@ -218,7 +218,7 @@
             "Tama"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "playing",
+        "phase": "select_start_single",
         "turn_state": "move",
         "r1": 6,
         "r2": 3,
@@ -250,7 +250,7 @@
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
-            "reset_reason": null,
+            "reset_reason": "Player test requested a route reset.",
             "base_mileage_tally": 141,
             "day_mileage_history": [
                 61,
