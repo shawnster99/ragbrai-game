@@ -219,18 +219,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 6,
         "r2": 10,
         "current_card": {
-            "name": "Road Closure",
-            "reason": "Unexpected road construction blocks the highway!",
-            "effect_text": "Roll a die: Even = Stay | Odd = Go back one town."
+            "name": "Downhill",
+            "reason": "Cruising down long rolling Iowa hills!",
+            "effect_text": "Subtract 10 miles to the range on the low end."
         },
         "base_low": 60,
         "base_high": 100,
-        "mod_low": 60,
-        "mod_high": 110,
+        "mod_low": 50,
+        "mod_high": 100,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -244,7 +244,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 26,
+            "total_turns_taken": 27,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
