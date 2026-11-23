@@ -219,7 +219,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 3,
         "current_card": {
@@ -235,14 +235,13 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Coralville",
+            "town": "Tama",
             "history": [
                 "Sioux City",
                 "Storm Lake",
                 "Fort Dodge",
                 "Iowa Falls",
-                "Tama",
-                "Coralville"
+                "Tama"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -254,13 +253,12 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 360,
+            "base_mileage_tally": 283,
             "day_mileage_history": [
                 75,
                 71,
                 56,
-                81,
-                77
+                81
             ]
         }
     }
