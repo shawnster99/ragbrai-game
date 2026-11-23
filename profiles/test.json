@@ -219,7 +219,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 11,
         "r2": 9,
         "current_card": {
@@ -235,15 +235,14 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Dyersville",
+            "town": "Cedar Rapids",
             "history": [
                 "Sioux City",
                 "Storm Lake",
                 "Fort Dodge",
                 "Iowa Falls",
                 "Tama",
-                "Cedar Rapids",
-                "Dyersville"
+                "Cedar Rapids"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -255,14 +254,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 410,
+            "base_mileage_tally": 339,
             "day_mileage_history": [
                 75,
                 71,
                 56,
                 81,
-                56,
-                71
+                56
             ]
         }
     }
