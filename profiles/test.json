@@ -211,7 +211,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-22 19:48",
+        "saved_at": "2026-11-22 19:49",
         "day_of_year": 326,
         "ragbraile_pair": [
             "Fort Dodge",
@@ -219,15 +219,15 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 6,
-        "r2": 8,
+        "turn_state": "card",
+        "r1": 8,
+        "r2": 7,
         "current_card": {
             "name": "Headwind",
             "reason": "Fighting a fierce crosswind across open plains!",
             "effect_text": "Subtract 10 miles to the mileage range in both directions."
         },
-        "base_low": 60,
+        "base_low": 70,
         "base_high": 80,
         "mod_low": 70,
         "mod_high": 70,
