@@ -219,7 +219,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 2,
         "r2": 9,
         "current_card": {
@@ -235,11 +235,12 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Lake View",
+            "town": "Fort Dodge",
             "history": [
                 "Sioux City",
                 "Cherokee",
-                "Lake View"
+                "Lake View",
+                "Fort Dodge"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -251,10 +252,11 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 120,
+            "base_mileage_tally": 182,
             "day_mileage_history": [
                 61,
-                59
+                59,
+                62
             ]
         }
     }
