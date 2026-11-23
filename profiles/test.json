@@ -231,7 +231,7 @@
         "base_high": 110,
         "mod_low": 60,
         "mod_high": 110,
-        "road_result_msg": null,
+        "road_result_msg": "\u2728 You rolled an **Even (4)**! You successfully bypass the road construction and stay in **Sioux City**.",
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
