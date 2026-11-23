@@ -219,7 +219,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 3,
         "current_card": {
@@ -235,14 +235,15 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Sigourney",
+            "town": "Mt Pleasant",
             "history": [
                 "Sioux City",
                 "Storm Lake",
                 "Fort Dodge",
                 "Iowa Falls",
                 "Tama",
-                "Sigourney"
+                "Sigourney",
+                "Mt Pleasant"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -254,13 +255,14 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 356,
+            "base_mileage_tally": 423,
             "day_mileage_history": [
                 75,
                 71,
                 56,
                 81,
-                73
+                73,
+                67
             ]
         }
     }
