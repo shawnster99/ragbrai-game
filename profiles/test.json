@@ -24,9 +24,11 @@
         "Burlington",
         "Indianola",
         "Charles City",
+        "Knoxville",
         "Creston",
         "Osage",
         "Fort Madison",
+        "Winterset",
         "Atlantic",
         "Sioux City",
         "Carroll",
@@ -38,6 +40,7 @@
         "Decorah",
         "New Hampton",
         "Newton",
+        "Guthrie Center",
         "Harlan",
         "Onawa",
         "Lansing",
@@ -46,13 +49,14 @@
         "Pella",
         "Washington"
     ],
-    "games_finished": 9,
+    "games_finished": 10,
     "standard_wins": 5,
     "ragbraile_days_solved": [
         324,
         325,
         326,
-        327
+        327,
+        328
     ],
     "ragbraile_results": {
         "325": {
@@ -123,16 +127,39 @@
             "total_turns_taken": 26,
             "ability_penalty_pts": 15,
             "map_penalty_pts": 0
+        },
+        "328": {
+            "day_of_year": 328,
+            "ragbraile_pair": [
+                "Hawarden",
+                "Knoxville"
+            ],
+            "player_name": "test",
+            "history": [
+                "Hawarden",
+                "Storm Lake",
+                "Carroll",
+                "Guthrie Center",
+                "Winterset",
+                "Knoxville",
+                "Fairfield",
+                "Burlington"
+            ],
+            "miles": 454,
+            "score": 73,
+            "total_turns_taken": 29,
+            "ability_penalty_pts": 5,
+            "map_penalty_pts": 0
         }
     },
     "best_score": 90,
     "total_score_sum": 347,
-    "best_ragbraile_score": 66,
-    "ragbraile_score_sum": 114,
-    "ragbraile_completions_count": 3,
-    "total_miles_ridden": 4007,
-    "current_streak": 4,
-    "last_solved_date": "2026-11-23",
+    "best_ragbraile_score": 73,
+    "ragbraile_score_sum": 187,
+    "ragbraile_completions_count": 4,
+    "total_miles_ridden": 4461,
+    "current_streak": 5,
+    "last_solved_date": "2026-11-24",
     "recent_routes": [
         {
             "date": "2026-11-20",
@@ -295,34 +322,13 @@
                 "Keokuk"
             ],
             "extra": " \u2014 Targets: Ames, Mt Pleasant | Score: 66/100"
-        }
-    ],
-    "active_ragbraile": {
-        "saved_at": "2026-11-24 12:37",
-        "day_of_year": 328,
-        "ragbraile_pair": [
-            "Hawarden",
-            "Knoxville"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 4,
-        "r2": 6,
-        "current_card": {
-            "name": "Porkchop Power",
-            "reason": "Fueled up by legendary festival food!",
-            "effect_text": "Expand 10 miles to the mileage range in both directions."
         },
-        "base_low": 40,
-        "base_high": 60,
-        "mod_low": 30,
-        "mod_high": 70,
-        "road_result_msg": null,
-        "map_penalty_pts": 0,
-        "player": {
-            "name": "test",
-            "town": "Fairfield",
+        {
+            "date": "2026-11-24",
+            "mode": "RAGBRAILE (Day 328)",
+            "start": "Hawarden",
+            "end": "Burlington",
+            "miles": 454,
             "history": [
                 "Hawarden",
                 "Storm Lake",
@@ -330,27 +336,11 @@
                 "Guthrie Center",
                 "Winterset",
                 "Knoxville",
-                "Fairfield"
+                "Fairfield",
+                "Burlington"
             ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": true
-            },
-            "total_turns_taken": 29,
-            "ability_penalty_pts": 5,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Hawarden",
-            "reset_reason": null,
-            "base_mileage_tally": 397,
-            "day_mileage_history": [
-                90,
-                61,
-                51,
-                55,
-                59,
-                81
-            ]
+            "extra": " \u2014 Targets: Hawarden, Knoxville | Score: 73/100"
         }
-    }
+    ],
+    "active_ragbraile": null
 }
