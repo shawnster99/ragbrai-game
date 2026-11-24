@@ -298,7 +298,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-24 12:36",
+        "saved_at": "2026-11-24 12:37",
         "day_of_year": 328,
         "ragbraile_pair": [
             "Hawarden",
@@ -306,7 +306,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 10,
         "current_card": {
@@ -322,14 +322,15 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Knoxville",
+            "town": "Fairfield",
             "history": [
                 "Hawarden",
                 "Storm Lake",
                 "Carroll",
                 "Guthrie Center",
                 "Winterset",
-                "Knoxville"
+                "Knoxville",
+                "Fairfield"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -341,13 +342,14 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Hawarden",
             "reset_reason": null,
-            "base_mileage_tally": 316,
+            "base_mileage_tally": 397,
             "day_mileage_history": [
                 90,
                 61,
                 51,
                 55,
-                59
+                59,
+                81
             ]
         }
     }
