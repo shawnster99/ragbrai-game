@@ -318,17 +318,16 @@
         "base_high": 80,
         "mod_low": 50,
         "mod_high": 80,
-        "road_result_msg": null,
+        "road_result_msg": "\ud83d\udea7 You rolled an **Odd (5)**! The road construction forces you back to your previous town.",
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Winterset",
+            "town": "Guthrie Center",
             "history": [
                 "Hawarden",
                 "Storm Lake",
                 "Carroll",
-                "Guthrie Center",
-                "Winterset"
+                "Guthrie Center"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -340,12 +339,11 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Hawarden",
             "reset_reason": null,
-            "base_mileage_tally": 261,
+            "base_mileage_tally": 206,
             "day_mileage_history": [
                 90,
                 64,
-                52,
-                55
+                52
             ]
         }
     }
