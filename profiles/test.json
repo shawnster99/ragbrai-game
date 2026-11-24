@@ -253,7 +253,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-23 22:46",
+        "saved_at": "2026-11-23 22:47",
         "day_of_year": 327,
         "ragbraile_pair": [
             "Ames",
@@ -261,7 +261,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 6,
         "current_card": {
@@ -277,10 +277,11 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Cherokee",
+            "town": "Lake View",
             "history": [
                 "Sioux City",
-                "Cherokee"
+                "Cherokee",
+                "Lake View"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -292,9 +293,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 61,
+            "base_mileage_tally": 119,
             "day_mileage_history": [
-                61
+                61,
+                58
             ]
         }
     }
