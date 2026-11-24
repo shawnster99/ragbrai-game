@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-24 07:49",
+        "saved_at": "2026-11-24 07:50",
         "day_of_year": 328,
         "ragbraile_pair": [
             "Hawarden",
@@ -35,7 +35,7 @@
         "base_high": 90,
         "mod_low": 90,
         "mod_high": 90,
-        "road_result_msg": null,
+        "road_result_msg": "\u2728 You rolled an **Even (6)**! You successfully bypass the road construction and stay in **Indianola**.",
         "map_penalty_pts": 0,
         "player": {
             "name": "mike-t",
