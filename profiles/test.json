@@ -261,18 +261,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 7,
         "r2": 10,
         "current_card": {
-            "name": "Casey's Pizza Power",
-            "reason": "Starting the day off right.",
-            "effect_text": "Expand 5 miles to the mileage range in both directions."
+            "name": "Fire Station Fundraiser",
+            "reason": "Community pancake breakfast boosts early momentum!",
+            "effect_text": "Lower the bottom range number by 15 miles."
         },
         "base_low": 70,
         "base_high": 100,
-        "mod_low": 65,
-        "mod_high": 85,
+        "mod_low": 55,
+        "mod_high": 100,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -286,7 +286,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 17,
+            "total_turns_taken": 18,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
