@@ -260,8 +260,8 @@
             "Mt Pleasant"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 7,
         "r2": 8,
         "current_card": {
@@ -277,11 +277,9 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Boone",
+            "town": "Onawa",
             "history": [
-                "Onawa",
-                "Carroll",
-                "Boone"
+                "Onawa"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -291,13 +289,10 @@
             "total_turns_taken": 17,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
-            "start_choice": "Sioux City",
-            "reset_reason": "Player test requested a route reset.",
-            "base_mileage_tally": 134,
-            "day_mileage_history": [
-                76,
-                58
-            ]
+            "start_choice": "Onawa",
+            "reset_reason": null,
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
         }
     }
 }
