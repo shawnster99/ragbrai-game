@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "road_closure",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 9,
         "current_card": {
@@ -35,7 +35,7 @@
         "base_high": 90,
         "mod_low": 90,
         "mod_high": 90,
-        "road_result_msg": "\u2728 You rolled an **Even (6)**! You successfully bypass the road construction and stay in **Indianola**.",
+        "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
             "name": "mike-t",
