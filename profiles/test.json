@@ -318,16 +318,15 @@
         "base_high": 90,
         "mod_low": 50,
         "mod_high": 90,
-        "road_result_msg": null,
+        "road_result_msg": "\ud83d\udea7 You rolled an **Odd (3)**! The road construction forces you back to your previous town.",
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Ankeny",
+            "town": "Carroll",
             "history": [
                 "Hawarden",
                 "Storm Lake",
-                "Carroll",
-                "Ankeny"
+                "Carroll"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -339,11 +338,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Hawarden",
             "reset_reason": null,
-            "base_mileage_tally": 244,
+            "base_mileage_tally": 154,
             "day_mileage_history": [
                 90,
-                64,
-                90
+                64
             ]
         }
     }
