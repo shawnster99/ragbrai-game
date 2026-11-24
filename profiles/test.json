@@ -306,7 +306,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 7,
         "current_card": {
@@ -322,13 +322,14 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Winterset",
+            "town": "Knoxville",
             "history": [
                 "Hawarden",
                 "Storm Lake",
                 "Carroll",
                 "Guthrie Center",
-                "Winterset"
+                "Winterset",
+                "Knoxville"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -340,12 +341,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Hawarden",
             "reset_reason": null,
-            "base_mileage_tally": 257,
+            "base_mileage_tally": 316,
             "day_mileage_history": [
                 90,
                 61,
                 51,
-                55
+                55,
+                59
             ]
         }
     }
