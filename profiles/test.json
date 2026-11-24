@@ -306,7 +306,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 7,
         "r2": 10,
         "current_card": {
@@ -334,7 +334,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 16,
+            "total_turns_taken": 17,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Hawarden",
