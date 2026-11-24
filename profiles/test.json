@@ -261,7 +261,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 8,
         "current_card": {
@@ -277,12 +277,13 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Guthrie Center",
+            "town": "Ames",
             "history": [
                 "Sioux City",
                 "Cherokee",
                 "Lake View",
-                "Guthrie Center"
+                "Guthrie Center",
+                "Ames"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -294,11 +295,12 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 197,
+            "base_mileage_tally": 279,
             "day_mileage_history": [
                 61,
                 58,
-                78
+                78,
+                82
             ]
         }
     }
