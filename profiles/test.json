@@ -306,15 +306,15 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 7,
+        "turn_state": "card",
+        "r1": 10,
         "r2": 10,
         "current_card": {
             "name": "Porkchop Power",
             "reason": "Fueled up by legendary festival food!",
             "effect_text": "Expand 10 miles to the mileage range in both directions."
         },
-        "base_low": 70,
+        "base_low": 100,
         "base_high": 100,
         "mod_low": 60,
         "mod_high": 110,
