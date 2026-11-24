@@ -306,7 +306,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 12,
         "r2": 6,
         "current_card": {
@@ -316,8 +316,8 @@
         },
         "base_low": 60,
         "base_high": 120,
-        "mod_low": 30,
-        "mod_high": 90,
+        "mod_low": 50,
+        "mod_high": 120,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -332,7 +332,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 1,
+            "total_turns_taken": 2,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Hawarden",
