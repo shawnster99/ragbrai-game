@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 3,
         "r2": 10,
         "current_card": {
@@ -39,12 +39,13 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mike-t",
-            "town": "Oskaloosa",
+            "town": "Ottumwa",
             "history": [
                 "Council Bluffs",
                 "Greenfield",
                 "Indianola",
-                "Oskaloosa"
+                "Oskaloosa",
+                "Ottumwa"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -56,11 +57,12 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Council Bluffs",
             "reset_reason": null,
-            "base_mileage_tally": 203,
+            "base_mileage_tally": 235,
             "day_mileage_history": [
                 91,
                 55,
-                57
+                57,
+                32
             ]
         }
     }
