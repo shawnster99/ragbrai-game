@@ -1,54 +1,58 @@
 {
     "display_name": "test",
     "completed_towns": [
-        "Keokuk",
-        "Algona",
-        "Waverly",
         "Boone",
-        "Charles City",
-        "Glenwood",
-        "Atlantic",
-        "Sigourney",
-        "Indianola",
-        "Fort Dodge",
-        "Creston",
-        "Washington",
-        "Guttenberg",
-        "Forest City",
-        "Marengo",
         "Cedar Falls",
-        "Shenandoah",
-        "Ottumwa",
-        "Decorah",
-        "Ida Grove",
-        "Iowa Falls",
-        "Carroll",
-        "Tama",
-        "Mt Pleasant",
+        "Cherokee",
+        "Oskaloosa",
         "Lake View",
-        "Burlington",
-        "Sioux City",
-        "Pella",
-        "Hawarden",
-        "Ames",
-        "Le Mars",
-        "Fort Madison",
-        "Storm Lake",
-        "Manchester",
         "Clear Lake",
+        "Glenwood",
+        "Ida Grove",
+        "Marengo",
+        "Mt Pleasant",
+        "Storm Lake",
+        "Tama",
+        "Manchester",
+        "Waverly",
         "Fairfield",
+        "Keokuk",
+        "Iowa Falls",
+        "Ottumwa",
+        "Ames",
+        "Forest City",
+        "Burlington",
+        "Indianola",
+        "Charles City",
+        "Creston",
+        "Osage",
+        "Fort Madison",
+        "Atlantic",
+        "Sioux City",
+        "Carroll",
+        "Algona",
+        "Shenandoah",
+        "Fort Dodge",
+        "Hawarden",
+        "Guttenberg",
+        "Decorah",
         "New Hampton",
+        "Newton",
+        "Harlan",
         "Onawa",
         "Lansing",
-        "Cherokee",
-        "Osage"
+        "Le Mars",
+        "Sigourney",
+        "Pella",
+        "Washington"
     ],
-    "games_finished": 8,
+    "games_finished": 9,
     "standard_wins": 5,
     "ragbraile_days_solved": [
         324,
         325,
-        326
+        326,
+        327
     ],
     "ragbraile_results": {
         "325": {
@@ -96,16 +100,39 @@
             "total_turns_taken": 79,
             "ability_penalty_pts": 15,
             "map_penalty_pts": 0
+        },
+        "327": {
+            "day_of_year": 327,
+            "ragbraile_pair": [
+                "Ames",
+                "Mt Pleasant"
+            ],
+            "player_name": "test",
+            "history": [
+                "Onawa",
+                "Harlan",
+                "Carroll",
+                "Ames",
+                "Newton",
+                "Oskaloosa",
+                "Mt Pleasant",
+                "Keokuk"
+            ],
+            "miles": 445,
+            "score": 66,
+            "total_turns_taken": 26,
+            "ability_penalty_pts": 15,
+            "map_penalty_pts": 0
         }
     },
     "best_score": 90,
     "total_score_sum": 347,
-    "best_ragbraile_score": 35,
-    "ragbraile_score_sum": 48,
-    "ragbraile_completions_count": 2,
-    "total_miles_ridden": 3562,
-    "current_streak": 3,
-    "last_solved_date": "2026-11-22",
+    "best_ragbraile_score": 66,
+    "ragbraile_score_sum": 114,
+    "ragbraile_completions_count": 3,
+    "total_miles_ridden": 4007,
+    "current_streak": 4,
+    "last_solved_date": "2026-11-23",
     "recent_routes": [
         {
             "date": "2026-11-20",
@@ -250,34 +277,13 @@
                 "Fort Madison"
             ],
             "extra": " \u2014 Targets: Fort Dodge, Tama | Score: 13/100"
-        }
-    ],
-    "active_ragbraile": {
-        "saved_at": "2026-11-23 22:52",
-        "day_of_year": 327,
-        "ragbraile_pair": [
-            "Ames",
-            "Mt Pleasant"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 7,
-        "r2": 6,
-        "current_card": {
-            "name": "Headwind",
-            "reason": "Fighting a fierce crosswind across open plains!",
-            "effect_text": "Subtract 10 miles to the mileage range in both directions."
         },
-        "base_low": 60,
-        "base_high": 70,
-        "mod_low": 0,
-        "mod_high": 9999,
-        "road_result_msg": null,
-        "map_penalty_pts": 0,
-        "player": {
-            "name": "test",
-            "town": "Mt Pleasant",
+        {
+            "date": "2026-11-23",
+            "mode": "RAGBRAILE (Day 327)",
+            "start": "Onawa",
+            "end": "Keokuk",
+            "miles": 445,
             "history": [
                 "Onawa",
                 "Harlan",
@@ -285,27 +291,11 @@
                 "Ames",
                 "Newton",
                 "Oskaloosa",
-                "Mt Pleasant"
+                "Mt Pleasant",
+                "Keokuk"
             ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": false
-            },
-            "total_turns_taken": 26,
-            "ability_penalty_pts": 15,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Onawa",
-            "reset_reason": null,
-            "base_mileage_tally": 396,
-            "day_mileage_history": [
-                67,
-                58,
-                77,
-                60,
-                50,
-                84
-            ]
+            "extra": " \u2014 Targets: Ames, Mt Pleasant | Score: 66/100"
         }
-    }
+    ],
+    "active_ragbraile": null
 }
