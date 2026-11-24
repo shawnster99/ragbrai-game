@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 5,
         "current_card": {
@@ -39,14 +39,15 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mike-t",
-            "town": "Sigourney",
+            "town": "Iowa City",
             "history": [
                 "Council Bluffs",
                 "Greenfield",
                 "Indianola",
                 "Oskaloosa",
                 "Ottumwa",
-                "Sigourney"
+                "Sigourney",
+                "Iowa City"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -58,13 +59,14 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Council Bluffs",
             "reset_reason": null,
-            "base_mileage_tally": 271,
+            "base_mileage_tally": 328,
             "day_mileage_history": [
                 91,
                 55,
                 57,
                 32,
-                36
+                36,
+                57
             ]
         }
     }
