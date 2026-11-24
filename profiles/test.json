@@ -253,7 +253,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-23 22:50",
+        "saved_at": "2026-11-23 22:51",
         "day_of_year": 327,
         "ragbraile_pair": [
             "Ames",
@@ -261,7 +261,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 9,
         "current_card": {
@@ -277,11 +277,12 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Carroll",
+            "town": "Ames",
             "history": [
                 "Onawa",
                 "Harlan",
-                "Carroll"
+                "Carroll",
+                "Ames"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -293,10 +294,11 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
             "reset_reason": null,
-            "base_mileage_tally": 125,
+            "base_mileage_tally": 202,
             "day_mileage_history": [
                 67,
-                58
+                58,
+                77
             ]
         }
     }
