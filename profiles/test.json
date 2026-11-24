@@ -306,8 +306,8 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 9,
+        "turn_state": "card",
+        "r1": 7,
         "r2": 5,
         "current_card": {
             "name": "Downhill",
@@ -315,7 +315,7 @@
             "effect_text": "Subtract 10 miles to the range on the low end."
         },
         "base_low": 50,
-        "base_high": 90,
+        "base_high": 70,
         "mod_low": 40,
         "mod_high": 90,
         "road_result_msg": null,
