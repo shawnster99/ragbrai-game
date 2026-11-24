@@ -253,7 +253,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-23 22:47",
+        "saved_at": "2026-11-23 22:48",
         "day_of_year": 327,
         "ragbraile_pair": [
             "Ames",
@@ -261,7 +261,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 4,
         "r2": 5,
         "current_card": {
@@ -277,13 +277,12 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Ames",
+            "town": "Guthrie Center",
             "history": [
                 "Sioux City",
                 "Cherokee",
                 "Lake View",
-                "Guthrie Center",
-                "Ames"
+                "Guthrie Center"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -295,11 +294,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 275,
+            "base_mileage_tally": 197,
             "day_mileage_history": [
                 61,
                 58,
-                78,
                 78
             ]
         }
