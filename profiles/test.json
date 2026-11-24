@@ -253,7 +253,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-23 22:51",
+        "saved_at": "2026-11-23 22:52",
         "day_of_year": 327,
         "ragbraile_pair": [
             "Ames",
@@ -261,7 +261,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 8,
         "current_card": {
@@ -277,14 +277,15 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Oskaloosa",
+            "town": "Mt Pleasant",
             "history": [
                 "Onawa",
                 "Harlan",
                 "Carroll",
                 "Ames",
                 "Newton",
-                "Oskaloosa"
+                "Oskaloosa",
+                "Mt Pleasant"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -296,13 +297,14 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
             "reset_reason": null,
-            "base_mileage_tally": 312,
+            "base_mileage_tally": 396,
             "day_mileage_history": [
                 67,
                 58,
                 77,
                 60,
-                50
+                50,
+                84
             ]
         }
     }
