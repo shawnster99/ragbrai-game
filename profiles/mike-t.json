@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-24 07:50",
+        "saved_at": "2026-11-24 07:51",
         "day_of_year": 328,
         "ragbraile_pair": [
             "Hawarden",
@@ -23,15 +23,15 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 3,
+        "turn_state": "card",
+        "r1": 9,
         "r2": 10,
         "current_card": {
             "name": "Pie Power",
             "reason": "Sugar rush from homemade church pie!",
             "effect_text": "Add 15 miles to the mileage top range."
         },
-        "base_low": 30,
+        "base_low": 90,
         "base_high": 100,
         "mod_low": 0,
         "mod_high": 9999,
