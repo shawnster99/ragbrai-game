@@ -306,7 +306,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
+        "turn_state": "card",
         "r1": 9,
         "r2": 5,
         "current_card": {
