@@ -306,7 +306,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 4,
         "r2": 11,
         "current_card": {
@@ -322,11 +322,12 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Carroll",
+            "town": "Ankeny",
             "history": [
                 "Hawarden",
                 "Storm Lake",
-                "Carroll"
+                "Carroll",
+                "Ankeny"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -338,10 +339,11 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Hawarden",
             "reset_reason": null,
-            "base_mileage_tally": 154,
+            "base_mileage_tally": 249,
             "day_mileage_history": [
                 90,
-                64
+                64,
+                95
             ]
         }
     }
