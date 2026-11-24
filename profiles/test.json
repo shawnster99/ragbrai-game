@@ -261,7 +261,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 7,
         "r2": 10,
         "current_card": {
@@ -277,9 +277,10 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Onawa",
+            "town": "Harlan",
             "history": [
-                "Onawa"
+                "Onawa",
+                "Harlan"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -291,8 +292,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
             "reset_reason": null,
-            "base_mileage_tally": 0,
-            "day_mileage_history": []
+            "base_mileage_tally": 67,
+            "day_mileage_history": [
+                67
+            ]
         }
     }
 }
