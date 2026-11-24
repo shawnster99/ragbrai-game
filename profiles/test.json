@@ -305,7 +305,7 @@
             "Knoxville"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "setup",
+        "phase": "playing",
         "turn_state": "roll",
         "r1": 0,
         "r2": 0,
@@ -318,8 +318,10 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": null,
-            "history": [],
+            "town": "Hawarden",
+            "history": [
+                "Hawarden"
+            ],
             "abilities": {
                 "Beekman's Energy Boost": true,
                 "Thunderstorm": true,
@@ -328,7 +330,7 @@
             "total_turns_taken": 0,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
-            "start_choice": "Sioux City",
+            "start_choice": "Hawarden",
             "reset_reason": null,
             "base_mileage_tally": 0,
             "day_mileage_history": []
