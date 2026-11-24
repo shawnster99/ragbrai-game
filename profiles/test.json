@@ -298,7 +298,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-24 12:30",
+        "saved_at": "2026-11-24 12:31",
         "day_of_year": 328,
         "ragbraile_pair": [
             "Hawarden",
@@ -306,7 +306,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 9,
         "current_card": {
@@ -322,11 +322,12 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Carroll",
+            "town": "Ames",
             "history": [
                 "Hawarden",
                 "Storm Lake",
-                "Carroll"
+                "Carroll",
+                "Ames"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -338,10 +339,11 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Hawarden",
             "reset_reason": null,
-            "base_mileage_tally": 154,
+            "base_mileage_tally": 226,
             "day_mileage_history": [
                 90,
-                64
+                64,
+                72
             ]
         }
     }
