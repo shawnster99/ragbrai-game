@@ -343,7 +343,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-25 10:57",
+        "saved_at": "2026-11-25 10:58",
         "day_of_year": 329,
         "ragbraile_pair": [
             "Council Bluffs",
@@ -351,16 +351,16 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 6,
-        "r2": 4,
+        "turn_state": "card",
+        "r1": 5,
+        "r2": 5,
         "current_card": {
             "name": "Pie Power",
             "reason": "Sugar rush from homemade church pie!",
             "effect_text": "Add 15 miles to the mileage top range."
         },
-        "base_low": 40,
-        "base_high": 60,
+        "base_low": 50,
+        "base_high": 50,
         "mod_low": 40,
         "mod_high": 75,
         "road_result_msg": null,
