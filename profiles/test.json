@@ -351,7 +351,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "road_closure",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 7,
         "current_card": {
@@ -363,7 +363,7 @@
         "base_high": 80,
         "mod_low": 70,
         "mod_high": 80,
-        "road_result_msg": "\u2728 You rolled an **Even (4)**! You successfully bypass the road construction and stay in **Oskaloosa**.",
+        "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
