@@ -351,18 +351,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 8,
         "r2": 5,
         "current_card": {
-            "name": "Hangover",
-            "reason": "Late night lingering at the beer tent!",
-            "effect_text": "Subtract 20 miles to the range on the high end."
+            "name": "Casey's Pizza Power",
+            "reason": "Starting the day off right.",
+            "effect_text": "Expand 5 miles to the mileage range in both directions."
         },
         "base_low": 50,
         "base_high": 80,
-        "mod_low": 80,
-        "mod_high": 80,
+        "mod_low": 45,
+        "mod_high": 85,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -378,7 +378,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 6,
+            "total_turns_taken": 7,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Council Bluffs",
