@@ -351,7 +351,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 7,
         "r2": 7,
         "current_card": {
@@ -367,13 +367,14 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Ottumwa",
+            "town": "Iowa City",
             "history": [
                 "Council Bluffs",
                 "Red Oak",
                 "Greenfield",
                 "Indianola",
-                "Ottumwa"
+                "Ottumwa",
+                "Iowa City"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -385,12 +386,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Council Bluffs",
             "reset_reason": null,
-            "base_mileage_tally": 267,
+            "base_mileage_tally": 359,
             "day_mileage_history": [
                 56,
                 68,
                 60,
-                83
+                83,
+                92
             ]
         }
     }
