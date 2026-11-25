@@ -1,62 +1,66 @@
 {
     "display_name": "test",
     "completed_towns": [
-        "Boone",
-        "Cedar Falls",
-        "Cherokee",
-        "Oskaloosa",
-        "Lake View",
-        "Clear Lake",
-        "Glenwood",
-        "Ida Grove",
-        "Marengo",
-        "Mt Pleasant",
         "Storm Lake",
+        "Boone",
+        "Pella",
+        "Lansing",
         "Tama",
-        "Manchester",
-        "Waverly",
-        "Fairfield",
-        "Keokuk",
-        "Iowa Falls",
-        "Ottumwa",
         "Ames",
-        "Forest City",
+        "Onawa",
+        "Winterset",
+        "Decorah",
+        "Le Mars",
+        "Council Bluffs",
+        "Knoxville",
+        "Cherokee",
+        "Fort Dodge",
+        "Hawarden",
+        "Ida Grove",
+        "Oskaloosa",
+        "Fairfield",
         "Burlington",
         "Indianola",
         "Charles City",
-        "Knoxville",
-        "Creston",
-        "Osage",
-        "Fort Madison",
-        "Winterset",
-        "Atlantic",
-        "Sioux City",
-        "Carroll",
-        "Algona",
-        "Shenandoah",
-        "Fort Dodge",
-        "Hawarden",
-        "Guttenberg",
-        "Decorah",
-        "New Hampton",
-        "Newton",
-        "Guthrie Center",
+        "Marengo",
         "Harlan",
-        "Onawa",
-        "Lansing",
-        "Le Mars",
+        "Keokuk",
+        "Osage",
+        "Mt Pleasant",
+        "Algona",
+        "New Hampton",
+        "Lake View",
+        "Greenfield",
         "Sigourney",
-        "Pella",
-        "Washington"
+        "Newton",
+        "Washington",
+        "Waverly",
+        "Guttenberg",
+        "Cedar Falls",
+        "Sioux City",
+        "Ottumwa",
+        "Guthrie Center",
+        "Atlantic",
+        "Iowa Falls",
+        "Shenandoah",
+        "Red Oak",
+        "Manchester",
+        "Fort Madison",
+        "Glenwood",
+        "Carroll",
+        "Forest City",
+        "Clear Lake",
+        "Creston"
     ],
-    "games_finished": 10,
+    "games_finished": 11,
     "standard_wins": 5,
     "ragbraile_days_solved": [
         324,
         325,
         326,
         327,
-        328
+        328,
+        329
     ],
     "ragbraile_results": {
         "325": {
@@ -150,16 +154,39 @@
             "total_turns_taken": 29,
             "ability_penalty_pts": 5,
             "map_penalty_pts": 0
+        },
+        "329": {
+            "day_of_year": 329,
+            "ragbraile_pair": [
+                "Council Bluffs",
+                "Fort Madison"
+            ],
+            "player_name": "test",
+            "history": [
+                "Council Bluffs",
+                "Red Oak",
+                "Greenfield",
+                "Winterset",
+                "Oskaloosa",
+                "Fairfield",
+                "Mt Pleasant",
+                "Fort Madison"
+            ],
+            "miles": 370,
+            "score": 61,
+            "total_turns_taken": 31,
+            "ability_penalty_pts": 15,
+            "map_penalty_pts": 0
         }
     },
     "best_score": 90,
     "total_score_sum": 347,
     "best_ragbraile_score": 73,
-    "ragbraile_score_sum": 187,
-    "ragbraile_completions_count": 4,
-    "total_miles_ridden": 4461,
-    "current_streak": 5,
-    "last_solved_date": "2026-11-24",
+    "ragbraile_score_sum": 248,
+    "ragbraile_completions_count": 5,
+    "total_miles_ridden": 4831,
+    "current_streak": 6,
+    "last_solved_date": "2026-11-25",
     "recent_routes": [
         {
             "date": "2026-11-20",
@@ -340,34 +367,13 @@
                 "Burlington"
             ],
             "extra": " \u2014 Targets: Hawarden, Knoxville | Score: 73/100"
-        }
-    ],
-    "active_ragbraile": {
-        "saved_at": "2026-11-25 11:02",
-        "day_of_year": 329,
-        "ragbraile_pair": [
-            "Council Bluffs",
-            "Fort Madison"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 4,
-        "r2": 4,
-        "current_card": {
-            "name": "Downhill",
-            "reason": "Cruising down long rolling Iowa hills!",
-            "effect_text": "Subtract 10 miles to the range on the low end."
         },
-        "base_low": 40,
-        "base_high": 40,
-        "mod_low": 30,
-        "mod_high": 40,
-        "road_result_msg": null,
-        "map_penalty_pts": 0,
-        "player": {
-            "name": "test",
-            "town": "Mt Pleasant",
+        {
+            "date": "2026-11-25",
+            "mode": "RAGBRAILE (Day 329)",
+            "start": "Council Bluffs",
+            "end": "Fort Madison",
+            "miles": 370,
             "history": [
                 "Council Bluffs",
                 "Red Oak",
@@ -375,27 +381,11 @@
                 "Winterset",
                 "Oskaloosa",
                 "Fairfield",
-                "Mt Pleasant"
+                "Mt Pleasant",
+                "Fort Madison"
             ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": false
-            },
-            "total_turns_taken": 31,
-            "ability_penalty_pts": 15,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Council Bluffs",
-            "reset_reason": null,
-            "base_mileage_tally": 327,
-            "day_mileage_history": [
-                56,
-                68,
-                31,
-                81,
-                59,
-                32
-            ]
+            "extra": " \u2014 Targets: Council Bluffs, Fort Madison | Score: 61/100"
         }
-    }
+    ],
+    "active_ragbraile": null
 }
