@@ -351,7 +351,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 3,
         "current_card": {
@@ -381,7 +381,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 12,
+            "total_turns_taken": 13,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Council Bluffs",
