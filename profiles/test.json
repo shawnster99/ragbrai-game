@@ -351,18 +351,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 3,
         "r2": 10,
         "current_card": {
-            "name": "100 Degree Day",
-            "reason": "Sweltering Iowa summer heat slows your pace!",
-            "effect_text": "Lower the top range number by 15 miles."
+            "name": "Casey's Pizza Power",
+            "reason": "Starting the day off right.",
+            "effect_text": "Expand 5 miles to the mileage range in both directions."
         },
         "base_low": 30,
         "base_high": 100,
-        "mod_low": 90,
-        "mod_high": 90,
+        "mod_low": 25,
+        "mod_high": 105,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -378,7 +378,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 22,
+            "total_turns_taken": 23,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Council Bluffs",
