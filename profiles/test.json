@@ -351,18 +351,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 7,
         "r2": 5,
         "current_card": {
-            "name": "100 Degree Day",
-            "reason": "Sweltering Iowa summer heat slows your pace!",
-            "effect_text": "Lower the top range number by 15 miles."
+            "name": "Pie Power",
+            "reason": "Sugar rush from homemade church pie!",
+            "effect_text": "Add 15 miles to the mileage top range."
         },
         "base_low": 50,
         "base_high": 70,
-        "mod_low": 100,
-        "mod_high": 100,
+        "mod_low": 50,
+        "mod_high": 85,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -378,7 +378,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 20,
+            "total_turns_taken": 21,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Council Bluffs",
