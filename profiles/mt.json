@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 4,
         "current_card": {
@@ -39,10 +39,11 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mt",
-            "town": "Storm Lake",
+            "town": "Carroll",
             "history": [
                 "Sioux City",
-                "Storm Lake"
+                "Storm Lake",
+                "Carroll"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -54,9 +55,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 77,
+            "base_mileage_tally": 140,
             "day_mileage_history": [
-                77
+                77,
+                63
             ]
         }
     }
