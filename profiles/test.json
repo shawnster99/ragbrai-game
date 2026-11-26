@@ -395,7 +395,7 @@
             "Manchester"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "playing",
+        "phase": "select_start_single",
         "turn_state": "move",
         "r1": 6,
         "r2": 10,
@@ -424,8 +424,8 @@
             "total_turns_taken": 48,
             "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
-            "start_choice": "Council Bluffs",
-            "reset_reason": null,
+            "start_choice": "Sioux City",
+            "reset_reason": "Player test requested a route reset.",
             "base_mileage_tally": 0,
             "day_mileage_history": []
         }
