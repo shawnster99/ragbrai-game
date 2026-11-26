@@ -396,7 +396,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "road_closure",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 9,
         "current_card": {
@@ -408,7 +408,7 @@
         "base_high": 90,
         "mod_low": 60,
         "mod_high": 90,
-        "road_result_msg": "\u2728 You rolled an **Even (4)**! You successfully bypass the road construction and stay in **Harlan**.",
+        "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
