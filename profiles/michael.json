@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Real-Life Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 2,
         "r2": 9,
         "current_card": {
@@ -39,13 +39,14 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "michael",
-            "town": "Marshalltown",
+            "town": "Cedar Falls",
             "history": [
                 "Missouri Valley",
                 "Atlantic",
                 "Perry",
                 "Ankeny",
-                "Marshalltown"
+                "Marshalltown",
+                "Cedar Falls"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -57,12 +58,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
             "reset_reason": null,
-            "base_mileage_tally": 239,
+            "base_mileage_tally": 304,
             "day_mileage_history": [
                 62,
                 86,
                 39,
-                52
+                52,
+                65
             ]
         }
     }
