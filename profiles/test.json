@@ -2,57 +2,59 @@
     "display_name": "test",
     "completed_towns": [
         "Storm Lake",
-        "Boone",
-        "Pella",
-        "Lansing",
-        "Tama",
-        "Ames",
-        "Onawa",
-        "Winterset",
-        "Decorah",
-        "Le Mars",
-        "Council Bluffs",
-        "Knoxville",
-        "Cherokee",
         "Fort Dodge",
-        "Hawarden",
-        "Ida Grove",
-        "Oskaloosa",
-        "Fairfield",
-        "Burlington",
-        "Indianola",
-        "Charles City",
-        "Marengo",
-        "Harlan",
-        "Keokuk",
-        "Osage",
-        "Mt Pleasant",
-        "Algona",
-        "New Hampton",
-        "Lake View",
-        "Greenfield",
-        "Sigourney",
         "Newton",
-        "Washington",
-        "Waverly",
-        "Guttenberg",
-        "Cedar Falls",
-        "Sioux City",
-        "Ottumwa",
+        "Marshalltown",
+        "Keokuk",
         "Guthrie Center",
-        "Atlantic",
-        "Iowa Falls",
         "Shenandoah",
+        "Council Bluffs",
+        "Marengo",
+        "Cherokee",
+        "Ida Grove",
+        "Lake View",
+        "Perry",
+        "Cedar Falls",
+        "Winterset",
         "Red Oak",
+        "Waverly",
         "Manchester",
-        "Fort Madison",
+        "Burlington",
+        "Harlan",
         "Glenwood",
-        "Carroll",
-        "Forest City",
+        "Charles City",
+        "Pella",
+        "Washington",
+        "Mt Pleasant",
+        "Oskaloosa",
+        "Knoxville",
+        "Ames",
+        "Creston",
+        "Indianola",
+        "Atlantic",
+        "Onawa",
+        "Algona",
+        "Fort Madison",
+        "Lansing",
+        "Le Mars",
+        "Greenfield",
+        "Guttenberg",
+        "Fairfield",
         "Clear Lake",
-        "Creston"
+        "Sioux City",
+        "Boone",
+        "Ottumwa",
+        "Decorah",
+        "New Hampton",
+        "Hawarden",
+        "Iowa Falls",
+        "Sigourney",
+        "Osage",
+        "Carroll",
+        "Tama",
+        "Forest City"
     ],
-    "games_finished": 11,
+    "games_finished": 12,
     "standard_wins": 5,
     "ragbraile_days_solved": [
         324,
@@ -60,7 +62,8 @@
         326,
         327,
         328,
-        329
+        329,
+        330
     ],
     "ragbraile_results": {
         "325": {
@@ -177,16 +180,39 @@
             "total_turns_taken": 31,
             "ability_penalty_pts": 15,
             "map_penalty_pts": 0
+        },
+        "330": {
+            "day_of_year": 330,
+            "ragbraile_pair": [
+                "Perry",
+                "Manchester"
+            ],
+            "player_name": "test",
+            "history": [
+                "Glenwood",
+                "Atlantic",
+                "Perry",
+                "Ames",
+                "Marshalltown",
+                "Cedar Falls",
+                "Manchester",
+                "Guttenberg"
+            ],
+            "miles": 414,
+            "score": 26,
+            "total_turns_taken": 61,
+            "ability_penalty_pts": 5,
+            "map_penalty_pts": 15
         }
     },
     "best_score": 90,
     "total_score_sum": 347,
     "best_ragbraile_score": 73,
-    "ragbraile_score_sum": 248,
-    "ragbraile_completions_count": 5,
-    "total_miles_ridden": 4831,
-    "current_streak": 6,
-    "last_solved_date": "2026-11-25",
+    "ragbraile_score_sum": 274,
+    "ragbraile_completions_count": 6,
+    "total_miles_ridden": 5245,
+    "current_streak": 7,
+    "last_solved_date": "2026-11-26",
     "recent_routes": [
         {
             "date": "2026-11-20",
@@ -385,34 +411,13 @@
                 "Fort Madison"
             ],
             "extra": " \u2014 Targets: Council Bluffs, Fort Madison | Score: 61/100"
-        }
-    ],
-    "active_ragbraile": {
-        "saved_at": "2026-11-26 12:10",
-        "day_of_year": 330,
-        "ragbraile_pair": [
-            "Perry",
-            "Manchester"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 11,
-        "r2": 4,
-        "current_card": {
-            "name": "Fire Station Fundraiser",
-            "reason": "Community pancake breakfast boosts early momentum!",
-            "effect_text": "Lower the bottom range number by 15 miles."
         },
-        "base_low": 40,
-        "base_high": 110,
-        "mod_low": 25,
-        "mod_high": 110,
-        "road_result_msg": null,
-        "map_penalty_pts": 15,
-        "player": {
-            "name": "test",
-            "town": "Manchester",
+        {
+            "date": "2026-11-26",
+            "mode": "RAGBRAILE (Day 330)",
+            "start": "Glenwood",
+            "end": "Guttenberg",
+            "miles": 414,
             "history": [
                 "Glenwood",
                 "Atlantic",
@@ -420,27 +425,11 @@
                 "Ames",
                 "Marshalltown",
                 "Cedar Falls",
-                "Manchester"
+                "Manchester",
+                "Guttenberg"
             ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": true
-            },
-            "total_turns_taken": 61,
-            "ability_penalty_pts": 5,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Glenwood",
-            "reset_reason": null,
-            "base_mileage_tally": 370,
-            "day_mileage_history": [
-                69,
-                83,
-                49,
-                47,
-                61,
-                61
-            ]
+            "extra": " \u2014 Targets: Perry, Manchester | Score: 26/100"
         }
-    }
+    ],
+    "active_ragbraile": null
 }
