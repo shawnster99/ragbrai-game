@@ -395,7 +395,7 @@
             "Manchester"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
+        "phase": "playing",
         "turn_state": "roll",
         "r1": 5,
         "r2": 11,
@@ -412,13 +412,9 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Pella",
+            "town": "Council Bluffs",
             "history": [
-                "Onawa",
-                "Harlan",
-                "Guthrie Center",
-                "Perry",
-                "Pella"
+                "Council Bluffs"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -428,15 +424,10 @@
             "total_turns_taken": 47,
             "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
-            "start_choice": "Sioux City",
-            "reset_reason": "Player test requested a route reset.",
-            "base_mileage_tally": 242,
-            "day_mileage_history": [
-                62,
-                50,
-                40,
-                90
-            ]
+            "start_choice": "Council Bluffs",
+            "reset_reason": null,
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
         }
     }
 }
