@@ -396,8 +396,8 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 7,
+        "turn_state": "card",
+        "r1": 10,
         "r2": 7,
         "current_card": {
             "name": "Pie Power",
@@ -405,7 +405,7 @@
             "effect_text": "Add 15 miles to the mileage top range."
         },
         "base_low": 70,
-        "base_high": 70,
+        "base_high": 100,
         "mod_low": 70,
         "mod_high": 85,
         "road_result_msg": null,
