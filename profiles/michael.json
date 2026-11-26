@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Real-Life Dice",
         "phase": "playing",
-        "turn_state": "roll",
+        "turn_state": "card",
         "r1": 2,
         "r2": 9,
         "current_card": {
