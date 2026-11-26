@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 16:39",
+        "saved_at": "2026-11-26 16:40",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 4,
         "current_card": {
@@ -39,9 +39,10 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "michaelturnley",
-            "town": "Missouri Valley",
+            "town": "Atlantic",
             "history": [
-                "Missouri Valley"
+                "Missouri Valley",
+                "Atlantic"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -53,8 +54,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
             "reset_reason": null,
-            "base_mileage_tally": 0,
-            "day_mileage_history": []
+            "base_mileage_tally": 60,
+            "day_mileage_history": [
+                60
+            ]
         }
     }
 }
