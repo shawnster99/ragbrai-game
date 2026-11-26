@@ -395,8 +395,8 @@
             "Manchester"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 10,
         "current_card": {
@@ -412,9 +412,9 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Council Bluffs",
+            "town": "Glenwood",
             "history": [
-                "Council Bluffs"
+                "Glenwood"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -424,8 +424,8 @@
             "total_turns_taken": 48,
             "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
-            "start_choice": "Sioux City",
-            "reset_reason": "Player test requested a route reset.",
+            "start_choice": "Glenwood",
+            "reset_reason": null,
             "base_mileage_tally": 0,
             "day_mileage_history": []
         }
