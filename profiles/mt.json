@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 7,
         "current_card": {
@@ -39,13 +39,14 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mt",
-            "town": "Perry",
+            "town": "Newton",
             "history": [
                 "Sioux City",
                 "Storm Lake",
                 "Carroll",
                 "Guthrie Center",
-                "Perry"
+                "Perry",
+                "Newton"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -57,12 +58,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 231,
+            "base_mileage_tally": 303,
             "day_mileage_history": [
                 77,
                 63,
                 52,
-                39
+                39,
+                72
             ]
         }
     }
