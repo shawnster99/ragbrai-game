@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 3,
         "r2": 7,
         "current_card": {
@@ -50,7 +50,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 5,
+            "total_turns_taken": 6,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
