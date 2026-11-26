@@ -388,14 +388,14 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 12:05",
+        "saved_at": "2026-11-26 12:07",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
             "Manchester"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "playing",
+        "phase": "select_start_single",
         "turn_state": "roll",
         "r1": 5,
         "r2": 11,
@@ -428,8 +428,8 @@
             "total_turns_taken": 47,
             "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
-            "start_choice": "Onawa",
-            "reset_reason": null,
+            "start_choice": "Sioux City",
+            "reset_reason": "Player test requested a route reset.",
             "base_mileage_tally": 242,
             "day_mileage_history": [
                 62,
