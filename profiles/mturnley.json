@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 16:48",
+        "saved_at": "2026-11-26 16:53",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "road_closure",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 4,
         "current_card": {
@@ -35,7 +35,7 @@
         "base_high": 100,
         "mod_low": 40,
         "mod_high": 100,
-        "road_result_msg": "\u2728 You rolled an **Even (4)**! You successfully bypass the road construction and stay in **Oskaloosa**.",
+        "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
             "name": "mturnley",
