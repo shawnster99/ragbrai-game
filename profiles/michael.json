@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Real-Life Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 3,
         "r2": 6,
         "current_card": {
@@ -49,7 +49,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 4,
+            "total_turns_taken": 5,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
