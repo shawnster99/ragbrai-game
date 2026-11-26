@@ -396,7 +396,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 11,
         "current_card": {
@@ -425,7 +425,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 46,
+            "total_turns_taken": 47,
             "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
