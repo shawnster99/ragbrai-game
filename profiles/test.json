@@ -388,7 +388,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 12:03",
+        "saved_at": "2026-11-26 12:04",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -396,7 +396,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 2,
         "current_card": {
@@ -425,7 +425,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 41,
+            "total_turns_taken": 42,
             "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
