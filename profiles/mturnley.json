@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 5,
         "current_card": {
@@ -39,11 +39,10 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mturnley",
-            "town": "Perry",
+            "town": "Atlantic",
             "history": [
                 "Missouri Valley",
-                "Atlantic",
-                "Perry"
+                "Atlantic"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -55,10 +54,9 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
             "reset_reason": null,
-            "base_mileage_tally": 147,
+            "base_mileage_tally": 62,
             "day_mileage_history": [
-                62,
-                85
+                62
             ]
         }
     }
