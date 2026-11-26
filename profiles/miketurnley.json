@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 12:41",
+        "saved_at": "2026-11-26 12:42",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 8,
         "current_card": {
@@ -39,10 +39,11 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "miketurnley",
-            "town": "Harlan",
+            "town": "Carroll",
             "history": [
                 "Onawa",
-                "Harlan"
+                "Harlan",
+                "Carroll"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -54,9 +55,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
             "reset_reason": null,
-            "base_mileage_tally": 66,
+            "base_mileage_tally": 126,
             "day_mileage_history": [
-                66
+                66,
+                60
             ]
         }
     }
