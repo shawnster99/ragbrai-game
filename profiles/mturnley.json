@@ -15,15 +15,15 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 16:56",
+        "saved_at": "2026-11-26 16:57",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
             "Manchester"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 9,
         "current_card": {
@@ -39,9 +39,9 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mturnley",
-            "town": "Sioux City",
+            "town": "Missouri Valley",
             "history": [
-                "Sioux City"
+                "Missouri Valley"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -51,8 +51,8 @@
             "total_turns_taken": 20,
             "ability_penalty_pts": 15,
             "bonus_range_next_turn": 0,
-            "start_choice": "Sioux City",
-            "reset_reason": "\ud83d\udea8 **Stuck Early!** You had no valid moves. Select a town to restart!",
+            "start_choice": "Missouri Valley",
+            "reset_reason": null,
             "base_mileage_tally": 0,
             "day_mileage_history": []
         }
