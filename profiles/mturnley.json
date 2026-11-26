@@ -22,7 +22,7 @@
             "Manchester"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "playing",
+        "phase": "select_start_single",
         "turn_state": "move",
         "r1": 5,
         "r2": 11,
@@ -39,14 +39,15 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mturnley",
-            "town": "Mt Pleasant",
+            "town": "Muscatine",
             "history": [
                 "Missouri Valley",
                 "Atlantic",
                 "Perry",
                 "Newton",
                 "Oskaloosa",
-                "Mt Pleasant"
+                "Mt Pleasant",
+                "Muscatine"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -57,14 +58,15 @@
             "ability_penalty_pts": 15,
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
-            "reset_reason": null,
-            "base_mileage_tally": 352,
+            "reset_reason": "\ud83d\udea8 **Overshot!** Reached finish town Muscatine on Day 6 (before Day 7). Select a new starting town to restart!",
+            "base_mileage_tally": 413,
             "day_mileage_history": [
                 62,
                 83,
                 72,
                 52,
-                83
+                83,
+                61
             ]
         }
     }
