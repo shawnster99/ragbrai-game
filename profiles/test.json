@@ -388,7 +388,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 11:57",
+        "saved_at": "2026-11-26 11:58",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -406,8 +406,8 @@
         },
         "base_low": 40,
         "base_high": 60,
-        "mod_low": 40,
-        "mod_high": 75,
+        "mod_low": 20,
+        "mod_high": 95,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -420,12 +420,12 @@
                 "Guthrie Center"
             ],
             "abilities": {
-                "Beekman's Energy Boost": true,
+                "Beekman's Energy Boost": false,
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
             "total_turns_taken": 4,
-            "ability_penalty_pts": 0,
+            "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
             "reset_reason": null,
