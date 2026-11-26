@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 16:40",
+        "saved_at": "2026-11-26 16:41",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -23,15 +23,15 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
+        "turn_state": "card",
         "r1": 9,
-        "r2": 8,
+        "r2": 6,
         "current_card": {
             "name": "Fire Station Fundraiser",
             "reason": "Community pancake breakfast boosts early momentum!",
             "effect_text": "Lower the bottom range number by 15 miles."
         },
-        "base_low": 80,
+        "base_low": 60,
         "base_high": 90,
         "mod_low": 65,
         "mod_high": 90,
