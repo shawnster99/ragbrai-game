@@ -396,7 +396,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 5,
         "current_card": {
@@ -412,14 +412,15 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Cedar Falls",
+            "town": "Manchester",
             "history": [
                 "Glenwood",
                 "Atlantic",
                 "Perry",
                 "Ames",
                 "Marshalltown",
-                "Cedar Falls"
+                "Cedar Falls",
+                "Manchester"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -431,12 +432,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Glenwood",
             "reset_reason": null,
-            "base_mileage_tally": 309,
+            "base_mileage_tally": 370,
             "day_mileage_history": [
                 69,
                 83,
                 49,
                 47,
+                61,
                 61
             ]
         }
