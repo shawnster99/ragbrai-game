@@ -23,15 +23,15 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 5,
+        "turn_state": "card",
+        "r1": 8,
         "r2": 8,
         "current_card": {
             "name": "Pie Power",
             "reason": "Sugar rush from homemade church pie!",
             "effect_text": "Add 15 miles to the mileage top range."
         },
-        "base_low": 50,
+        "base_low": 80,
         "base_high": 80,
         "mod_low": 50,
         "mod_high": 95,
