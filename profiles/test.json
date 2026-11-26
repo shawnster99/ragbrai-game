@@ -388,7 +388,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 11:58",
+        "saved_at": "2026-11-26 11:59",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -396,18 +396,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 7,
         "r2": 7,
         "current_card": {
-            "name": "Casey's Pizza Power",
-            "reason": "Starting the day off right.",
-            "effect_text": "Expand 5 miles to the mileage range in both directions."
+            "name": "Pie Power",
+            "reason": "Sugar rush from homemade church pie!",
+            "effect_text": "Add 15 miles to the mileage top range."
         },
         "base_low": 70,
         "base_high": 70,
-        "mod_low": 85,
-        "mod_high": 105,
+        "mod_low": 70,
+        "mod_high": 85,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -423,7 +423,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 12,
+            "total_turns_taken": 13,
             "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
