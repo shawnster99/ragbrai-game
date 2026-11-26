@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 17:12",
+        "saved_at": "2026-11-26 17:13",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -23,16 +23,16 @@
         ],
         "dice_mode": "Real-Life Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 7,
-        "r2": 7,
+        "turn_state": "card",
+        "r1": 2,
+        "r2": 9,
         "current_card": {
             "name": "Hangover",
             "reason": "Late night lingering at the beer tent!",
             "effect_text": "Subtract 20 miles to the range on the high end."
         },
-        "base_low": 70,
-        "base_high": 70,
+        "base_low": 20,
+        "base_high": 90,
         "mod_low": 0,
         "mod_high": 9999,
         "road_result_msg": null,
