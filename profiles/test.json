@@ -396,7 +396,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 4,
         "r2": 5,
         "current_card": {
@@ -412,11 +412,12 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Perry",
+            "town": "Ames",
             "history": [
                 "Glenwood",
                 "Atlantic",
-                "Perry"
+                "Perry",
+                "Ames"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -428,10 +429,11 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Glenwood",
             "reset_reason": null,
-            "base_mileage_tally": 152,
+            "base_mileage_tally": 201,
             "day_mileage_history": [
                 69,
-                83
+                83,
+                49
             ]
         }
     }
