@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 16:54",
+        "saved_at": "2026-11-26 16:56",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 7,
         "r2": 12,
         "current_card": {
@@ -39,13 +39,14 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mturnley",
-            "town": "Oskaloosa",
+            "town": "Mt Pleasant",
             "history": [
                 "Missouri Valley",
                 "Atlantic",
                 "Perry",
                 "Newton",
-                "Oskaloosa"
+                "Oskaloosa",
+                "Mt Pleasant"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -57,12 +58,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
             "reset_reason": null,
-            "base_mileage_tally": 269,
+            "base_mileage_tally": 352,
             "day_mileage_history": [
                 62,
                 83,
                 72,
-                52
+                52,
+                83
             ]
         }
     }
