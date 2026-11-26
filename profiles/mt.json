@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 17:02",
+        "saved_at": "2026-11-26 17:03",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 8,
         "current_card": {
@@ -39,12 +39,11 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mt",
-            "town": "Guthrie Center",
+            "town": "Carroll",
             "history": [
                 "Sioux City",
                 "Storm Lake",
-                "Carroll",
-                "Guthrie Center"
+                "Carroll"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -56,11 +55,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 191,
+            "base_mileage_tally": 140,
             "day_mileage_history": [
                 77,
-                63,
-                51
+                63
             ]
         }
     }
