@@ -409,7 +409,7 @@
         "mod_low": 35,
         "mod_high": 110,
         "road_result_msg": null,
-        "map_penalty_pts": 0,
+        "map_penalty_pts": 15,
         "player": {
             "name": "test",
             "town": "Pella",
