@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-26 17:13",
+        "saved_at": "2026-11-26 17:14",
         "day_of_year": 330,
         "ragbraile_pair": [
             "Perry",
@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Real-Life Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 2,
         "r2": 9,
         "current_card": {
@@ -39,14 +39,15 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "michael",
-            "town": "Cedar Falls",
+            "town": "Manchester",
             "history": [
                 "Missouri Valley",
                 "Atlantic",
                 "Perry",
                 "Ankeny",
                 "Marshalltown",
-                "Cedar Falls"
+                "Cedar Falls",
+                "Manchester"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -58,13 +59,14 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
             "reset_reason": null,
-            "base_mileage_tally": 304,
+            "base_mileage_tally": 370,
             "day_mileage_history": [
                 62,
                 86,
                 39,
                 52,
-                65
+                65,
+                66
             ]
         }
     }
