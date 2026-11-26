@@ -22,8 +22,8 @@
             "Manchester"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 11,
         "current_card": {
@@ -39,15 +39,9 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mturnley",
-            "town": "Muscatine",
+            "town": "Sioux City",
             "history": [
-                "Missouri Valley",
-                "Atlantic",
-                "Perry",
-                "Newton",
-                "Oskaloosa",
-                "Mt Pleasant",
-                "Muscatine"
+                "Sioux City"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -57,17 +51,10 @@
             "total_turns_taken": 19,
             "ability_penalty_pts": 15,
             "bonus_range_next_turn": 0,
-            "start_choice": "Missouri Valley",
-            "reset_reason": "\ud83d\udea8 **Overshot!** Reached finish town Muscatine on Day 6 (before Day 7). Select a new starting town to restart!",
-            "base_mileage_tally": 413,
-            "day_mileage_history": [
-                62,
-                83,
-                72,
-                52,
-                83,
-                61
-            ]
+            "start_choice": "Sioux City",
+            "reset_reason": null,
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
         }
     }
 }
