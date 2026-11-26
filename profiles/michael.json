@@ -1,45 +1,28 @@
 {
     "display_name": "michael",
-    "completed_towns": [],
-    "games_finished": 0,
+    "completed_towns": [
+        "Missouri Valley",
+        "Marshalltown",
+        "Dubuque",
+        "Manchester",
+        "Ankeny",
+        "Atlantic",
+        "Cedar Falls",
+        "Perry"
+    ],
+    "games_finished": 1,
     "standard_wins": 0,
-    "ragbraile_days_solved": [],
-    "ragbraile_results": {},
-    "best_score": 0,
-    "total_score_sum": 0,
-    "best_ragbraile_score": 0,
-    "ragbraile_score_sum": 0,
-    "ragbraile_completions_count": 0,
-    "total_miles_ridden": 0,
-    "current_streak": 0,
-    "last_solved_date": null,
-    "recent_routes": [],
-    "active_ragbraile": {
-        "saved_at": "2026-11-26 17:14",
-        "day_of_year": 330,
-        "ragbraile_pair": [
-            "Perry",
-            "Manchester"
-        ],
-        "dice_mode": "Real-Life Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 2,
-        "r2": 10,
-        "current_card": {
-            "name": "Hangover",
-            "reason": "Late night lingering at the beer tent!",
-            "effect_text": "Subtract 20 miles to the range on the high end."
-        },
-        "base_low": 20,
-        "base_high": 100,
-        "mod_low": 20,
-        "mod_high": 80,
-        "road_result_msg": null,
-        "map_penalty_pts": 0,
-        "player": {
-            "name": "michael",
-            "town": "Manchester",
+    "ragbraile_days_solved": [
+        330
+    ],
+    "ragbraile_results": {
+        "330": {
+            "day_of_year": 330,
+            "ragbraile_pair": [
+                "Perry",
+                "Manchester"
+            ],
+            "player_name": "michael",
             "history": [
                 "Missouri Valley",
                 "Atlantic",
@@ -47,27 +30,43 @@
                 "Ankeny",
                 "Marshalltown",
                 "Cedar Falls",
-                "Manchester"
+                "Manchester",
+                "Dubuque"
             ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": false
-            },
+            "miles": 421,
+            "score": 81,
             "total_turns_taken": 11,
             "ability_penalty_pts": 15,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Missouri Valley",
-            "reset_reason": null,
-            "base_mileage_tally": 370,
-            "day_mileage_history": [
-                62,
-                86,
-                39,
-                52,
-                65,
-                66
-            ]
+            "map_penalty_pts": 0
         }
-    }
+    },
+    "best_score": 0,
+    "total_score_sum": 0,
+    "best_ragbraile_score": 81,
+    "ragbraile_score_sum": 81,
+    "ragbraile_completions_count": 1,
+    "total_miles_ridden": 421,
+    "current_streak": 1,
+    "last_solved_date": "2026-11-26",
+    "recent_routes": [
+        {
+            "date": "2026-11-26",
+            "mode": "RAGBRAILE (Day 330)",
+            "start": "Missouri Valley",
+            "end": "Dubuque",
+            "miles": 421,
+            "history": [
+                "Missouri Valley",
+                "Atlantic",
+                "Perry",
+                "Ankeny",
+                "Marshalltown",
+                "Cedar Falls",
+                "Manchester",
+                "Dubuque"
+            ],
+            "extra": " \u2014 Targets: Perry, Manchester | Score: 81/100"
+        }
+    ],
+    "active_ragbraile": null
 }
