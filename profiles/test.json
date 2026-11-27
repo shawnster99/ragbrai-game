@@ -440,7 +440,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 9,
         "current_card": {
@@ -456,11 +456,10 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Winterset",
+            "town": "Atlantic",
             "history": [
                 "Missouri Valley",
-                "Atlantic",
-                "Winterset"
+                "Atlantic"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -472,10 +471,9 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
             "reset_reason": null,
-            "base_mileage_tally": 130,
+            "base_mileage_tally": 59,
             "day_mileage_history": [
-                59,
-                71
+                59
             ]
         }
     }
