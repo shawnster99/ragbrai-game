@@ -432,7 +432,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-27 09:07",
+        "saved_at": "2026-11-27 09:08",
         "day_of_year": 331,
         "ragbraile_pair": [
             "Missouri Valley",
@@ -440,12 +440,12 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 0,
-        "r2": 0,
+        "turn_state": "card",
+        "r1": 5,
+        "r2": 5,
         "current_card": null,
-        "base_low": 0,
-        "base_high": 0,
+        "base_low": 50,
+        "base_high": 50,
         "mod_low": 0,
         "mod_high": 0,
         "road_result_msg": null,
