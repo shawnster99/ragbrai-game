@@ -452,19 +452,18 @@
         "base_high": 110,
         "mod_low": 30,
         "mod_high": 110,
-        "road_result_msg": null,
+        "road_result_msg": "\ud83d\udea7 You rolled an **Odd (1)**! The road construction forces you back to your previous town.",
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Mt Pleasant",
+            "town": "Fairfield",
             "history": [
                 "Missouri Valley",
                 "Atlantic",
                 "Perry",
                 "Ankeny",
                 "Oskaloosa",
-                "Fairfield",
-                "Mt Pleasant"
+                "Fairfield"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -476,14 +475,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
             "reset_reason": null,
-            "base_mileage_tally": 356,
+            "base_mileage_tally": 327,
             "day_mileage_history": [
                 59,
                 86,
                 42,
                 78,
-                62,
-                29
+                62
             ]
         }
     }
