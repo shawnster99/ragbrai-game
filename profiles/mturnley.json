@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-27 13:09",
+        "saved_at": "2026-11-27 13:10",
         "day_of_year": 331,
         "ragbraile_pair": [
             "Missouri Valley",
@@ -35,7 +35,7 @@
         "base_high": 100,
         "mod_low": 30,
         "mod_high": 100,
-        "road_result_msg": null,
+        "road_result_msg": "\u2728 You rolled an **Even (2)**! You successfully bypass the road construction and stay in **Carroll**.",
         "map_penalty_pts": 0,
         "player": {
             "name": "mturnley",
