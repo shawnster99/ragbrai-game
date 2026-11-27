@@ -1,45 +1,28 @@
 {
     "display_name": "mturnley",
-    "completed_towns": [],
-    "games_finished": 0,
+    "completed_towns": [
+        "Missouri Valley",
+        "Harlan",
+        "Ottumwa",
+        "Carroll",
+        "Iowa City",
+        "Ankeny",
+        "Oskaloosa",
+        "Davenport"
+    ],
+    "games_finished": 1,
     "standard_wins": 0,
-    "ragbraile_days_solved": [],
-    "ragbraile_results": {},
-    "best_score": 0,
-    "total_score_sum": 0,
-    "best_ragbraile_score": 0,
-    "ragbraile_score_sum": 0,
-    "ragbraile_completions_count": 0,
-    "total_miles_ridden": 0,
-    "current_streak": 0,
-    "last_solved_date": null,
-    "recent_routes": [],
-    "active_ragbraile": {
-        "saved_at": "2026-11-27 13:12",
-        "day_of_year": 331,
-        "ragbraile_pair": [
-            "Missouri Valley",
-            "Ankeny"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 7,
-        "r2": 9,
-        "current_card": {
-            "name": "Fire Station Fundraiser",
-            "reason": "Community pancake breakfast boosts early momentum!",
-            "effect_text": "Lower the bottom range number by 15 miles."
-        },
-        "base_low": 70,
-        "base_high": 90,
-        "mod_low": 55,
-        "mod_high": 90,
-        "road_result_msg": null,
-        "map_penalty_pts": 0,
-        "player": {
-            "name": "mturnley",
-            "town": "Iowa City",
+    "ragbraile_days_solved": [
+        331
+    ],
+    "ragbraile_results": {
+        "331": {
+            "day_of_year": 331,
+            "ragbraile_pair": [
+                "Missouri Valley",
+                "Ankeny"
+            ],
+            "player_name": "mturnley",
             "history": [
                 "Missouri Valley",
                 "Harlan",
@@ -47,27 +30,43 @@
                 "Ankeny",
                 "Oskaloosa",
                 "Ottumwa",
-                "Iowa City"
+                "Iowa City",
+                "Davenport"
             ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": true
-            },
+            "miles": 463,
+            "score": 88,
             "total_turns_taken": 14,
             "ability_penalty_pts": 5,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Missouri Valley",
-            "reset_reason": null,
-            "base_mileage_tally": 397,
-            "day_mileage_history": [
-                44,
-                62,
-                93,
-                78,
-                32,
-                88
-            ]
+            "map_penalty_pts": 0
         }
-    }
+    },
+    "best_score": 0,
+    "total_score_sum": 0,
+    "best_ragbraile_score": 88,
+    "ragbraile_score_sum": 88,
+    "ragbraile_completions_count": 1,
+    "total_miles_ridden": 463,
+    "current_streak": 1,
+    "last_solved_date": "2026-11-27",
+    "recent_routes": [
+        {
+            "date": "2026-11-27",
+            "mode": "RAGBRAILE (Day 331)",
+            "start": "Missouri Valley",
+            "end": "Davenport",
+            "miles": 463,
+            "history": [
+                "Missouri Valley",
+                "Harlan",
+                "Carroll",
+                "Ankeny",
+                "Oskaloosa",
+                "Ottumwa",
+                "Iowa City",
+                "Davenport"
+            ],
+            "extra": " \u2014 Targets: Missouri Valley, Ankeny | Score: 88/100"
+        }
+    ],
+    "active_ragbraile": null
 }
