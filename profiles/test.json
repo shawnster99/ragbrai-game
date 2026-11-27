@@ -440,7 +440,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 7,
         "current_card": {
@@ -456,12 +456,13 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Ankeny",
+            "town": "Oskaloosa",
             "history": [
                 "Missouri Valley",
                 "Atlantic",
                 "Perry",
-                "Ankeny"
+                "Ankeny",
+                "Oskaloosa"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -473,11 +474,12 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
             "reset_reason": null,
-            "base_mileage_tally": 187,
+            "base_mileage_tally": 265,
             "day_mileage_history": [
                 59,
                 86,
-                42
+                42,
+                78
             ]
         }
     }
