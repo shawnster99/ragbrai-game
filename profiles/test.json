@@ -440,8 +440,8 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 5,
+        "turn_state": "card",
+        "r1": 6,
         "r2": 5,
         "current_card": {
             "name": "Casey's Pizza Power",
@@ -449,7 +449,7 @@
             "effect_text": "Expand 5 miles to the mileage range in both directions."
         },
         "base_low": 50,
-        "base_high": 50,
+        "base_high": 60,
         "mod_low": 45,
         "mod_high": 55,
         "road_result_msg": null,
