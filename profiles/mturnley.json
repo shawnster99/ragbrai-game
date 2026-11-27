@@ -23,18 +23,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 2,
         "r2": 7,
         "current_card": {
-            "name": "Fire Station Fundraiser",
-            "reason": "Community pancake breakfast boosts early momentum!",
-            "effect_text": "Lower the bottom range number by 15 miles."
+            "name": "Hangover",
+            "reason": "Late night lingering at the beer tent!",
+            "effect_text": "Subtract 20 miles to the range on the high end."
         },
         "base_low": 20,
         "base_high": 70,
-        "mod_low": 25,
-        "mod_high": 70,
+        "mod_low": 20,
+        "mod_high": 50,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -49,7 +49,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 2,
+            "total_turns_taken": 3,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
