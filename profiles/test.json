@@ -440,14 +440,18 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 5,
         "r2": 5,
-        "current_card": null,
+        "current_card": {
+            "name": "Casey's Pizza Power",
+            "reason": "Starting the day off right.",
+            "effect_text": "Expand 5 miles to the mileage range in both directions."
+        },
         "base_low": 50,
         "base_high": 50,
-        "mod_low": 0,
-        "mod_high": 0,
+        "mod_low": 45,
+        "mod_high": 55,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -461,7 +465,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 0,
+            "total_turns_taken": 1,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
