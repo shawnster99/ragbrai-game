@@ -440,7 +440,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 3,
         "r2": 6,
         "current_card": {
@@ -456,14 +456,15 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Fairfield",
+            "town": "Washington",
             "history": [
                 "Missouri Valley",
                 "Atlantic",
                 "Perry",
                 "Ankeny",
                 "Oskaloosa",
-                "Fairfield"
+                "Fairfield",
+                "Washington"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -475,13 +476,14 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Missouri Valley",
             "reset_reason": null,
-            "base_mileage_tally": 327,
+            "base_mileage_tally": 363,
             "day_mileage_history": [
                 59,
                 86,
                 42,
                 78,
-                62
+                62,
+                36
             ]
         }
     }
