@@ -14,47 +14,5 @@
     "current_streak": 0,
     "last_solved_date": null,
     "recent_routes": [],
-    "active_ragbraile": {
-        "saved_at": "2026-11-26 16:57",
-        "day_of_year": 330,
-        "ragbraile_pair": [
-            "Perry",
-            "Manchester"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 8,
-        "r2": 12,
-        "current_card": {
-            "name": "Headwind",
-            "reason": "Fighting a fierce crosswind across open plains!",
-            "effect_text": "Subtract 10 miles to the mileage range in both directions."
-        },
-        "base_low": 80,
-        "base_high": 120,
-        "mod_low": 90,
-        "mod_high": 110,
-        "road_result_msg": null,
-        "map_penalty_pts": 0,
-        "player": {
-            "name": "mturnley",
-            "town": "Missouri Valley",
-            "history": [
-                "Missouri Valley"
-            ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": false
-            },
-            "total_turns_taken": 21,
-            "ability_penalty_pts": 15,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Missouri Valley",
-            "reset_reason": null,
-            "base_mileage_tally": 0,
-            "day_mileage_history": []
-        }
-    }
+    "active_ragbraile": null
 }
