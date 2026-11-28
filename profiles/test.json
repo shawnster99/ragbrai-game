@@ -484,8 +484,8 @@
             "Oelwein"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 12,
         "current_card": {
@@ -501,9 +501,9 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Le Mars",
+            "town": "Sioux City",
             "history": [
-                "Le Mars"
+                "Sioux City"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -513,8 +513,8 @@
             "total_turns_taken": 9,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
-            "start_choice": "Le Mars",
-            "reset_reason": "\ud83d\udea8 **Stuck Early!** You had no valid moves. Select a town to restart!",
+            "start_choice": "Sioux City",
+            "reset_reason": null,
             "base_mileage_tally": 0,
             "day_mileage_history": []
         }
