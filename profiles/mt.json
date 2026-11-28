@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 08:51",
+        "saved_at": "2026-11-28 08:52",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -23,16 +23,16 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 9,
-        "r2": 10,
+        "turn_state": "card",
+        "r1": 5,
+        "r2": 6,
         "current_card": {
             "name": "Porkchop Power",
             "reason": "Fueled up by legendary festival food!",
             "effect_text": "Expand 10 miles to the mileage range in both directions."
         },
-        "base_low": 90,
-        "base_high": 100,
+        "base_low": 50,
+        "base_high": 60,
         "mod_low": 0,
         "mod_high": 9999,
         "road_result_msg": null,
