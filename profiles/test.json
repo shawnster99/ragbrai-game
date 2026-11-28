@@ -485,7 +485,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 9,
         "current_card": {
@@ -501,9 +501,10 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Orange City",
+            "town": "Milford",
             "history": [
-                "Orange City"
+                "Orange City",
+                "Milford"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -515,8 +516,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Orange City",
             "reset_reason": null,
-            "base_mileage_tally": 0,
-            "day_mileage_history": []
+            "base_mileage_tally": 72,
+            "day_mileage_history": [
+                72
+            ]
         }
     }
 }
