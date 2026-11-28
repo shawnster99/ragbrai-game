@@ -77,7 +77,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 10,
         "r2": 8,
         "current_card": {
@@ -87,8 +87,8 @@
         },
         "base_low": 80,
         "base_high": 100,
-        "mod_low": 40,
-        "mod_high": 70,
+        "mod_low": 70,
+        "mod_high": 100,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -106,7 +106,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": false
             },
-            "total_turns_taken": 4,
+            "total_turns_taken": 5,
             "ability_penalty_pts": 10,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
