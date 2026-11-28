@@ -485,7 +485,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 8,
         "current_card": {
@@ -501,12 +501,13 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Humboldt",
+            "town": "Mason City",
             "history": [
                 "Orange City",
                 "Milford",
                 "Estherville",
-                "Humboldt"
+                "Humboldt",
+                "Mason City"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -518,11 +519,12 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Orange City",
             "reset_reason": null,
-            "base_mileage_tally": 179,
+            "base_mileage_tally": 263,
             "day_mileage_history": [
                 72,
                 26,
-                81
+                81,
+                84
             ]
         }
     }
