@@ -485,7 +485,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 7,
         "r2": 7,
         "current_card": {
@@ -501,9 +501,10 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "test",
-            "town": "Onawa",
+            "town": "Lake View",
             "history": [
-                "Onawa"
+                "Onawa",
+                "Lake View"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -515,8 +516,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
             "reset_reason": null,
-            "base_mileage_tally": 0,
-            "day_mileage_history": []
+            "base_mileage_tally": 76,
+            "day_mileage_history": [
+                76
+            ]
         }
     }
 }
