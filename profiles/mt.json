@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 08:48",
+        "saved_at": "2026-11-28 08:49",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -35,14 +35,13 @@
         "base_high": 60,
         "mod_low": 30,
         "mod_high": 60,
-        "road_result_msg": null,
+        "road_result_msg": "\ud83d\udea7 You rolled an **Odd (3)**! The road construction forces you back to your previous town.",
         "map_penalty_pts": 0,
         "player": {
             "name": "mt",
-            "town": "Storm Lake",
+            "town": "Sioux City",
             "history": [
-                "Sioux City",
-                "Storm Lake"
+                "Sioux City"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -54,10 +53,8 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 79,
-            "day_mileage_history": [
-                79
-            ]
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
         }
     }
 }
