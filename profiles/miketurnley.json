@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 4,
         "current_card": {
@@ -39,13 +39,14 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "miketurnley",
-            "town": "Humboldt",
+            "town": "Webster City",
             "history": [
                 "Sioux City",
                 "Orange City",
                 "Cherokee",
                 "Emmetsburg",
-                "Humboldt"
+                "Humboldt",
+                "Webster City"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -57,12 +58,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 238,
+            "base_mileage_tally": 287,
             "day_mileage_history": [
                 51,
                 50,
                 79,
-                58
+                58,
+                49
             ]
         }
     }
