@@ -477,7 +477,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 09:05",
+        "saved_at": "2026-11-28 09:06",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -485,15 +485,15 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 5,
-        "r2": 10,
+        "turn_state": "card",
+        "r1": 10,
+        "r2": 9,
         "current_card": {
             "name": "100 Degree Day",
             "reason": "Sweltering Iowa summer heat slows your pace!",
             "effect_text": "Lower the top range number by 15 miles."
         },
-        "base_low": 50,
+        "base_low": 90,
         "base_high": 100,
         "mod_low": 50,
         "mod_high": 85,
