@@ -497,7 +497,7 @@
         "base_high": 80,
         "mod_low": 60,
         "mod_high": 80,
-        "road_result_msg": null,
+        "road_result_msg": "\ud83d\udea7 You rolled an **Odd (1)**! The road construction forces you back to your previous town.",
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
