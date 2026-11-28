@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 4,
         "r2": 10,
         "current_card": {
@@ -39,13 +39,14 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mt",
-            "town": "Iowa Falls",
+            "town": "Cedar Falls",
             "history": [
                 "Sioux City",
                 "Storm Lake",
                 "Algona",
                 "Humboldt",
-                "Iowa Falls"
+                "Iowa Falls",
+                "Cedar Falls"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -57,12 +58,13 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 271,
+            "base_mileage_tally": 326,
             "day_mileage_history": [
                 78,
                 88,
                 33,
-                72
+                72,
+                55
             ]
         }
     }
