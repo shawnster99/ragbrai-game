@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 7,
         "current_card": {
@@ -39,11 +39,10 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mt",
-            "town": "Lake View",
+            "town": "Cherokee",
             "history": [
                 "Sioux City",
-                "Cherokee",
-                "Lake View"
+                "Cherokee"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -55,10 +54,9 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 121,
+            "base_mileage_tally": 63,
             "day_mileage_history": [
-                63,
-                58
+                63
             ]
         }
     }
