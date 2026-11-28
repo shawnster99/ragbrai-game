@@ -15,14 +15,14 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 08:47",
+        "saved_at": "2026-11-28 08:48",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
             "Oelwein"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "setup",
+        "phase": "playing",
         "turn_state": "roll",
         "r1": 0,
         "r2": 0,
@@ -35,8 +35,10 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mt",
-            "town": null,
-            "history": [],
+            "town": "Sioux City",
+            "history": [
+                "Sioux City"
+            ],
             "abilities": {
                 "Beekman's Energy Boost": true,
                 "Thunderstorm": true,
