@@ -477,7 +477,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 09:06",
+        "saved_at": "2026-11-28 09:07",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -485,16 +485,16 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
+        "turn_state": "card",
         "r1": 6,
-        "r2": 10,
+        "r2": 5,
         "current_card": {
             "name": "Fire Station Fundraiser",
             "reason": "Community pancake breakfast boosts early momentum!",
             "effect_text": "Lower the bottom range number by 15 miles."
         },
-        "base_low": 60,
-        "base_high": 100,
+        "base_low": 50,
+        "base_high": 60,
         "mod_low": 45,
         "mod_high": 100,
         "road_result_msg": null,
