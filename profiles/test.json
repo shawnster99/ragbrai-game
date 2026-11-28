@@ -485,15 +485,15 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
+        "turn_state": "card",
         "r1": 10,
-        "r2": 3,
+        "r2": 8,
         "current_card": {
             "name": "Hangover",
             "reason": "Late night lingering at the beer tent!",
             "effect_text": "Subtract 20 miles to the range on the high end."
         },
-        "base_low": 30,
+        "base_low": 80,
         "base_high": 100,
         "mod_low": 10,
         "mod_high": 100,
