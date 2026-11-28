@@ -14,52 +14,5 @@
     "current_streak": 0,
     "last_solved_date": null,
     "recent_routes": [],
-    "active_ragbraile": {
-        "saved_at": "2026-11-26 12:43",
-        "day_of_year": 330,
-        "ragbraile_pair": [
-            "Perry",
-            "Manchester"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 8,
-        "r2": 8,
-        "current_card": {
-            "name": "Casey's Pizza Power",
-            "reason": "Starting the day off right.",
-            "effect_text": "Expand 5 miles to the mileage range in both directions."
-        },
-        "base_low": 80,
-        "base_high": 80,
-        "mod_low": 75,
-        "mod_high": 85,
-        "road_result_msg": null,
-        "map_penalty_pts": 0,
-        "player": {
-            "name": "miketurnley",
-            "town": "Greenfield",
-            "history": [
-                "Onawa",
-                "Harlan",
-                "Greenfield"
-            ],
-            "abilities": {
-                "Beekman's Energy Boost": true,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": true
-            },
-            "total_turns_taken": 8,
-            "ability_penalty_pts": 0,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Onawa",
-            "reset_reason": null,
-            "base_mileage_tally": 146,
-            "day_mileage_history": [
-                66,
-                80
-            ]
-        }
-    }
+    "active_ragbraile": null
 }
