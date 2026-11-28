@@ -477,7 +477,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 09:07",
+        "saved_at": "2026-11-28 09:08",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -485,7 +485,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 3,
         "r2": 10,
         "current_card": {
@@ -501,10 +501,11 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Milford",
+            "town": "Estherville",
             "history": [
                 "Orange City",
-                "Milford"
+                "Milford",
+                "Estherville"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -516,9 +517,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Orange City",
             "reset_reason": null,
-            "base_mileage_tally": 72,
+            "base_mileage_tally": 98,
             "day_mileage_history": [
-                72
+                72,
+                26
             ]
         }
     }
