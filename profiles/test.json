@@ -477,7 +477,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 08:55",
+        "saved_at": "2026-11-28 08:56",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -485,12 +485,12 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
-        "r1": 0,
-        "r2": 0,
+        "turn_state": "card",
+        "r1": 7,
+        "r2": 7,
         "current_card": null,
-        "base_low": 0,
-        "base_high": 0,
+        "base_low": 70,
+        "base_high": 70,
         "mod_low": 0,
         "mod_high": 0,
         "road_result_msg": null,
