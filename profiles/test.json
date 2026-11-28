@@ -484,7 +484,7 @@
             "Oelwein"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "playing",
+        "phase": "select_start_single",
         "turn_state": "move",
         "r1": 9,
         "r2": 5,
@@ -515,7 +515,7 @@
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
-            "reset_reason": null,
+            "reset_reason": "Player test requested a route reset.",
             "base_mileage_tally": 79,
             "day_mileage_history": [
                 79
