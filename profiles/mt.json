@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 08:50",
+        "saved_at": "2026-11-28 08:51",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -23,16 +23,16 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
+        "turn_state": "card",
         "r1": 8,
-        "r2": 7,
+        "r2": 9,
         "current_card": {
             "name": "Headwind",
             "reason": "Fighting a fierce crosswind across open plains!",
             "effect_text": "Subtract 10 miles to the mileage range in both directions."
         },
-        "base_low": 70,
-        "base_high": 80,
+        "base_low": 80,
+        "base_high": 90,
         "mod_low": 80,
         "mod_high": 80,
         "road_result_msg": null,
