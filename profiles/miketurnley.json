@@ -22,8 +22,8 @@
             "Oelwein"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 7,
         "current_card": {
@@ -39,10 +39,9 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "miketurnley",
-            "town": "Storm Lake",
+            "town": "Sioux City",
             "history": [
-                "Sioux City",
-                "Storm Lake"
+                "Sioux City"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -53,11 +52,9 @@
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
-            "reset_reason": "\ud83d\udea8 **Stuck Early!** You had no valid moves. Select a town to restart!",
-            "base_mileage_tally": 79,
-            "day_mileage_history": [
-                79
-            ]
+            "reset_reason": null,
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
         }
     }
 }
