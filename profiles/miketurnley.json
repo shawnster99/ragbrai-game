@@ -33,8 +33,8 @@
         },
         "base_low": 80,
         "base_high": 80,
-        "mod_low": 70,
-        "mod_high": 90,
+        "mod_low": 50,
+        "mod_high": 110,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -47,12 +47,12 @@
                 "Emmetsburg"
             ],
             "abilities": {
-                "Beekman's Energy Boost": true,
+                "Beekman's Energy Boost": false,
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
             "total_turns_taken": 13,
-            "ability_penalty_pts": 0,
+            "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
