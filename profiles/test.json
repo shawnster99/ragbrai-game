@@ -484,8 +484,8 @@
             "Oelwein"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "select_start_single",
-        "turn_state": "move",
+        "phase": "playing",
+        "turn_state": "roll",
         "r1": 6,
         "r2": 10,
         "current_card": {
@@ -501,10 +501,9 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Ida Grove",
+            "town": "Le Mars",
             "history": [
-                "Orange City",
-                "Ida Grove"
+                "Le Mars"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -514,12 +513,10 @@
             "total_turns_taken": 30,
             "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
-            "start_choice": "Sioux City",
-            "reset_reason": "Player test requested a route reset.",
-            "base_mileage_tally": 84,
-            "day_mileage_history": [
-                84
-            ]
+            "start_choice": "Le Mars",
+            "reset_reason": null,
+            "base_mileage_tally": 0,
+            "day_mileage_history": []
         }
     }
 }
