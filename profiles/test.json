@@ -485,7 +485,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "road_closure",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 6,
         "current_card": {
@@ -497,7 +497,7 @@
         "base_high": 80,
         "mod_low": 60,
         "mod_high": 80,
-        "road_result_msg": "\ud83d\udea7 You rolled an **Odd (1)**! The road construction forces you back to your previous town.",
+        "road_result_msg": null,
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
