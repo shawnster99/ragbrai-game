@@ -76,7 +76,7 @@
             "Oelwein"
         ],
         "dice_mode": "Virtual Dice",
-        "phase": "playing",
+        "phase": "select_start_single",
         "turn_state": "move",
         "r1": 4,
         "r2": 9,
@@ -93,7 +93,7 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mturnley",
-            "town": "Coralville",
+            "town": "Davenport",
             "history": [
                 "Sioux City",
                 "Cherokee",
@@ -101,7 +101,8 @@
                 "Humboldt",
                 "Iowa Falls",
                 "Waterloo",
-                "Coralville"
+                "Coralville",
+                "Davenport"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -112,15 +113,16 @@
             "ability_penalty_pts": 10,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
-            "reset_reason": null,
-            "base_mileage_tally": 411,
+            "reset_reason": "\ud83d\udea8 **Challenge Mode Failed!** Did not visit both mandatory towns (Humboldt and Oelwein). Select a new starting town to restart!",
+            "base_mileage_tally": 480,
             "day_mileage_history": [
                 65,
                 78,
                 57,
                 69,
                 60,
-                82
+                82,
+                69
             ]
         }
     }
