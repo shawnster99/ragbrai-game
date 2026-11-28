@@ -87,8 +87,8 @@
         },
         "base_low": 90,
         "base_high": 110,
-        "mod_low": 100,
-        "mod_high": 100,
+        "mod_low": 0,
+        "mod_high": 9999,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -102,10 +102,10 @@
             "abilities": {
                 "Beekman's Energy Boost": true,
                 "Thunderstorm": true,
-                "Slip & Slide Boost": true
+                "Slip & Slide Boost": false
             },
             "total_turns_taken": 3,
-            "ability_penalty_pts": 0,
+            "ability_penalty_pts": 10,
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
