@@ -3,12 +3,15 @@
     "completed_towns": [
         "Fairfield",
         "Harlan",
-        "Clear Lake",
         "Decorah",
+        "Clear Lake",
         "Red Oak",
         "Carroll",
         "Osage",
+        "Estherville",
+        "Oelwein",
         "Creston",
+        "Milford",
         "Keokuk",
         "Lake View",
         "Winterset",
@@ -16,10 +19,12 @@
         "Ankeny",
         "Washington",
         "Davenport",
+        "Mason City",
         "Marengo",
         "Charles City",
         "Ottumwa",
         "Greenfield",
+        "Humboldt",
         "Forest City",
         "Newton",
         "Ida Grove",
@@ -54,10 +59,11 @@
         "Le Mars",
         "Indianola",
         "Sigourney",
+        "Orange City",
         "Atlantic",
         "Cedar Falls"
     ],
-    "games_finished": 13,
+    "games_finished": 14,
     "standard_wins": 5,
     "ragbraile_days_solved": [
         324,
@@ -67,7 +73,8 @@
         328,
         329,
         330,
-        331
+        331,
+        332
     ],
     "ragbraile_results": {
         "325": {
@@ -230,16 +237,39 @@
             "total_turns_taken": 15,
             "ability_penalty_pts": 10,
             "map_penalty_pts": 0
+        },
+        "332": {
+            "day_of_year": 332,
+            "ragbraile_pair": [
+                "Humboldt",
+                "Oelwein"
+            ],
+            "player_name": "test",
+            "history": [
+                "Orange City",
+                "Milford",
+                "Estherville",
+                "Humboldt",
+                "Mason City",
+                "New Hampton",
+                "Oelwein",
+                "Guttenberg"
+            ],
+            "miles": 431,
+            "score": 45,
+            "total_turns_taken": 42,
+            "ability_penalty_pts": 5,
+            "map_penalty_pts": 15
         }
     },
     "best_score": 90,
     "total_score_sum": 347,
     "best_ragbraile_score": 82,
-    "ragbraile_score_sum": 356,
-    "ragbraile_completions_count": 7,
-    "total_miles_ridden": 5685,
-    "current_streak": 8,
-    "last_solved_date": "2026-11-27",
+    "ragbraile_score_sum": 401,
+    "ragbraile_completions_count": 8,
+    "total_miles_ridden": 6116,
+    "current_streak": 9,
+    "last_solved_date": "2026-11-28",
     "recent_routes": [
         {
             "date": "2026-11-20",
@@ -474,34 +504,13 @@
                 "Davenport"
             ],
             "extra": " \u2014 Targets: Missouri Valley, Ankeny | Score: 82/100"
-        }
-    ],
-    "active_ragbraile": {
-        "saved_at": "2026-11-28 09:08",
-        "day_of_year": 332,
-        "ragbraile_pair": [
-            "Humboldt",
-            "Oelwein"
-        ],
-        "dice_mode": "Virtual Dice",
-        "phase": "playing",
-        "turn_state": "move",
-        "r1": 2,
-        "r2": 6,
-        "current_card": {
-            "name": "Downhill",
-            "reason": "Cruising down long rolling Iowa hills!",
-            "effect_text": "Subtract 10 miles to the range on the low end."
         },
-        "base_low": 20,
-        "base_high": 60,
-        "mod_low": 10,
-        "mod_high": 60,
-        "road_result_msg": null,
-        "map_penalty_pts": 15,
-        "player": {
-            "name": "test",
-            "town": "Oelwein",
+        {
+            "date": "2026-11-28",
+            "mode": "RAGBRAILE (Day 332)",
+            "start": "Orange City",
+            "end": "Guttenberg",
+            "miles": 431,
             "history": [
                 "Orange City",
                 "Milford",
@@ -509,27 +518,11 @@
                 "Humboldt",
                 "Mason City",
                 "New Hampton",
-                "Oelwein"
+                "Oelwein",
+                "Guttenberg"
             ],
-            "abilities": {
-                "Beekman's Energy Boost": false,
-                "Thunderstorm": true,
-                "Slip & Slide Boost": true
-            },
-            "total_turns_taken": 42,
-            "ability_penalty_pts": 5,
-            "bonus_range_next_turn": 0,
-            "start_choice": "Orange City",
-            "reset_reason": null,
-            "base_mileage_tally": 375,
-            "day_mileage_history": [
-                72,
-                26,
-                81,
-                84,
-                58,
-                54
-            ]
+            "extra": " \u2014 Targets: Humboldt, Oelwein | Score: 45/100"
         }
-    }
+    ],
+    "active_ragbraile": null
 }
