@@ -77,7 +77,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 5,
         "r2": 7,
         "current_card": {
@@ -93,12 +93,13 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "mturnley",
-            "town": "Humboldt",
+            "town": "Iowa Falls",
             "history": [
                 "Sioux City",
                 "Cherokee",
                 "Emmetsburg",
-                "Humboldt"
+                "Humboldt",
+                "Iowa Falls"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -110,11 +111,12 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 200,
+            "base_mileage_tally": 269,
             "day_mileage_history": [
                 65,
                 78,
-                57
+                57,
+                69
             ]
         }
     }
