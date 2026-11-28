@@ -485,7 +485,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 10,
         "r2": 3,
         "current_card": {
@@ -501,11 +501,12 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "Algona",
+            "town": "Humboldt",
             "history": [
                 "Le Mars",
                 "Milford",
-                "Algona"
+                "Algona",
+                "Humboldt"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -517,10 +518,11 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Le Mars",
             "reset_reason": null,
-            "base_mileage_tally": 155,
+            "base_mileage_tally": 187,
             "day_mileage_history": [
                 87,
-                68
+                68,
+                32
             ]
         }
     }
