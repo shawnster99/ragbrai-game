@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 08:44",
+        "saved_at": "2026-11-28 08:45",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 8,
         "r2": 6,
         "current_card": {
@@ -39,10 +39,11 @@
         "map_penalty_pts": 0,
         "player": {
             "name": "miketurnley",
-            "town": "Orange City",
+            "town": "Ida Grove",
             "history": [
                 "Sioux City",
-                "Orange City"
+                "Orange City",
+                "Ida Grove"
             ],
             "abilities": {
                 "Beekman's Energy Boost": true,
@@ -54,9 +55,10 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Sioux City",
             "reset_reason": null,
-            "base_mileage_tally": 51,
+            "base_mileage_tally": 132,
             "day_mileage_history": [
-                51
+                51,
+                81
             ]
         }
     }
