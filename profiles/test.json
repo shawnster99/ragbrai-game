@@ -477,7 +477,7 @@
         }
     ],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 08:56",
+        "saved_at": "2026-11-28 08:57",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -485,7 +485,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "card",
+        "turn_state": "move",
         "r1": 5,
         "r2": 9,
         "current_card": {
@@ -495,8 +495,8 @@
         },
         "base_low": 50,
         "base_high": 90,
-        "mod_low": 60,
-        "mod_high": 80,
+        "mod_low": 40,
+        "mod_high": 100,
         "road_result_msg": null,
         "map_penalty_pts": 0,
         "player": {
@@ -511,7 +511,7 @@
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
-            "total_turns_taken": 1,
+            "total_turns_taken": 2,
             "ability_penalty_pts": 0,
             "bonus_range_next_turn": 0,
             "start_choice": "Onawa",
