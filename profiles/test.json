@@ -485,7 +485,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "move",
+        "turn_state": "roll",
         "r1": 3,
         "r2": 11,
         "current_card": {
@@ -501,14 +501,15 @@
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
-            "town": "New Hampton",
+            "town": "Oelwein",
             "history": [
                 "Orange City",
                 "Milford",
                 "Estherville",
                 "Humboldt",
                 "Mason City",
-                "New Hampton"
+                "New Hampton",
+                "Oelwein"
             ],
             "abilities": {
                 "Beekman's Energy Boost": false,
@@ -520,13 +521,14 @@
             "bonus_range_next_turn": 0,
             "start_choice": "Orange City",
             "reset_reason": null,
-            "base_mileage_tally": 321,
+            "base_mileage_tally": 375,
             "day_mileage_history": [
                 72,
                 26,
                 81,
                 84,
-                58
+                58,
+                54
             ]
         }
     }
