@@ -485,7 +485,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "road_closure",
+        "turn_state": "roll",
         "r1": 9,
         "r2": 4,
         "current_card": {
@@ -497,7 +497,7 @@
         "base_high": 90,
         "mod_low": 40,
         "mod_high": 90,
-        "road_result_msg": "\u2728 You rolled an **Even (6)**! You successfully bypass the road construction and stay in **Algona**.",
+        "road_result_msg": null,
         "map_penalty_pts": 15,
         "player": {
             "name": "test",
