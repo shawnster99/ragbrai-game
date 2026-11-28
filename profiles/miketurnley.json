@@ -15,7 +15,7 @@
     "last_solved_date": null,
     "recent_routes": [],
     "active_ragbraile": {
-        "saved_at": "2026-11-28 08:46",
+        "saved_at": "2026-11-28 08:47",
         "day_of_year": 332,
         "ragbraile_pair": [
             "Humboldt",
@@ -23,7 +23,7 @@
         ],
         "dice_mode": "Virtual Dice",
         "phase": "playing",
-        "turn_state": "roll",
+        "turn_state": "card",
         "r1": 10,
         "r2": 9,
         "current_card": {
