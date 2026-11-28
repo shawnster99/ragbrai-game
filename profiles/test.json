@@ -495,8 +495,8 @@
         },
         "base_low": 30,
         "base_high": 100,
-        "mod_low": 30,
-        "mod_high": 80,
+        "mod_low": 10,
+        "mod_high": 100,
         "road_result_msg": null,
         "map_penalty_pts": 15,
         "player": {
@@ -508,12 +508,12 @@
                 "Algona"
             ],
             "abilities": {
-                "Beekman's Energy Boost": true,
+                "Beekman's Energy Boost": false,
                 "Thunderstorm": true,
                 "Slip & Slide Boost": true
             },
             "total_turns_taken": 20,
-            "ability_penalty_pts": 0,
+            "ability_penalty_pts": 5,
             "bonus_range_next_turn": 0,
             "start_choice": "Le Mars",
             "reset_reason": null,
